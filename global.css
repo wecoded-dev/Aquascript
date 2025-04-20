@@ -80,7 +80,8 @@ h1,h3,p {
 
 .hero-section {
   padding: 100px 0;
-  background: linear-gradient(135deg, #0061ff 0%, #5096ff 100%);
+  /* Restored Original Background */
+  background: linear-gradient(135deg, #0061ff 0%, #60efff 100%);
   position: relative;
   overflow: hidden;
 }
