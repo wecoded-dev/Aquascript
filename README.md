@@ -25,7 +25,7 @@ Need mock articles, user profiles, books, jokes, movie listings, or inspirationa
 
 ## 🎯 Project Goal  
 
-![Aquascript](https://youtu.be/9xwkXqLr5SQ?si=7bfPLv5_gGZqdDYp)
+[![YouTube Video](https://img.youtube.com/vi/9xwkXqLr5SQ/0.jpg)](https://youtu.be/9xwkXqLr5SQ?si=7bfPLv5_gGZqdDYp)
 
 To empower developers with a **fast**, **reliable**, and **easy-to-integrate** platform for accessing high-quality fake JSON data — boosting productivity and reducing development friction.
 
