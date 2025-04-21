@@ -15,7 +15,6 @@
 body {
   margin: 0;
   background-color: #0a192f  !important;
-  color: var(--light-slate) !important;
   overflow-x: hidden;
 }
 .navbar-ultra {
