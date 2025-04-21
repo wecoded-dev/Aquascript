@@ -13,7 +13,7 @@ fetch("./api/books.json")
   })
   .catch((error) => console.error("Error fetching books:", error));
 
-// Display books with pagination
+
 function displayBooks(booksToDisplay, page = 1) {
   const container = document.getElementById("booksContainer");
   container.innerHTML = "";
@@ -54,7 +54,7 @@ function displayBooks(booksToDisplay, page = 1) {
   currentPage = page;
 }
 
-// Setup pagination controls
+
 function setupPagination(booksToDisplay) {
   const paginationContainer = document.getElementById("paginationContainer");
   paginationContainer.innerHTML = "";
@@ -64,20 +64,20 @@ function setupPagination(booksToDisplay) {
   if (pageCount <= 1) return;
   
   let paginationHTML = '<ul class="pagination justify-content-center">';
-  
-  // Previous button
+
+
   paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
     <a class="page-link" href="#" data-page="prev">Previous</a>
   </li>`;
   
-  // Page numbers
+
   for (let i = 1; i <= pageCount; i++) {
     paginationHTML += `<li class="page-item ${i === currentPage ? 'active' : ''}">
       <a class="page-link" href="#" data-page="${i}">${i}</a>
     </li>`;
   }
   
-  // Next button
+
   paginationHTML += `<li class="page-item ${currentPage === pageCount ? 'disabled' : ''}">
     <a class="page-link" href="#" data-page="next">Next</a>
   </li>`;
@@ -86,7 +86,7 @@ function setupPagination(booksToDisplay) {
   paginationContainer.innerHTML = paginationHTML;
 }
 
-// Filter books based on criteria
+
 function filterBooks(filter) {
   let filteredBooks = [];
   
@@ -152,7 +152,7 @@ $(document).on('click', '.page-link', function(e) {
   displayBooks(filteredBooks, currentPage);
   setupPagination(filteredBooks);
   
-  // Smooth scroll to books section (just a bit up)
+  
   $('html, body').animate({
     scrollTop: $(".books-list").offset().top - 50
   }, 300);
@@ -240,7 +240,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Nav-link hover effect
+
 $(document).ready(function() {
   $(".nav-link").hover(
     function() {
