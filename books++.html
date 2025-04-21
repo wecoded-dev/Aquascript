@@ -3,25 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | AquaScript - Free JSON APIs for Developers</title>
-  <script src="https://kit.fontawesome.com/69b7050fd6.js" crossorigin="anonymous"></script>
+  <title>Advanced Books Collection | AquaScript</title>
+  <link rel="icon" href="assets/books-api.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="about/about.css">
-  <link rel="icon" href="assets/about_icon.png" type="image/x-icon">
-  <link rel="stylesheet" href="global.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RF2WV794XB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RF2WV794XB');
-</script>
+  <link rel="stylesheet" href="books++/books++.css">
 </head>
 <body>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-ultra shadow-lg">
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-ultra shadow-lg bg-primary-subtle">
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <img src="assets/background-removed.png" alt="Logo">
@@ -35,7 +25,7 @@
             <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="about.html">About</a>
+            <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="docs.html">Documentation</a>
@@ -58,42 +48,59 @@
     </div>
   </nav>
 
-  <section class="about-section">
-    <div class="about-content">
-      <h1 class="about-title">About AquaScript</h1>
-      <p class="about-text">
-        <span class="about-highlight">AquaScript</span> is a premier provider of free JSON APIs designed to empower developers worldwide. 
-        Our mission is to deliver high-quality, reliable data endpoints that accelerate development and inspire innovation.
-        <br><br>
-        Founded in 2023, we've grown to serve over <span class="about-highlight">50,000 developers</span> monthly with our diverse collection of APIs including Books, Movies, Quotes, Jokes, and User data. 
-        All our APIs are meticulously maintained, regularly updated, and completely free to use.
-        <br><br>
-        Whether you're building educational apps, entertainment platforms, or just experimenting with new technologies, 
-        AquaScript provides the data infrastructure you need to bring your ideas to life.
-      </p>
-      <a href="index.html" class="btn-explore">Explore Our APIs</a>
+  <!-- Books++ Header -->
+  <section class="books-header">
+    <div class="container">
+      <h1 class="page-title mt-3">Books++ Collection</h1>
+      <p class="page-subtitle">Explore our premium collection of technical books with enhanced metadata and detailed information for developers.</p>
       
-      <div class="stats-container">
-        <div class="stat-box">
-          <div class="stat-number">10+</div>
-          <div class="stat-label">API Categories</div>
+      <div class="filter-bar">
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search books by title, author, or category...">
+          <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
-        <div class="stat-box">
-          <div class="stat-number">50K+</div>
-          <div class="stat-label">Monthly Users</div>
+        
+        <div class="filter-buttons">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">Programming</button>
+          <button class="filter-btn">Web Development</button>
+          <button class="filter-btn">Mobile</button>
+          <button class="filter-btn">Internet</button>
+          <button class="filter-btn">Software Engineering</button>
         </div>
-        <div class="stat-box">
-          <div class="stat-number">99.9%</div>
-          <div class="stat-label">Uptime</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-number">24/7</div>
-          <div class="stat-label">Support</div>
-        </div>
+      </div>
+      <div class="api-endpoint text-white">
+        API Endpoint: <span id="apiUrl">https://wecoded-dev.github.io/Aquascript/api/books++.json</span>
+        <button class="btn btn-sm btn-light ms-3" onclick="copyApiUrl()">Copy</button>
       </div>
     </div>
   </section>
 
+  <!-- Books++ Container -->
+  <section class="books-container">
+    <div class="container">
+      <div class="row" id="booksContainer">
+        <!-- Books will be loaded here dynamically -->
+      </div>
+      
+      <!-- Pagination -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="footer-section">
     <div class="container">
       <div class="row">
@@ -103,7 +110,7 @@
           </div>
           <p class="footer-text text-start">Providing high-quality JSON APIs for developers worldwide. Fast, reliable, and free to use.</p>
           <div class="social-links">
-            <a href="https://github.com/wecoded-dev" 
+            <a href="https://github.com/yourusername" 
                class="social-icon" 
                target="_blank" 
                rel="noopener noreferrer">
@@ -134,14 +141,14 @@
           <h5 class="footer-heading">Resources</h5>
           <ul class="footer-links">
             <li><a href="docs.html">Documentation</a></li>
-            <li><a href="apis.html">API Status</a></li>
+            <li><a href="#">API Status</a></li>
             <li><a href="https://dev.to/aquascript">Blog</a></li>
             <li><a href="#">Tutorials</a></li>
           </ul>
         </div>
         
         
-        <div class="col-lg-4 col-md-4 text-start">
+        <div class="col-lg-4 col-md-4">
           <h5 class="footer-heading">Subscribe to our Newsletter</h5>
           <p class="footer-text">Get updates on new APIs and features</p>
           <form class="newsletter-form" onsubmit="handleSubscription(event)">
@@ -156,7 +163,7 @@
       
       <div class="footer-bottom">
         <div class="row">
-          <div class="fw-bold text-center">         
+          <div class="fw-bold text-center ">         
               <p class="copyright">&copy; 2025-2026 AquaScript. All rights reserved</p> 
           </div>
         </div>
@@ -164,19 +171,10 @@
     </div>
   </footer>
 
-
   <script src="contact/Contact.js"></script>
   <script src="nav/nav.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="books++/books++.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $('.nav-link').hover(function () {
-        $(this).css('text-shadow', '0 0 15px #ff6ec4');
-      }, function () {
-        $(this).css('text-shadow', 'none');
-      });
-    });
-  </script>
 </body>
 </html>

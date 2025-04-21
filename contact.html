@@ -21,7 +21,7 @@
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-ultra shadow-lg bg-primary-subtle">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-ultra shadow-lg">
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <img src="assets/background-removed.png" alt="Logo">
@@ -38,15 +38,22 @@
             <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="books.html">APIs</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="docs.html">Documentation</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="contact.html">Contact</a>
           </li>
         </ul>
+        <div class="dropdown ms-2">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Support 
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item">Action</a></li>
+            <li><a class="dropdown-item">Another action</a></li>
+            <li><a class="dropdown-item">Something else here</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>
@@ -103,7 +110,7 @@
 
       <div class="contact-form-container">
         <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-          <h2 style="color: var(--sky); text-align: center; margin-bottom: 1.5rem;">Send Us a Message</h2>
+          <h2 class="quote" style="color: var(--sky); text-align: center; margin-bottom: 1.5rem;">Send Us a Message</h2>
 
           <input type="hidden" name="access_key" value="91518187-55af-467c-9690-8d7994a937ca">
 
@@ -127,7 +134,7 @@
             <textarea name="message" id="message" placeholder="How can we help you?" required></textarea>
           </div>
 
-          <button class="btn1" type="submit">Send Message</button>
+          <button class="btn1 opacity-100" type="submit">Send Message</button>
         </form>
       </div>
 

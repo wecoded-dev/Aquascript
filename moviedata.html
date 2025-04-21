@@ -3,24 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AquaScript | Books API</title>
-  <link rel="icon" href="assets/books-api.png" type="image/x-icon">
+  <title>Movie Collection | AquaScript</title>
+  <link rel="icon" href="assets/moviedata_icon.png" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="books/books.css">
-  <link rel="stylesheet" href="global.css">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RF2WV794XB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-RF2WV794XB');
-  </script>
+  <link rel="stylesheet" href="moviedata/moviesdata.css">
 </head>
 <body>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-ultra shadow-lg">
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-ultra">
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <img src="assets/background-removed.png" alt="Logo">
@@ -36,6 +27,7 @@
           <li class="nav-item">
             <a class="nav-link" href="about.html">About</a>
           </li>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="docs.html">Documentation</a>
           </li>
@@ -43,64 +35,65 @@
             <a class="nav-link" href="contact.html">Contact</a>
           </li>
         </ul>
-        <div class="dropdown ms-2">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Support 
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item">Action</a></li>
-            <li><a class="dropdown-item">Another action</a></li>
-            <li><a class="dropdown-item">Something else here</a></li>
-          </ul>
-        </div>
       </div>
     </div>
   </nav>
 
-  <section class="books-header">
-    <div class="container py-5 text-center">
-      <h1 class="display-3 fw-bold mb-4">Books API</h1>
-      <p class="lead mb-5" style="max-width: 700px; margin: 0 auto;">Explore our collection of classic literature from around the world. Perfect for educational apps, book recommendation engines, and cultural studies.</p>
+  <!-- Movies Header -->
+  <section class="movies-header">
+    <div class="container">
+      <h1 class="page-title mt-3">Movie Collection</h1>
+      <p class="page-subtitle">Explore our extensive collection of movies from various genres and eras. Perfect for movie buffs and developers alike.</p>
       
-      <div class="search-container">
-        <div class="position-relative">
-          <input type="text" class="form-control search-input" placeholder="Search books by title, author, or country...">
+      <div class="filter-bar">
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search movies by title, director, or genre...">
           <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
+        
+        <div class="filter-buttons" id="genreFilters">
+          <button class="filter-btn active">All</button>
+          <!-- Genre filters will be added here dynamically -->
+        </div>
       </div>
-      
-      <div class="filter-buttons text-center">
-        <button class="filter-btn active">All</button>
-        <button class="filter-btn">19th Century</button>
-        <button class="filter-btn">20th Century</button>
-        <button class="filter-btn">Ancient</button>
-        <button class="filter-btn">European</button>
-        <button class="filter-btn">Asian</button>
-        <button class="filter-btn">African</button>
-      </div>
-      
       <div class="api-endpoint text-white">
-        API Endpoint: <span id="apiUrl">https://wecoded-dev.github.io/Aquascript/api/books.json</span>
+        API Endpoint: <span id="apiUrl">https://wecoded-dev.github.io/Aquascript/api/moviesdata.json</span>
         <button class="btn btn-sm btn-light ms-3" onclick="copyApiUrl()">Copy</button>
       </div>
     </div>
   </section>
 
-  <section class="books-list py-5">
-    <div class="container">
-      <div class="row justify-content-center" id="loadingSpinner">
-        <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
-      <div class="row d-none" id="booksContainer">
-        <!-- Books will be loaded here dynamically by Books.Json -->
-      </div>
 
-      <div id="paginationContainer" class="pagination"></div>
+  <section class="movies-container">
+    <div class="container">
+      <div class="spinner-container" id="loadingSpinner">
+        <div class="spinner"></div>
+      </div>
+      
+      <div class="row" id="moviesContainer" style="display: none;">
+        <!-- Movies will be loaded here dynamically -->
+      </div>
+      
+      <div id="errorContainer" class="error-message" style="display: none;">
+        <!-- Error messages will be shown here -->
+      </div>
+      
+      <!-- Pagination -->
+      <nav aria-label="Page navigation" id="paginationContainer" style="display: none;">
+        <ul class="pagination">
+          <li class="page-item disabled" id="prevPage">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+          </li>
+          <!-- Page numbers will be added here dynamically -->
+          <li class="page-item" id="nextPage">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </section>
 
+  
   <footer class="footer-section">
     <div class="container">
       <div class="row">
@@ -151,13 +144,13 @@
         <div class="col-lg-4 col-md-4">
           <h5 class="footer-heading">Subscribe to our Newsletter</h5>
           <p class="footer-text">Get updates on new APIs and features</p>
-          <form class="newsletter-form" onsubmit="handleSubscription(event)">
-            <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Your email" required>
-              <button class="btn btn-subscribe" type="submit">Subscribe</button>
-            </div>
-            <div id="toast-message" class="mt-1 text-success" style="display: none;">Thanks for subscribing!</div>
-          </form>
+            <form class="newsletter-form" onsubmit="handleSubscription(event)">
+              <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Your email" required>
+                <button class="btn btn-subscribe" type="submit">Subscribe</button>
+              </div>
+              <div id="toast-message" class="mt-1 text-success" style="display: none;">Thanks for subscribing!</div>
+            </form>
         </div>
       </div>
       
@@ -175,7 +168,6 @@
   <script src="nav/nav.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="nav/nav.js"></script>
-  <script src="books/books.js"></script>
+  <script src="moviedata/moviesdata.js"></script>
 </body>
 </html>
