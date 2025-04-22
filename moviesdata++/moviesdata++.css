@@ -1,4 +1,3 @@
-/* CSS for Movie Data Application */
 :root {
   --navy: #0a192f;
   --light-navy: #172a45;
@@ -8,19 +7,20 @@
   --pink: #ff6ec4;
   --radius: 12px;
   --transition: 0.3s;
-  --gold:  #00f7ff;
+  --gold: #00f7ff;
   --orange: #ff6ec4;
+  --green: #00f7ff;
 }
 
 body {
   background-color: var(--navy);
   color: var(--light-slate);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Navbar Styles */
 .navbar-ultra {
-  background-color: #0a192f !important;
+  background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(20px);
   box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
   padding: 1rem 2rem;
@@ -28,8 +28,14 @@ body {
 }
 
 @keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .navbar-ultra .nav-link {
@@ -42,7 +48,7 @@ body {
 }
 
 .navbar-ultra .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 3px;
@@ -73,14 +79,7 @@ body {
   filter: brightness(1.5);
 }
 
-.navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.5);
-} 
-
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-
+/* Loading States */
 .spinner-container {
   display: flex;
   justify-content: center;
@@ -91,14 +90,16 @@ body {
 .spinner {
   width: 50px;
   height: 50px;
-  border: 5px solid rgb(0, 102, 255);
+  border: 5px solid rgba(0, 247, 255, 0.2);
   border-radius: 50%;
   border-top-color: var(--aqua);
   animation: spin 1s ease-in-out infinite;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .error-message {
@@ -118,34 +119,39 @@ body {
 }
 
 .movies-header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.05) 0%,
+    transparent 70%
+  );
   animation: float 15s linear infinite;
 }
 
 @keyframes float {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(50px, 50px); }
-  100% { transform: translate(0, 0); }
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(50px, 50px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 .page-title {
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 20px;
-  background: linear-gradient(90deg, var(--gold), var(--orange));
+  background: linear-gradient(90deg, var(--green), var(--pink));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.page-link {
-  padding: 10px 8px;
-  font-size: 0.9rem;
 }
 
 .page-subtitle {
@@ -183,14 +189,14 @@ body {
 .search-input:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 2px var(--gold);
+  box-shadow: 0 0 0 2px var(--green);
 }
 
 .search-btn {
   position: absolute;
   right: 5px;
   top: 5px;
-  background: linear-gradient(135deg, var(--gold), var(--orange));
+  background: linear-gradient(135deg, var(--green), var(--aqua));
   border: none;
   border-radius: 50px;
   padding: 7px 20px;
@@ -216,8 +222,9 @@ body {
   font-size: 0.9rem;
 }
 
-.filter-btn:hover, .filter-btn.active {
-  background: linear-gradient(135deg, var(--gold), var(--orange));
+.filter-btn:hover,
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--green), var(--pink));
   color: var(--navy);
   border-color: transparent;
 }
@@ -235,19 +242,19 @@ body {
   overflow: hidden;
   transition: all var(--transition);
   height: 100%;
-  border: 1px solid rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(0, 247, 255, 0.1);
 }
 
 .movie-card:hover {
   transform: scale(1.02);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-  border-color: var(--gold);
+  border-color: var(--aqua);
 }
 
 .movie-poster {
   width: 100%;
   height: 300px;
-  object-fit: center;
+  object-fit: cover;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -268,7 +275,7 @@ body {
 
 .movie-director {
   font-size: 1rem;
-  color: var(--gold);
+  color: var(--aqua);
   margin-bottom: 10px;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -276,7 +283,23 @@ body {
   overflow: hidden;
 }
 
-.movie-plot {
+.movie-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.movie-quality {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.movie-size {
+  color: var(--slate);
+}
+
+.movie-details {
   font-size: 0.9rem;
   color: var(--slate);
   margin-bottom: 15px;
@@ -286,16 +309,16 @@ body {
   overflow: hidden;
 }
 
-.movie-genres {
+.movie-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 15px;
 }
 
-.movie-genre {
-  background: rgba(255, 215, 0, 0.1);
-  color: var(--gold);
+.movie-tag {
+  background: rgba(0, 247, 255, 0.1);
+  color: var(--aqua);
   padding: 4px 12px;
   border-radius: 50px;
   font-size: 0.7rem;
@@ -311,28 +334,26 @@ body {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.movie-actors {
-  font-size: 14px;
-}
-
-.movie-runtime {
+.movie-language {
   font-size: 0.8rem;
   color: var(--slate);
+  text-transform: capitalize;
 }
 
 .movie-year {
   font-size: 0.8rem;
-  color: var(--gold);
+  color: var(--green);
   font-weight: 600;
 }
 
 .btn-details {
   display: inline-block;
   padding: 8px 20px;
-  background: linear-gradient(135deg, var(--gold), var(--orange));
+  background: linear-gradient(135deg, var(--green), var(--aqua));
   color: var(--navy);
   border-radius: 50px;
   text-decoration: none;
+  border: none;
   font-weight: 600;
   font-size: 0.9rem;
   transition: all var(--transition);
@@ -526,6 +547,23 @@ body {
   color: var(--navy);
 }
 
+.pagination {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.page-item {
+  margin: 3px;
+  width: auto;
+}
+
+.page-link {
+  display: block;
+  padding: 8px 10px;
+  font-size: 0.6rem;
+  text-align: center;
+}
+
 .api-endpoint {
   background: rgba(0, 0, 0, 0.1);
   padding: 15px;
@@ -541,7 +579,7 @@ body {
   .page-title {
     font-size: 2.5rem;
   }
-  
+
   .movie-poster {
     height: 300px;
   }
@@ -551,15 +589,15 @@ body {
   .navbar-ultra .nav-link {
     padding: 10px;
   }
-  
+
   .page-title {
     font-size: 2rem;
   }
-  
+
   .page-subtitle {
     font-size: 1rem;
   }
-  
+
   .movie-card {
     margin-bottom: 30px;
   }
@@ -587,19 +625,15 @@ body {
     padding: 80px 0 40px;
   }
 
-  .navbar-ultra .nav-link::after {
-    display: none;
-  }
-  
   .filter-buttons {
     gap: 8px;
   }
-  
+
   .filter-btn {
     padding: 6px 15px;
     font-size: 0.8rem;
   }
-  
+
   .movie-poster {
     height: 250px;
   }

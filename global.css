@@ -71,8 +71,6 @@ h1,h3,p {
   filter: brightness(1.5);
 }
 
-
-
 .hero-section {
   padding: 100px 0;
   /* Restored Original Background */
@@ -279,7 +277,7 @@ h1,h3,p {
 
 /* Testimonials Section */
 .testimonials-section {
-  background: linear-gradient(90deg, #4891ff 0%, #5096ff 100%);
+  background: linear-gradient(180deg, #60efff 0%, #0061ff 100%);
   padding: 80px 0;
 }
 

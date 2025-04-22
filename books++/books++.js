@@ -1548,7 +1548,8 @@ function displayBooks(booksToDisplay) {
         const bookCard = `
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="book-card">
-                        <img src="${book.thumbnailUrl}" alt="${book.title}" class="book-image" onerror="this.src='https://via.placeholder.com/300x400?text=No+Cover'">
+                        <img src="${book.thumbnailUrl}" alt="${book.title}" class="book-image" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/proxy/2AHcE-khgKwa9sTVjya2Egxlbtrf2wSqNt9UtfgfAL6OIBjjqp_ta5xUFVGJ4IaAoxCsPCqBTxsM9ovWG52SuhmrqxT8NndSgu_s_0PSGFuYbYY'" />
+
                         <div class="book-body">
                             <h3 class="book-title">${book.title}</h3>
                             <p class="book-author">${book.authors.join(', ')}</p>
