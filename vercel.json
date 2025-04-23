@@ -10,6 +10,7 @@
       { "source": "/booksV2", "destination": "/booksV2.html" },
       { "source": "/moviedata", "destination": "/moviedata.html" },
       { "source": "/moviesdataV2", "destination": "/moviesdataV2.html" },
-      { "source": "/quotes", "destination": "/quotes.html" }
+      { "source": "/quotes", "destination": "/quotes.html" },
+      { "source": "/quotesV2", "destination": "/quotesV2.html" }
     ]
 }

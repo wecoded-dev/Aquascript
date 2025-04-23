@@ -62,26 +62,24 @@
 
   <section class="books-header">
     <div class="container py-5 text-center">
-      <h1 class="display-3 fw-bold mb-4">Books API</h1>
-      <p class="lead mb-5" style="max-width: 700px; margin: 0 auto;">Explore our collection of classic literature from around the world. Perfect for educational apps, book recommendation engines, and cultural studies.</p>
+      <h1 class="page-title mt-3">Books API</h1>
+      <p class="page-subtitle">Explore our collection of classic literature from around the world. Perfect for educational apps, book recommendation engines, and cultural studies.</p>
       
-      <div class="search-container">
-        <div class="position-relative">
+      <div class="filter-bar">
+        <div class="search-container">
           <input type="text" class="form-control search-input" placeholder="Search books by title, author, or country...">
           <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
+        <div class="filter-buttons text-center">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">19th Century</button>
+          <button class="filter-btn">20th Century</button>
+          <button class="filter-btn">Ancient</button>
+          <button class="filter-btn">European</button>
+          <button class="filter-btn">Asian</button>
+          <button class="filter-btn">African</button>
+        </div>
       </div>
-      
-      <div class="filter-buttons text-center">
-        <button class="filter-btn active">All</button>
-        <button class="filter-btn">19th Century</button>
-        <button class="filter-btn">20th Century</button>
-        <button class="filter-btn">Ancient</button>
-        <button class="filter-btn">European</button>
-        <button class="filter-btn">Asian</button>
-        <button class="filter-btn">African</button>
-      </div>
-      
       <div class="api-endpoint text-white">
         API Endpoint: <span id="apiUrl">https://wecoded-dev.github.io/Aquascript/api/books.json</span>
         <button class="btn btn-sm btn-light ms-3" onclick="copyApiUrl()">Copy</button>
@@ -144,9 +142,8 @@
           <h5 class="footer-heading">Resources</h5>
           <ul class="footer-links">
             <li><a href="docs.html">Documentation</a></li>
-            <li><a href="#">API Status</a></li>
             <li><a href="https://dev.to/aquascript">Blog</a></li>
-            <li><a href="#">Tutorials</a></li>
+            <li><a href="https://github.com/wecoded-dev/Aquascript">Tutorials</a></li>
           </ul>
         </div>
         

@@ -240,9 +240,7 @@ function showDownloadLinks(movieId) {
 // Function to update pagination
 function updatePagination(totalMovies, currentPage) {
     const totalPages = Math.ceil(totalMovies / MOVIES_PER_PAGE);
-    const paginationContainer = document.getElementById(
-        "paginationContainer"
-    );
+    const paginationContainer = document.getElementById("paginationContainer");
     const prevPageBtn = document.getElementById("prevPage");
     const nextPageBtn = document.getElementById("nextPage");
 
@@ -251,7 +249,6 @@ function updatePagination(totalMovies, currentPage) {
         ".page-item:not(#prevPage):not(#nextPage)"
     );
     existingPageItems.forEach((item) => item.remove());
-
 
     const pageList = paginationContainer.querySelector("ul");
     const fragment = document.createDocumentFragment();
@@ -263,22 +260,21 @@ function updatePagination(totalMovies, currentPage) {
         fragment.appendChild(pageItem);
     }
 
-   
     pageList.insertBefore(fragment, nextPageBtn);
 
-    
     prevPageBtn.className =
         currentPage === 1 ? "page-item disabled" : "page-item";
     nextPageBtn.className =
         currentPage === totalPages ? "page-item disabled" : "page-item";
 
-
-    paginationContainer.style.display = totalPages > 1 ? "block" : "none";
+   
+    paginationContainer.style.display = "none";
 }
 
-// Function to initialize language filters
+
 function initLanguageFilters(languages) {
     const filtersContainer = document.getElementById("languageFilters");
+    filtersContainer.innerHTML = ""; 
     languages.forEach((language) => {
         const filterBtn = document.createElement("button");
         filterBtn.className = "filter-btn";
@@ -287,16 +283,14 @@ function initLanguageFilters(languages) {
     });
 }
 
-
+// Initial setup
 async function init() {
-    
     document.getElementById("loadingSpinner").style.display = "flex";
     document.getElementById("moviesContainer").style.display = "none";
     document.getElementById("paginationContainer").style.display = "none";
     document.getElementById("errorContainer").style.display = "none";
 
     try {
-       
         moviesData = await fetchMovieData();
 
         if (moviesData.length === 0) {
@@ -304,29 +298,31 @@ async function init() {
             return;
         }
 
-       
         allLanguages = getAllLanguages(moviesData);
         filteredMovies = [...moviesData];
 
-        // Initialize UI
         initLanguageFilters(allLanguages);
-        displayMovies(filteredMovies, currentPage);
-        updatePagination(filteredMovies.length, currentPage);
 
         
         setTimeout(() => {
             displayMovies(filteredMovies, currentPage);
             updatePagination(filteredMovies.length, currentPage);
 
+            document.getElementById("loadingSpinner").style.display = "none";
+            document.getElementById("moviesContainer").style.display = "flex";
 
-            document.getElementById('loadingSpinner').style.display = 'none';
-            document.getElementById('moviesContainer').style.display = 'flex';
+           
+            const totalPages = Math.ceil(filteredMovies.length / MOVIES_PER_PAGE);
+            if (totalPages > 1) {
+                document.getElementById("paginationContainer").style.display = "flex";
+            }
         }, 4000);
     } catch (error) {
         console.error("Initialization error:", error);
         showError("Failed to initialize movie data. Please try again later.");
     }
 }
+
 
 
 $(document).ready(function () {

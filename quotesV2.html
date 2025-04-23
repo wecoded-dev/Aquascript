@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quotes++ Collection | AquaScript</title>
+  <link rel="icon" href="assets/quote_icon.png" type="image/x-icon">
+  <!------<link rel="stylesheet" href="quotesV2/quotesV2.css">---->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --deep-purple: #2a0845;
+      --light-purple: #6441a5;
+      --navy: #0a192f;
+      --lavender: #a987d5;
+      --light-slate: #ccd6f6;
+      --slate: #8892b0;
+      --cream: #f8f1ff;
+      --gold: #00f7ff;
+      --pink: #ff6ec4;
+      --orange: #ff6ec4;
+      --radius: 12px;
+      --transition: 0.3s;
+    }
+
+    body {
+      background-color: var(--navy);
+      color: var(--light-slate);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Navbar Styles */
+    .navbar-ultra {
+      background-color: #0a192f !important;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+      padding: 1rem 2rem;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .navbar-ultra .nav-link {
+      color: white !important;
+      position: relative;
+      padding: 12px 20px;
+      font-weight: bold;
+      transition: 0.4s ease;
+      font-size: 1.1rem;
+    }
+
+    .navbar-ultra .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: 0;
+      left: 50%;
+      background: linear-gradient(to right, var(--pink), #7873f5);
+      transition: 0.4s ease;
+      transform: translateX(-50%);
+    }
+    
+    .navbar-ultra .nav-link:hover::after {
+      width: 50%;
+    }
+    
+    .navbar-ultra .nav-link:hover {
+      color: var(--pink) !important;
+      transform: scale(1.05);
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar-brand img {
+      height: 45px;
+      filter: brightness(1.5);
+    }
+
+    .navbar-toggler {
+      border-color: rgba(255, 255, 255, 0.5);
+    } 
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* Quotes Header */
+    .quotes-header {
+      padding: 100px 0 60px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, var(--gold), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-subtitle {
+      font-size: 1.2rem;
+      color: var(--slate);
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: var(--radius);
+      margin-bottom: 40px;
+    }
+
+    .search-container {
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 50px;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--light-slate);
+      padding-right: 50px;
+    }
+
+    .search-input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+
+    .search-input::placeholder {
+      color: var(--lavender);
+      opacity: 0.7;
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      border: none;
+      border-radius: 50px;
+      padding: 7px 20px;
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* Quotes Container */
+    .quotes-container {
+      padding: 60px 0;
+      min-height: 60vh;
+    }
+
+    .quote-card {
+      background: rgba(100, 65, 165, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      padding: 30px;
+      transition: all var(--transition);
+      margin-bottom: 30px;
+      border: 1px solid rgba(179, 153, 212, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-card::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 120px;
+      color: rgba(179, 153, 212, 0.1);
+      font-family: "Times New Roman", serif;
+      line-height: 1;
+    }
+
+    .quote-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      border-color: var(--gold);
+    }
+
+    .quote-text {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 20px;
+      color: var(--cream);
+      font-style: italic;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-author {
+      font-size: 1.2rem;
+      color: var(--gold);
+      text-align: right;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .quote-author::before {
+      content: "— ";
+    }
+
+    .quote-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .quote-btn {
+      padding: 8px 15px;
+      border-radius: 50px;
+      background: rgba(248, 241, 255, 0.1);
+      border: 1px solid rgba(179, 153, 212, 0.3);
+      color: var(--cream);
+      transition: all var(--transition);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .quote-btn:hover {
+      background: linear-gradient(135deg, var(--lavender), var(--gold));
+      color: var(--deep-purple);
+      border-color: transparent;
+    }
+
+    /* Loading States */
+    .spinner-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(179, 153, 212, 0.2);
+      border-radius: 50%;
+      border-top-color: var(--lavender);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      text-align: center;
+      padding: 40px;
+      font-size: 1.2rem;
+    }
+
+    /* Footer styling */
+    .footer-section {
+      background: linear-gradient(135deg, #0a192f 0%, #172a45 100%);
+      color: #ccd6f6;
+      padding: 60px 0 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-control::placeholder {
+      color: #8892b0;
+    }
+
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+      opacity: 0.3;
+    }
+
+    .footer-heading {
+      color: #e6f1ff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-heading::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(to right, #00f7ff, #7873f5);
+      border-radius: 3px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #8892b0;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .footer-links a::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: linear-gradient(to right, #00f7ff, #7873f5);
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #00f7ff;
+    }
+
+    .footer-links a:hover::before {
+      width: 100%;
+    }
+
+    .newsletter-form .form-control {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #e6f1ff;
+      border-radius: 50px 0 0 50px;
+      padding: 12px 20px;
+    }
+
+    .newsletter-form .form-control:focus {
+      box-shadow: none;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-subscribe {
+      background: linear-gradient(135deg, #00f7ff, #7873f5);
+      border: none;
+      border-radius: 0 50px 50px 0;
+      padding: 12px 20px;
+      font-weight: 600;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      margin-top: 40px;
+    }
+
+    .copyright {
+      color: #8892b0;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      color: #8892b0;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 10;
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      background: linear-gradient(135deg, #00f7ff, #7873f5);
+      color: #0a192f;
+      transform: translateY(-2px);
+    }
+
+    /* Pagination */
+    .pagination {
+      justify-content: center;
+      margin-top: 40px;
+    }
+    
+    .page-item .page-link {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--light-slate);
+      margin: 0 5px;
+      border-radius: var(--radius) !important;
+    }
+    
+    .page-item.active .page-link {
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      border-color: transparent;
+      color: var(--navy);
+    }
+
+    .pagination {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .page-item {
+      margin: 3px;
+      width: auto;
+    }
+    
+    .page-link {
+      display: block;
+      padding: 8px 10px;
+      font-size: 0.6rem;
+      text-align: center;
+    }
+    
+    .api-endpoint {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 30px;
+      font-size: 0.8rem;
+      font-family: monospace;
+      word-break: break-all;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .page-title {
+        font-size: 2.5rem;
+      }
+
+      .quote-text {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-quotes .nav-link {
+        padding: 10px;
+      }
+
+      .navbar-ultra .nav-link::after {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 2.2rem;
+      }
+
+      .page-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .quote-card {
+        padding: 20px;
+      }
+
+      .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .page-item {
+        margin: 3px;
+        width: auto;
+      }
+
+      .page-link {
+        display: block;
+        padding: 8px 10px;
+        font-size: 0.6rem;
+        text-align: center;
+      }
+
+      .api-endpoint {
+        font-size: 0.6rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .quotes-header {
+        padding: 80px 0 40px;
+      }
+
+      .page-title {
+        font-size: 1.8rem;
+      }
+
+      .quote-text {
+        font-size: 1.1rem;
+      }
+
+      .quote-author {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-ultra">
+    <div class="container">
+      <a class="navbar-brand" href="index">
+        <img src="assets/background-removed.png" alt="Logo">
+      </a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="quotes">Quotes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="docs">Documentation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact">Contact</a>
+          </li>
+        </ul>
+        <div class="dropdown ms-2">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Support 
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item">Action</a></li>
+            <li><a class="dropdown-item">Another action</a></li>
+            <li><a class="dropdown-item">Something else here</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Quotes Header -->
+  <section class="quotes-header">
+    <div class="container">
+      <h1 class="page-title mt-4">Quotes++ Collection</h1>
+      <p class="page-subtitle">"Words ignite revolutions, spark minds, and reshape worlds. Journey through the eternal echoes of legendary thinkers."</p>
+      
+      <div class="filter-bar">
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search quotes or authors...">
+          <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      <div class="api-endpoint text-white">
+        API Endpoint: <span id="apiUrl">https://wecoded-dev.github.io/Aquascript/api/quotes++.json</span>
+        <button class="btn btn-sm btn-light ms-3" onclick="copyApiUrl()">Copy</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quotes Container -->
+  <section class="quotes-container">
+    <div class="container">
+      <div class="spinner-container" id="loadingSpinner">
+        <div class="spinner"></div>
+      </div>
+      
+      <div id="quotesContainer" style="display: none;">
+        <!-- Quotes will be loaded here dynamically -->
+      </div>
+      
+      <div id="errorContainer" class="error-message" style="display: none;">
+        <!-- Error messages will be shown here -->
+      </div>
+      
+      <!-- Pagination -->
+      <nav aria-label="Page navigation" id="paginationContainer" style="display: none;">
+        <ul class="pagination">
+          <li class="page-item disabled" id="prevPage">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+          </li>
+          <!-- Page numbers will be added here dynamically -->
+          <li class="page-item" id="nextPage">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <footer class="footer-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <div class="footer-brand d-flex align-items-center mb-3">
+            <img src="assets/background-removed.png" alt="AquaScript Logo" height="40">
+          </div>
+          <p class="footer-text text-start">Providing high-quality JSON APIs for developers worldwide. Fast, reliable, and free to use.</p>
+          <div class="social-links">
+            <a href="https://github.com/yourusername" 
+               class="social-icon" 
+               target="_blank" 
+               rel="noopener noreferrer">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://twitter.com/yourhandle" 
+               class="social-icon" 
+               target="_blank" 
+               rel="noopener noreferrer">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://discord.gg/yourinvite" 
+               class="social-icon" 
+               target="_blank" 
+               rel="noopener noreferrer">
+              <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://linkedin.com/in/yourprofile" 
+               class="social-icon" 
+               target="_blank" 
+               rel="noopener noreferrer">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-4 mb-4 mb-md-0 text-start">
+          <h5 class="footer-heading">Resources</h5>
+          <ul class="footer-links">
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="https://dev.to/aquascript">Blog</a></li>
+            <li><a href="https://github.com/wecoded-dev/Aquascript">Tutorials</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 col-md-4">
+          <h5 class="footer-heading">Subscribe to our Newsletter</h5>
+          <p class="footer-text">Get updates on new APIs and features</p>
+            <form class="newsletter-form" onsubmit="handleSubscription(event)">
+              <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Your email" required>
+                <button class="btn btn-subscribe" type="submit">Subscribe</button>
+              </div>
+              <div id="toast-message" class="mt-1 text-success" style="display: none;">Thanks for subscribing!</div>
+            </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="row">
+          <div class="fw-bold text-center">         
+              <p class="copyright">&copy; 2025-2026 AquaScript. All rights reserved</p> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="contact/Contact.js"></script>
+  <script src="nav/nav.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!----------<script src="quotesV2/quotesV2.js"></script>------>
+  <script>
+    // Configuration
+    const QUOTES_PER_PAGE = 10;
+    let currentPage = 1;
+    let filteredQuotes = [];
+    let quotesData = [];
+
+    // Fetch quotes data from quotes++.json
+    async function fetchQuotesData() {
+      try {
+        const response = await fetch('./api/quotes++.json');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Error fetching quotes data:', error);
+        showError('Failed to load quotes. Please try again later.');
+        return [];
+      }
+    }
+
+    // Show error message
+    function showError(message) {
+      const errorContainer = document.getElementById('errorContainer');
+      errorContainer.innerHTML = `
+        <div class="alert alert-danger">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          ${message}
+        </div>
+      `;
+      errorContainer.style.display = 'block';
+      document.getElementById('loadingSpinner').style.display = 'none';
+    }
+
+    // Display quotes
+    function displayQuotes(quotesToDisplay, page = 1) {
+      const container = document.getElementById('quotesContainer');
+      const startIdx = (page - 1) * QUOTES_PER_PAGE;
+      const paginatedQuotes = quotesToDisplay.slice(startIdx, startIdx + QUOTES_PER_PAGE);
+      
+      container.innerHTML = '';
+      
+      if (paginatedQuotes.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 text-center py-5">
+            <h4 class="text-muted">No quotes found matching your search</h4>
+          </div>
+        `;
+        return;
+      }
+      
+      paginatedQuotes.forEach(quote => {
+        const quoteCard = `
+          <div class="quote-card">
+            <div class="quote-text">${quote.text}</div>
+            <div class="quote-author">${quote.author || 'Unknown'}</div>
+            <div class="quote-actions">
+              <button class="quote-btn copy-btn" data-quote="${quote.text}" data-author="${quote.author}">
+                <i class="far fa-copy"></i> Copy
+              </button>
+              <button class="quote-btn share-btn">
+                <i class="fas fa-share-alt"></i> Share
+              </button>
+            </div>
+          </div>
+        `;
+        container.innerHTML += quoteCard;
+      });
+      
+      container.style.display = 'block';
+    }
+
+    // Update pagination
+    function updatePagination(totalQuotes, currentPage) {
+      const totalPages = Math.ceil(totalQuotes / QUOTES_PER_PAGE);
+      const paginationContainer = document.getElementById('paginationContainer');
+      const prevPageBtn = document.getElementById('prevPage');
+      const nextPageBtn = document.getElementById('nextPage');
+      
+      // Clear existing page numbers
+      const existingPageItems = document.querySelectorAll('.page-item:not(#prevPage):not(#nextPage)');
+      existingPageItems.forEach(item => item.remove());
+      
+      // Add page numbers
+      const pageList = paginationContainer.querySelector('ul');
+      const fragment = document.createDocumentFragment();
+      
+      for (let i = 1; i <= totalPages; i++) {
+        const pageItem = document.createElement('li');
+        pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+        pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+        fragment.appendChild(pageItem);
+      }
+      
+      // Insert before next button
+      pageList.insertBefore(fragment, nextPageBtn);
+      
+      // Update prev/next buttons
+      prevPageBtn.className = currentPage === 1 ? 'page-item disabled' : 'page-item';
+      nextPageBtn.className = currentPage === totalPages ? 'page-item disabled' : 'page-item';
+      
+      // Show pagination if needed
+      paginationContainer.style.display = totalPages > 1 ? 'block' : 'none';
+    }
+
+    // Copy quote to clipboard
+    function copyQuoteToClipboard(quote, author) {
+      const text = `"${quote}" — ${author || 'Unknown'}`;
+      navigator.clipboard.writeText(text).then(() => {
+        // Show copied notification
+        const notification = document.createElement('div');
+        notification.className = 'alert alert-success position-fixed top-0 start-50 translate-middle-x mt-3';
+        notification.style.zIndex = '9999';
+        notification.innerHTML = '<i class="fas fa-check-circle me-2"></i> Quote copied to clipboard!';
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.classList.add('fade');
+          setTimeout(() => notification.remove(), 300);
+        }, 2000);
+      });
+    }
+
+    // Initial setup
+    async function init() {
+  // Show loading spinner and hide content
+  document.getElementById('loadingSpinner').style.display = 'flex';
+  document.getElementById('quotesContainer').style.display = 'none';
+  document.getElementById('paginationContainer').style.display = 'none';
+  document.getElementById('errorContainer').style.display = 'none';
+
+  try {
+    
+    const spinnerPromise = new Promise(resolve => setTimeout(resolve, 3000));
+    const dataPromise = fetchQuotesData();
+    
+    
+    const [_, quotes] = await Promise.all([spinnerPromise, dataPromise]);
+    
+    if (quotes.length === 0) {
+      showError('No quotes available. Please check the data source.');
+      return;
+    }
+    
+    quotesData = quotes;
+    filteredQuotes = [...quotesData];
+    
+    // Update UI
+    displayQuotes(filteredQuotes, currentPage);
+    updatePagination(filteredQuotes.length, currentPage);
+    
+  } catch (error) {
+    console.error('Initialization error:', error);
+    showError('Failed to initialize quotes. Please try again later.');
+  } finally {
+    
+    document.getElementById('loadingSpinner').style.display = 'none';
+    document.getElementById('quotesContainer').style.display = 'block';
+  }
+}
+
+    // Copy API URL
+    function copyApiUrl() {
+      const url = document.getElementById("apiUrl").textContent;
+      navigator.clipboard.writeText(url);
+    
+      const toast = document.createElement("div");
+      toast.className = "toast-alert";
+      toast.textContent = "API endpoint copied to clipboard!";
+      document.body.appendChild(toast);
+    
+      setTimeout(() => {
+        toast.style.opacity = "1";
+      }, 100);
+    
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        setTimeout(() => {
+          document.body.removeChild(toast);
+        }, 500);
+      }, 3000);
+    }
+
+    // Add toast style
+    const style = document.createElement("style");
+    style.textContent = `
+      .toast-alert {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #0061ff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 1000;
+      }
+    `;
+    document.head.appendChild(style);
+
+    
+    $(document).ready(function() {
+      init();
+      
+      
+      $('.search-input').on('input', function() {
+        const searchTerm = $(this).val().toLowerCase();
+        filteredQuotes = quotesData.filter(quote => 
+          quote.text.toLowerCase().includes(searchTerm) || 
+          (quote.author && quote.author.toLowerCase().includes(searchTerm))
+        );
+        
+        currentPage = 1;
+        displayQuotes(filteredQuotes, currentPage);
+        updatePagination(filteredQuotes.length, currentPage);
+      });
+      
+      
+      $(document).on('click', '.page-link', function(e) {
+        e.preventDefault();
+        const text = $(this).text().trim();
+        
+        if (text === 'Previous' && currentPage > 1) {
+          currentPage--;
+        } else if (text === 'Next' && currentPage < Math.ceil(filteredQuotes.length / QUOTES_PER_PAGE)) {
+          currentPage++;
+        } else if (!isNaN(text)) {
+          currentPage = parseInt(text);
+        }
+        
+        displayQuotes(filteredQuotes, currentPage);
+        updatePagination(filteredQuotes.length, currentPage);
+        
+        
+        $('html, body').animate({
+          scrollTop: $(".quotes-container").offset().top - 100
+        }, 300);
+      });
+      
+      // Copy button click handler
+      $(document).on('click', '.copy-btn', function() {
+        const quote = $(this).data('quote');
+        const author = $(this).data('author');
+        copyQuoteToClipboard(quote, author);
+      });
+      
+      // Share button click handler
+      $(document).on('click', '.share-btn', function() {
+        const quoteCard = $(this).closest('.quote-card');
+        const quoteText = quoteCard.find('.quote-text').text();
+        const quoteAuthor = quoteCard.find('.quote-author').text();
+        
+        if (navigator.share) {
+          navigator.share({
+            title: 'Quote by ' + quoteAuthor,
+            text: quoteText,
+            url: window.location.href
+          }).catch(err => {
+            console.log('Error sharing:', err);
+          });
+        } else {
+          // Fallback for browsers that don't support Web Share API
+          const text = `"${quoteText}" — ${quoteAuthor}`;
+          prompt('Copy this quote to share:', text);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
