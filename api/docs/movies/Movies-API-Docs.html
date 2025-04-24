@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--
+    Aquascript Movies API Documentation
+    Author: Madhurima Rawat
+    Description: This page provides developers with an overview and practical examples
+                 of how to use the Aquascript Movies JSON API to access and display movie-related data.
+    Date: 2025
+    Usage: Educational and integration reference for frontend applications.
+    Notes: 
+        - This document has been converted to PDF using wkhtmltopdf.
+        - Since wkhtmltopdf doesn't support linear gradients or any gradient in PDFs,
+          a background color has been applied in the body for the PDF version.
+        - The background color used in the body is specifically for the PDF output.
+-->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aquascript Movies API Documentation</title>
+    <style>
+        /* Global body styling */
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* background: linear-gradient(to right, #d4f1f9, #fdf4ec); */
+            /* Background gradient for website */
+            background-color: rgb(227, 172, 190);
+            /* Background color for pdf: Converted using wkhtmltopdf */
+            color: #333;
+            min-height: 100vh;
+            /* Ensures full viewport height */
+            display: flex;
+            justify-content: center;
+            /* Centers the content horizontally */
+            align-items: center;
+            /* Centers the content vertically */
+        }
+
+        /* Container for the main content */
+        .container {
+            max-width: 1100px;
+            background-color: #aaf7ff;
+            /* Light blue background */
+            padding: 20px;
+            margin: 10px;
+            border-radius: 12px;
+            /* Rounded corners */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+        }
+
+        /* Header styling */
+        h1,
+        h2 {
+            text-align: center;
+            /* Centers the headings */
+            color: #2a4d4f;
+            /* Dark teal color */
+        }
+
+        h2 {
+            margin-top: 25px;
+            /* Space between headers */
+        }
+
+        /* Code styling for better readability and no horizontal scrolling */
+
+        pre,
+        code {
+            padding: 10px;
+            border-radius: 6px;
+            overflow-wrap: break-word;
+            /* Ensures long lines wrap */
+            word-wrap: break-word;
+            /* Ensures long lines wrap */
+            display: block;
+            background-color: whitesmoke;
+            color: #000;
+            font-weight: bold;
+            font-family: monospace;
+            /* Monospaced font for code */
+        }
+
+
+        /* Unordered list style */
+        ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        /* Link styling */
+        a {
+            color: #336699;
+            /* Blue link color */
+        }
+
+        /* Section styling */
+        .section {
+            margin-top: 16px;
+        }
+
+        /* Small text for the documentation footer */
+        .docstring {
+            font-size: 0.95em;
+            color: #555;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .docstring span {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Documentation header with author information -->
+        <div class="docstring">API Documentation by <span>Team Aquascript</span></div>
+
+        <!-- Main title of the documentation -->
+        <h1>Aquascript Movies API Documentation</h1>
+
+        <!-- Overview section: Introduction to the API -->
+        <div class="section">
+            <h2>Overview</h2>
+            <p>The Aquascript Movies API provides a rich collection of movie data in JSON format, ideal for developers
+                building applications to showcase, filter, or analyze movies. It contains genre lists, metadata, and
+                downloadable links.</p>
+        </div>
+
+        <!-- API Endpoints section: Listing the available endpoints -->
+        <div class="section">
+            <h2>API Endpoints</h2>
+            <ul>
+                <li><strong>Genres & Basic Movie Data:</strong> <code>moviesdata.json</code> - Basic movie information
+                    and genres.</li>
+                <li><strong>Extended Movie Listings:</strong> <code>moviesdata++.json</code> - Expanded details,
+                    including director, release date, and download links.</li>
+            </ul>
+        </div>
+
+        <!-- File structure section: Explains the contents of the JSON files -->
+        <div class="section">
+            <h2>File Structure</h2>
+            <p><strong>moviesdata.json</strong> contains:</p>
+            <ul>
+                <li><code>genres</code>: Array of movie genres, for categorizing movies.</li>
+                <li><code>movies</code>: List of movie objects with details like title, release year, director, etc.
+                </li>
+            </ul>
+            <p><strong>moviesdata++.json</strong> is an array of objects, where each object contains:</p>
+            <ul>
+                <li><code>name</code>: Movie title.</li>
+                <li><code>tags</code>: Categories or filters for the movie (e.g., 'action', 'comedy').</li>
+                <li><code>details</code>: Detailed information, including director, release date, genre, quality, and
+                    size.</li>
+                <li><code>links</code>: Direct download links for the movie.</li>
+                <li><code>image</code>: URL of the movie's poster image.</li>
+            </ul>
+        </div>
+
+        <!-- Using the API section: Example of how to use the API with JavaScript -->
+        <div class="section">
+            <h2>Using the API</h2>
+            <p>Use JavaScript's <code>fetch()</code> to retrieve data from the API:</p>
+            <pre><code>fetch('path/to/moviesdata.json')
+  .then(response => response.json()) // Converts response into JSON
+  .then(data => {
+    console.log(data); // Logs the data for debugging
+  });</code></pre>
+        </div>
+
+        <!-- Displaying Movies section: Example code to display movies on the webpage -->
+        <div class="section">
+            <h2>Displaying Movies (Example)</h2>
+            <p>HTML structure to display movies:</p>
+            <pre><code>&lt;div id="movie-list"&gt;&lt;/div&gt;</code></pre>
+
+            <p>JavaScript to populate the movie list:</p>
+            <pre><code>document.addEventListener('DOMContentLoaded', () => {
+  const movieList = document.getElementById('movie-list'); // Grabs the container element
+
+  // Fetch movie data from JSON file
+  fetch('path/to/moviesdata.json')
+    .then(response => response.json()) // Converts data into JSON format
+    .then(data => {
+
+      // Iterate through the movies array and create individual movie cards
+      data.movies.forEach(movie => {
+        const movieCard = document.createElement('div'); // Creates a new div element for each movie
+        
+        // Populate the movie card with relevant movie data using template literals
+        movieCard.innerHTML = `
+          &lt;h3&gt;${movie.title} (${movie.year})&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;Director:&lt;/strong&gt; ${movie.director}&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;Genres:&lt;/strong&gt; ${movie.genres.join(', ')}&lt;/p&gt;
+          &lt;img src="${movie.posterUrl}" alt="${movie.title}" width="150"&gt;
+        `;
+
+        // Append each card to the main movie list container
+        movieList.appendChild(movieCard);
+      });
+
+    })
+    .catch(error => console.error('Error loading movie data:', error)); // Handle errors gracefully
+});</code></pre>
+        </div>
+
+        <!-- Best practices section: Tips for working with the API -->
+        <div class="section">
+            <h2>Best Practices</h2>
+            <ul>
+                <li>Validate and sanitize external links before use to prevent security issues.</li>
+                <li>Lazy load images to improve performance, especially for large datasets.</li>
+                <li>Use semantic HTML for accessibility to ensure screen readers can interpret content correctly.</li>
+                <li>Gracefully handle API errors, ensuring your application doesn't crash if the API fails.</li>
+            </ul>
+        </div>
+
+        <!-- Conclusion section: Final thoughts on using the API -->
+        <div class="section">
+            <h2>Conclusion</h2>
+            <p>The Aquascript Movies API is a versatile, developer-friendly way to integrate movie data into your
+                applications.
+                Use it to create genre filters, movie cards, or download features. It’s perfect for developers who want
+                to display rich, dynamic movie content in their projects.</p>
+        </div>
+    </div>
+</body>
+
+</html>
