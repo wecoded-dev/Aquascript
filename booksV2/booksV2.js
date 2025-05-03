@@ -1548,7 +1548,7 @@ function displayBooks(booksToDisplay) {
         const bookCard = `
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="book-card">
-                        <img src="${book.thumbnailUrl}" alt="${book.title}" class="book-image" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/proxy/2AHcE-khgKwa9sTVjya2Egxlbtrf2wSqNt9UtfgfAL6OIBjjqp_ta5xUFVGJ4IaAoxCsPCqBTxsM9ovWG52SuhmrqxT8NndSgu_s_0PSGFuYbYY'" />
+                        <img src="${book.thumbnailUrl}" alt="${book.title}" class="book-image" onerror="this.onerror=null; this.src='https://clipart-library.com/img/1997880.gif';" />
 
                         <div class="book-body">
                             <h3 class="book-title">${book.title}</h3>
@@ -1569,7 +1569,6 @@ function displayBooks(booksToDisplay) {
                             
                             <div class="book-footer">
                                 <span class="book-isbn">ISBN: ${book.isbn}</span>
-                                <a href="#" class="btn-details">Details</a>
                             </div>
                         </div>
                     </div>

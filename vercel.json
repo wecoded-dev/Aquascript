@@ -3,8 +3,6 @@
       { "source": "/index", "destination": "/index.html" },
       { "source": "/about", "destination": "/about.html" },
       { "source": "/contact", "destination": "/contact.html" },
-      { "source": "/contact", "destination": "/contact.html" },
-      { "source": "/book", "destination": "/book.html" },
       { "source": "/docs", "destination": "/docs.html" },
       { "source": "/book", "destination": "/book.html" },
       { "source": "/booksV2", "destination": "/booksV2.html" },
@@ -13,7 +11,10 @@
       { "source": "/quotes", "destination": "/quotes.html" },
       { "source": "/quotesV2", "destination": "/quotesV2.html" },
       { "source": "/jokes", "destination": "/jokes.html" },
-      { "source": "/users", "destination": "/users.html" },
+      { "source": "/user", "destination": "/user.html" },
+      { "source": "/recipes", "destination": "/recipes.html" },
+      { "source": "/progm_jokes", "destination": "/progm_jokes.html" },
+      { "source": "/songs", "destination": "/songs.html" },
       { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
       { "source": "/term-and-condition", "destination": "/term-and-condition.html" }
 

@@ -193,8 +193,6 @@ function displayMovies(moviesToDisplay, page = 1) {
                 <div class="movie-footer">
                   <span class="movie-language">${movie.language}</span>
                   <span class="movie-year">${movie.year || "Year N/A"}</span>
-                  <button class="btn-details download-btn" data-movie-id="${movie.id
-            }">Download</button>
                 </div>
               </div>
             </div>

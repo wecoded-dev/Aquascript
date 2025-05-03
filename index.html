@@ -59,7 +59,7 @@
           </a>
         
           <ul class="dropdown-menu">                          
-            <li><a class="dropdown-item fs-6" href="https://twitter.com/yourusername" target="_blank"><i class="fa-brands fa-twitter fa-xl me-2"></i> Twitter</a></li>
+            <li><a class="dropdown-item fs-6" href="https://youtube.com/yourchannel" target="_blank"><i class="fa-brands fa-youtube fa-xl me-2"></i> YouTube</a></li>
             <li>
               <a class="dropdown-item fs-6" href="mailto:support@aquascript.xyz">
                 <i class="fas fa-envelope fa-xl me-2"></i> support@aquascript.xyz
@@ -176,21 +176,43 @@
               <i class="fas fa-laugh-beam"></i>
             </div>
             <h3 style="font-size: 20px;">Programming Jokes API</h3>
-            <p>Add fun to your code! Get jokes only geeks get.</p>
-            <a href="#programming-jokes" class="btn btn-api">Laugh Now</a>
+            <p>Add fun to your code! <br> Get jokes only geeks get.</p>
+            <a href="progm_jokes" class="btn btn-api">Laugh Now</a>
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="api-card">
             <div class="api-icon">
-              <i class="fas fa-book-open"></i>
+              <i class="fas fa-utensils"></i>
             </div>
-            <h3 style="font-size: 20px;">Developers Books API</h3>
-            <p>Must-read programming books from beginner guides to advanced topics.</p>
-            <a href="#developers-books" class="btn btn-api">Start Reading</a>
+            <h3 style="font-size: 20px;">Recipes API</h3>
+            <p>Discover a variety of recipes with ingredients, instructions, and nutritional info.</p>
+            <a href="recipes" class="btn btn-api">Cook Now</a>
           </div>
-        </div>        
+        </div>
+
+        <div class="col-md-4">
+          <div class="api-card">
+            <div class="api-icon">
+              <i class="fas fa-music"></i>
+            </div>
+            <h3 style="font-size: 20px;">Songs API</h3>
+            <p>Access a library of songs with metadata, lyrics, and artist information.</p>
+            <a href="songs" class="btn btn-api">Explore Track</a>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="api-card">
+            <div class="api-icon">
+              <i class="fa-solid fa-spinner"></i>
+            </div>
+            <h3 style="font-size: 20px;">More APIs Coming Soon</h3>
+            <p>Stay tuned for more exciting APIs to enhance your projects.</p>
+            <a href="#coming-soon" class="btn btn-api disabled">Loading...</a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -454,6 +476,563 @@
         </div>
       </div>
     </section>
+
+    <!-- Add this section to your index.html file -->
+<section class="faq-section py-5" style="background: linear-gradient(135deg, #0a192f 0%, #172a45 100%);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title" style="font-size: 2.5rem; background: linear-gradient(90deg, #00f7ff, #ff6ec4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">Frequently Asked Questions</h2>
+      <p class="text-white" style="max-width: 700px; margin: 0 auto;">Find answers to common questions about AquaScript</p>
+    </div>
+
+    <div class="row">
+      <!-- Category Filter -->
+      <div class="col-lg-3 mb-4">
+        <div class="card bg-dark border-0 shadow-sm sticky-top" style="top: 20px;">
+          <div class="card-body">
+            <h5 class="card-title text-white mb-3">Categories</h5>
+            <div class="list-group list-group-flush">
+              <button class="list-group-item list-group-item-action bg-transparent text-white border-0 active" data-category="all">All Questions</button>
+              <button class="list-group-item list-group-item-action bg-transparent text-white border-0" data-category="Overview">Overview</button>
+              <button class="list-group-item list-group-item-action bg-transparent text-white border-0" data-category="API Details">API Details</button>
+              <button class="list-group-item list-group-item-action bg-transparent text-white border-0" data-category="Usage">Usage</button>
+              <button class="list-group-item list-group-item-action bg-transparent text-white border-0" data-category="Setup">Setup</button>
+              <button class="list-group-item list-group-item-action bg-transparent text-white border-0" data-category="Contributions">Contributions</button>
+              <button class="list-group-item list-group-item-action bg-transparent text-white border-0" data-category="Pricing">Pricing</button>
+              <button class="list-group-item list-group-item-action bg-transparent text-white border-0" data-category="Updates">Updates</button>
+              <button class="list-group-item list-group-item-action bg-transparent text-white border-0" data-category="Security">Security</button>
+              <!----<button class="list-group-item list-group-item-action bg-transparent text-white border-0" data-category="Terms & Conditions">Terms & Conditions</button>--->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Content -->
+      <div class="col-lg-9">
+        <div class="accordion" id="faqAccordion">
+          <!-- FAQ items will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// FAQ Data
+const faqData = [
+  {
+    "question": "What is AquaScript?",
+    "answer": "AquaScript is a fast and developer-friendly platform for generating blazing-fast fake JSON data APIs.",
+    "category": "Overview",
+    "subcategory": "General Info"
+  },
+  {
+    "question": "Who built AquaScript?",
+    "answer": "It was crafted by HANZLA BAIG, PRECIOUS KELVIN, and MADHIRUMA RAWAT with  ❤",
+    "category": "Overview",
+    "subcategory": "Creators"
+  },
+  {
+    "question": "Is AquaScript free to use?",
+    "answer": "Yes, it's free to use for development, testing, and prototyping.",
+    "category": "Pricing",
+    "subcategory": "Free Usage"
+  },
+  {
+    "question": "Do I need to install anything to use AquaScript?",
+    "answer": "No installation is required — just grab the API URL and you're ready.",
+    "category": "Setup",
+    "subcategory": "No Installation Required"
+  },
+  {
+    "question": "What kind of data can I generate?",
+    "answer": "You can generate fake data like books, users, movies, quotes, jokes, recipes, e.t.c.",
+    "category": "API Details",
+    "subcategory": "Data Types"
+  },
+  {
+    "question": "Does AquaScript require authentication?",
+    "answer": "No authentication is needed for now, but API keys are coming soon.",
+    "category": "API Details",
+    "subcategory": "Authentication"
+  },
+  {
+    "question": "Can I contribute to AquaScript?",
+    "answer": "Yes, contributions will be welcome soon! For now, you can star the project and share it.",
+    "category": "Contributions",
+    "subcategory": "Getting Started"
+  },
+  {
+    "question": "Is AquaScript open source?",
+    "answer": "Yes, AquaScript is open source.",
+    "category": "Contributions",
+    "subcategory": "Open Source"
+  },
+  {
+    "question": "Where can I find AquaScript?",
+    "answer": "Visit <a href=\"https://www.aquascript.xyz/\">https://www.aquascript.xyz/</a> to explore.",
+    "category": "Links",
+    "subcategory": "Official Site"
+  },
+  {
+    "question": "What is the main goal of AquaScript?",
+    "answer": "To empower developers with fast, reliable, and high-quality fake JSON data.",
+    "category": "Overview",
+    "subcategory": "Purpose"
+  },
+  {
+    "question": "What technology stack does AquaScript use?",
+    "answer": "It uses HTML5, CSS3, JavaScript, Bootstrap, jQuery, Nodejs and JSON.",
+    "category": "Technology",
+    "subcategory": "Tech Stack"
+  },
+
+  {
+    "question": "What makes AquaScript developer-friendly?",
+    "answer": "It offers clean endpoints, fast responses, and easy integration without any setup.",
+    "category": "Features",
+    "subcategory": "Developer Experience"
+  },
+  {
+    "question": "Is AquaScript suitable for frontend developers?",
+    "answer": "Yes, it's perfect for frontend UI prototyping and development.",
+    "category": "Usage",
+    "subcategory": "Frontend"
+  },
+  {
+    "question": "Can I use AquaScript to test backend endpoints?",
+    "answer": "Yes, it's great for testing backend APIs without using real data.",
+    "category": "Usage",
+    "subcategory": "Backend Testing"
+  },
+  {
+    "question": "Is AquaScript scalable?",
+    "answer": "Yes, it's lightweight and built for scalability.",
+    "category": "Performance",
+    "subcategory": "Scalability"
+  },
+  {
+    "question": "Can AquaScript help with mockup design?",
+    "answer": "Absolutely! It's perfect for building and testing mock UI designs.",
+    "category": "Usage",
+    "subcategory": "UI Mockups"
+  },
+  {
+    "question": "Do I need an account to use AquaScript?",
+    "answer": "No, you can use it directly — no sign-up required.",
+    "category": "Setup",
+    "subcategory": "No Account Needed"
+  },
+  {
+    "question": "Are there limits on API usage?",
+    "answer": "Currently, no usage limits are enforced — just use responsibly.",
+    "category": "API Details",
+    "subcategory": "Usage Limits"
+  },
+  {
+    "question": "Can AquaScript be used in mobile apps?",
+    "answer": "Yes, you can integrate it with both web and mobile projects.",
+    "category": "Usage",
+    "subcategory": "Mobile Apps"
+  },
+  {
+    "question": "Will more APIs be added?",
+    "answer": "Yes, more categories and endpoints are planned in future updates.",
+    "category": "Updates",
+    "subcategory": "API Expansions"
+  },
+  {
+    "question": "Is AquaScript actively maintained?",
+    "answer": "Yes, it's under active development with ongoing improvements.",
+    "category": "Maintenance",
+    "subcategory": "Ongoing Development"
+  },
+  {
+    "question": "How fast are the API responses?",
+    "answer": "They are ultra-fast to ensure a smooth dev experience.",
+    "category": "Performance",
+    "subcategory": "Speed"
+  },
+  {
+    "question": "Can I customize the data returned?",
+    "answer": "Custom data structure options are coming soon.",
+    "category": "Features",
+    "subcategory": "Customization"
+  },
+  {
+    "question": "How do I integrate AquaScript into my project?",
+    "answer": "Just fetch the endpoint via HTTP in your frontend/backend code.",
+    "category": "Integration",
+    "subcategory": "General Integration"
+  },
+  {
+    "question": "Are the APIs RESTful?",
+    "answer": "Yes, AquaScript APIs follow REST principles.",
+    "category": "API Details",
+    "subcategory": "API Type"
+  },
+  {
+    "question": "Is there any rate-limiting?",
+    "answer": "Currently no, but minimal throttling may be added later for stability.",
+    "category": "API Details",
+    "subcategory": "Rate Limiting"
+  },
+  {
+    "question": "Can I use AquaScript offline?",
+    "answer": "No, it's an online service — internet is required.",
+    "category": "Usage",
+    "subcategory": "Offline Use"
+  },
+  {
+    "question": "Does AquaScript offer GraphQL?",
+    "answer": "Not yet — REST APIs are currently supported.",
+    "category": "API Details",
+    "subcategory": "GraphQL Support"
+  },
+  {
+    "question": "What formats are supported?",
+    "answer": "JSON is the default and only format right now.",
+    "category": "API Details",
+    "subcategory": "Supported Formats"
+  },
+  {
+    "question": "Is there an official documentation?",
+    "answer": "Documentation will be released alongside the stable version.",
+    "category": "Documentation",
+    "subcategory": "Official Docs"
+  },
+  {
+    "question": "Is AquaScript beginner-friendly?",
+    "answer": "Absolutely! It's designed to be easy for beginners and pros alike.",
+    "category": "Usage",
+    "subcategory": "Ease of Use"
+  },
+  {
+    "question": "Can I request a new API category?",
+    "answer": "Yes, suggestions are welcome via GitHub or feedback forms.",
+    "category": "Contributions",
+    "subcategory": "Feature Requests"
+  },
+  {
+    "question": "Does it work with React or Angular?",
+    "answer": "Yes, any frontend framework that supports API calls can use it.",
+    "category": "Integration",
+    "subcategory": "Frontend Frameworks"
+  },
+  {
+    "question": "Can I use it with Python requests?",
+    "answer": "Yes, it's compatible with all HTTP clients, including Python requests.",
+    "category": "Integration",
+    "subcategory": "Python Requests"
+  },
+  {
+    "question": "Is SSL supported?",
+    "answer": "Yes, all endpoints are served over HTTPS.",
+    "category": "Security",
+    "subcategory": "SSL Support"
+  },
+  {
+    "question": "Does AquaScript store user data?",
+    "answer": "No user data is stored or tracked.",
+    "category": "Security",
+    "subcategory": "Data Privacy"
+  },
+  {
+    "question": "Is it suitable for hackathons?",
+    "answer": "Yes! It speeds up prototyping immensely.",
+    "category": "Usage",
+    "subcategory": "Hackathons"
+  },
+  {
+    "question": "How secure is AquaScript?",
+    "answer": "It's secure for non-sensitive dev purposes — no auth needed yet.",
+    "category": "Security",
+    "subcategory": "Security"
+  },
+  {
+    "question": "What are some use cases?",
+    "answer": "UI prototyping, testing HTTP libraries, teaching, mock demos, etc.",
+    "category": "Usage",
+    "subcategory": "Use Cases"
+  },
+  {
+    "question": "Is there a dark mode UI?",
+    "answer": "Coming soon in the next UI update!",
+    "category": "Updates",
+    "subcategory": "UI Update"
+  },
+  {
+    "question": "Will there be a paid version?",
+    "answer": "Possibly — premium APIs and high-volume tiers may be introduced in the future.",
+    "category": "Pricing",
+    "subcategory": "Paid Version"
+  },
+  {
+    "question": "Where is the AquaScript GitHub repository?",
+    "answer": "You can find it at <a href=\"https://github.com/wecoded-dev/Aquascript\">https://github.com/wecoded-dev/Aquascript</a>",
+    "category": "GitHub",
+    "subcategory": "Repository Link"
+  },
+  {
+    "question": "Can I contribute via GitHub?",
+    "answer": "Yes, fork the repo on GitHub and feel free to submit pull requests!",
+    "category": "GitHub",
+    "subcategory": "Contribution"
+  },
+  {
+    "question": "Where can I read blogs or announcements about AquaScript?",
+    "answer": "Follow <a href=\"https://dev.to/aquascript\">https://dev.to/aquascript</a> for updates and technical articles.",
+    "category": "Dev.to",
+    "subcategory": "Blogs & Announcements"
+  },
+  {
+    "question": "Does AquaScipt publish changelogs or updates?",
+    "answer": "Yes, important updates are posted on GitHub and Dev.to.",
+    "category": "GitHub, Dev.to",
+    "subcategory": "Updates & Changelogs"
+  },
+  {
+    "question": "Is the AquaScript GitHub repository open for issues?",
+    "answer": "Yes, you can report bugs or request features via GitHub Issues.",
+    "category": "GitHub",
+    "subcategory": "Issues"
+  },
+  {
+    "question": "How can I fetch (any) data using JavaScript?",
+    "answer": "Use fetch('path/to/anydata.json').then(response => response.json()).then(data => { /* handle data */ });",
+    "category": "Movies API",
+    "subcategory": "Usage"
+  },
+  {
+    "question": "What are best practices for using the APIs?",
+    "answer": "Validate links, lazy load images, use semantic HTML, and handle API errors gracefully.",
+    "category": "API",
+    "subcategory": "Best Practices"
+  },
+  {
+    "question": "How should I handle broken movie links?",
+    "answer": "Always check the validity of external URLs (e.g., download links) and handle them with proper error messaging.",
+    "category": "Movies API",
+    "subcategory": "Best Practices"
+  },
+  {
+    "question": "What is lazy loading and how does it improve performance?",
+    "answer": "Lazy loading involves loading images only when they are about to be visible on the screen, improving page load time.",
+    "category": "Movies API",
+    "subcategory": "Best Practices"
+  },
+  {
+    "question": "How should I handle broken links e.g books, movie, jokes e.t.c.?",
+    "answer": "Always check if the external URLs (like Wikipedia) are valid before linking them in your app.",
+    "category": "API",
+    "subcategory": "Best Practices"
+  },
+  {
+    "question": "Where can I find developer discussions about the API?",
+    "answer": "You can follow discussions about the API on Dev.to at <a href=\"https://dev.to/aquascript\"></a>https://dev.to/aquascript",
+    "category": "Books API",
+    "subcategory": "Community & Source"
+  },
+  {
+    "question": "What is AquaScript's JSON API used for?",
+    "answer": "AquaScript provides a fake JSON API for testing and prototyping purposes. The data is randomly generated and not real.",
+    "category": "General",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "What is considered acceptable use of AquaScript's API?",
+    "answer": "You may use the API for lawful testing and prototyping. Misuse, including illegal, harmful, or disruptive behavior, is prohibited.",
+    "category": "Acceptable Use",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "Can I reverse engineer the AquaScript API?",
+    "answer": "No, reverse engineering, decompiling, or disassembling any part of the Services is strictly prohibited.",
+    "category": "Acceptable Use",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "Are there any usage limits for AquaScript's API?",
+    "answer": "Yes, AquaScript may limit requests, throttle access, or block usage if it detects excessive or abusive behavior.",
+    "category": "API Usage",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "Can AquaScript change or discontinue the API?",
+    "answer": "Yes, AquaScript reserves the right to modify or discontinue the Services at any time without prior notice.",
+    "category": "API Usage",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "Is AquaScript's API guaranteed to be accurate or reliable?",
+    "answer": "No, the API is provided 'as is' without any warranty. Results may not be accurate or reliable.",
+    "category": "No Warranty",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "Will the API be always available without errors?",
+    "answer": "No, AquaScript does not guarantee uninterrupted or error-free access to its Services.",
+    "category": "No Warranty",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "Is AquaScript liable for issues caused by using the API?",
+    "answer": "No, AquaScript and its creators are not liable for indirect, incidental, or consequential damages resulting from API usage.",
+    "category": "Limitation of Liability",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "Who owns the API structure and documentation?",
+    "answer": "All API content, including structure and documentation, is the property of AquaScript and protected by intellectual property laws.",
+    "category": "Intellectual Property",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "Can AquaScript change its Terms & Conditions?",
+    "answer": "Yes, the Terms may be updated at any time, and continued use implies acceptance of the changes.",
+    "category": "Changes to Terms",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "Which laws govern AquaScript's Terms & Conditions?",
+    "answer": "The Terms are governed by the laws of the State of California, regardless of conflict of law principles.",
+    "category": "Governing Law",
+    "subcategory": "Terms & Conditions"
+  },
+  {
+    "question": "How can I contact AquaScript with questions about the Terms?",
+    "answer": "You can reach out to AquaScript via email at support@aquascript.xyz for any inquiries.",
+    "category": "Contact Information",
+    "subcategory": "Terms & Conditions"
+  }
+];
+
+// Initialize FAQ
+function initFAQ() {
+  const accordion = document.getElementById('faqAccordion');
+  const categoryButtons = document.querySelectorAll('[data-category]');
+  
+  // Render all FAQs initially
+  renderFAQs(faqData);
+  
+  // Add category filter event listeners
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Update active state
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Filter FAQs
+      const category = button.dataset.category;
+      if (category === 'all') {
+        renderFAQs(faqData);
+      } else {
+        const filteredFAQs = faqData.filter(faq => faq.category === category);
+        renderFAQs(filteredFAQs);
+      }
+    });
+  });
+}
+
+// Render FAQs to the page
+function renderFAQs(faqs) {
+  const accordion = document.getElementById('faqAccordion');
+  accordion.innerHTML = '';
+  
+  // Group by subcategory
+  const groupedFAQs = {};
+  faqs.forEach(faq => {
+    if (!groupedFAQs[faq.subcategory]) {
+      groupedFAQs[faq.subcategory] = [];
+    }
+    groupedFAQs[faq.subcategory].push(faq);
+  });
+  
+  // Create accordion items
+  Object.entries(groupedFAQs).forEach(([subcategory, faqs], index) => {
+    // Subcategory header
+    const subcategoryHeader = document.createElement('h3');
+    subcategoryHeader.className = 'text-white mt-4 mb-3';
+    subcategoryHeader.style.fontSize = '1.3rem';
+    subcategoryHeader.style.borderBottom = '1px solid #fff';
+    subcategoryHeader.style.paddingBottom = '0.5rem';
+    subcategoryHeader.textContent = subcategory;
+    accordion.appendChild(subcategoryHeader);
+    
+    // FAQ items for this subcategory
+    faqs.forEach((faq, faqIndex) => {
+      const accordionItem = document.createElement('div');
+      accordionItem.className = 'accordion-item bg-light border-0 mb-2';
+      
+      const accordionHeader = document.createElement('h2');
+      accordionHeader.className = 'accordion-header';
+      accordionHeader.id = `heading-${index}-${faqIndex}`;
+      
+      const accordionButton = document.createElement('button');
+      accordionButton.className = 'accordion-button collapsed bg-info text-white';
+      accordionButton.type = 'button';
+      accordionButton.setAttribute('data-bs-toggle', 'collapse');
+      accordionButton.setAttribute('data-bs-target', `#collapse-${index}-${faqIndex}`);
+      accordionButton.setAttribute('aria-expanded', 'false');
+      accordionButton.setAttribute('aria-controls', `collapse-${index}-${faqIndex}`);
+      accordionButton.textContent = faq.question;
+      
+      accordionHeader.appendChild(accordionButton);
+      
+      const accordionCollapse = document.createElement('div');
+      accordionCollapse.id = `collapse-${index}-${faqIndex}`;
+      accordionCollapse.className = 'accordion-collapse collapse';
+      accordionCollapse.setAttribute('aria-labelledby', `heading-${index}-${faqIndex}`);
+      accordionCollapse.setAttribute('data-bs-parent', '#faqAccordion');
+      
+      const accordionBody = document.createElement('div');
+      accordionBody.className = 'accordion-body bg-light text-body-emphasis';
+      accordionBody.innerHTML = faq.answer;
+      
+      accordionCollapse.appendChild(accordionBody);
+      
+      accordionItem.appendChild(accordionHeader);
+      accordionItem.appendChild(accordionCollapse);
+      
+      accordion.appendChild(accordionItem);
+    });
+  });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initFAQ);
+</script>
+
+<style>
+.accordion-button:not(.collapsed) {
+  background-color: rgba(100, 65, 165, 0.2);
+  color: white;
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(100, 65, 165, 0.5);
+}
+
+.accordion-button::after {
+  filter: brightness(0.5);
+}
+
+.bg-darker {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item.active {
+  background: linear-gradient(135deg, #6441a5, #00f7ff);
+  border-color: transparent;
+}
+
+.sticky-top {
+  position: sticky;
+  z-index: 1;
+}
+</style>
 
   <footer class="footer-section">
     <div class="container">
