@@ -44,16 +44,20 @@
             <a class="nav-link active" href="contact">Contact</a>
           </li>
         </ul>
-        <div class="dropdown ms-2">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Support 
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item">Action</a></li>
-            <li><a class="dropdown-item">Another action</a></li>
-            <li><a class="dropdown-item">Something else here</a></li>
+        <div class="dropdown">
+          <a class="btn btn-primary ms-1 my-1 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Support <i class="fa-solid fa-headphones-simple fa-xl px-1"></i>
+          </a>
+        
+          <ul class="dropdown-menu">                          
+            <li><a class="dropdown-item fs-6" href="https://twitter.com/yourusername" target="_blank"><i class="fa-brands fa-twitter fa-xl me-2"></i> Twitter</a></li>
+            <li>
+              <a class="dropdown-item fs-6" href="mailto:support@aquascript.xyz">
+                <i class="fas fa-envelope fa-xl me-2"></i> support@aquascript.xyz
+              </a>
+            </li>
           </ul>
-        </div>
+      </div>
       </div>
     </div>
   </nav>
@@ -111,9 +115,7 @@
       <div class="contact-form-container">
         <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
           <h2 class="quote" style="color: var(--sky); text-align: center; margin-bottom: 1.5rem;">Send Us a Message</h2>
-
-          <input type="hidden" name="access_key" value="91518187-55af-467c-9690-8d7994a937ca">
-
+          <input type="hidden" name="access_key" value="91518187-55af-467c-9690-8d7994a937ca"> <!-----Fake Access Key---------->
           <div class="form-group">
             <label for="name">Full Name</label>
             <input type="text" name="name" id="name" placeholder="John Doe" required>
@@ -197,6 +199,8 @@
             <li><a href="docs.html">Documentation</a></li>
             <li><a href="https://dev.to/aquascript">Blog</a></li>
             <li><a href="https://github.com/wecoded-dev/Aquascript">Tutorials</a></li>
+            <li><a href="privacy-policy">Privacy Policy</a></li>
+            <li><a href="term-and-condition">Terms & Condition</a></li>
           </ul>
         </div>
         
@@ -209,7 +213,7 @@
                 <input type="email" class="form-control" placeholder="Your email" required>
                 <button class="btn btn-subscribe" type="submit">Subscribe</button>
               </div>
-              <div id="toast-message" class="mt-1 text-success" style="display: none;">Thanks for subscribing!</div>
+              <div id="toast-message" class="mt-1 text-success alert alert-success" role="alert" style="display: none;">Thanks for subscribing!</div>
             </form>
         </div>
       </div>

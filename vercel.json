@@ -11,6 +11,14 @@
       { "source": "/moviedata", "destination": "/moviedata.html" },
       { "source": "/moviesdataV2", "destination": "/moviesdataV2.html" },
       { "source": "/quotes", "destination": "/quotes.html" },
-      { "source": "/quotesV2", "destination": "/quotesV2.html" }
+      { "source": "/quotesV2", "destination": "/quotesV2.html" },
+      { "source": "/jokes", "destination": "/jokes.html" },
+      { "source": "/users", "destination": "/users.html" },
+      { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
+      { "source": "/term-and-condition", "destination": "/term-and-condition.html" }
+
+
+
+
     ]
 }
