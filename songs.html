@@ -11,33 +11,41 @@
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-ultra">
+  <nav class="navbar navbar-expand-lg bg-info bg-opacity-100 backdrop-blur fixed-top shadow-lg">
     <div class="container">
-      <a class="navbar-brand" href="index">
+      <a class="navbar-brand" href="#">
         <img src="assets/background-removed.png" alt="Logo">
       </a>
-      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about">About</a>
-          </li>          
-          <li class="nav-item">
-            <a class="nav-link" href="docs">Documentation</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact">Contact</a>
-          </li>
-        </ul>
-        <div class="ms-2">
-          <a href="https://github.com/wecoded-dev/Aquascript" target="_blank" class="btn btn-light">
-            <i class="fab fa-github"></i>
+      <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header text-white border-bottom">
+          <a class="navbar-brand" href="#">
+            <img src="assets/background-removed.png" alt="Logo">
           </a>
+          <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item mx-1">
+              <a class="nav-link active" aria-current="page" href="index">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="docs">Documentation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact</a>
+            </li>
+          </ul>
+          <div class="mt-2 mx-3 d-flex justify-content-start rounded-1">
+            <a href="https://github.com/wecoded-dev/Aquascript" target="_blank" class="btn btn-light">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>

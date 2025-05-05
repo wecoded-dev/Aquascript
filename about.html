@@ -21,43 +21,52 @@
 </script>
 </head>
 <body>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-ultra shadow-lg">
+  
+  <nav class="navbar navbar-expand-lg bg-info bg-opacity-100 backdrop-blur fixed-top shadow-lg">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="#">
         <img src="assets/background-removed.png" alt="Logo">
       </a>
-      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="docs">Documentation</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact">Contact</a>
-          </li>
-        </ul>
-        <div class="dropdown">
-          <a class="btn btn-primary ms-1 my-1 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Support <i class="fa-solid fa-headphones-simple fa-xl px-1"></i>
+      <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header text-white border-bottom">
+          <a class="navbar-brand" href="#">
+            <img src="assets/background-removed.png" alt="Logo">
           </a>
-        
-          <ul class="dropdown-menu">                          
-            <li><a class="dropdown-item fs-6" href="https://youtube.com/yourchannel" target="_blank"><i class="fa-brands fa-youtube fa-xl me-2"></i> YouTube</a></li>
-            <li>
-              <a class="dropdown-item fs-6" href="mailto:support@aquascript.xyz">
-                <i class="fas fa-envelope fa-xl me-2"></i> support@aquascript.xyz
-              </a>
+          <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item mx-1">
+              <a class="nav-link active" aria-current="page" href="index">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="docs">Documentation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact</a>
             </li>
           </ul>
-      </div>
+          <div class="dropdown">
+            <a class="btn btn-primary ms-1 my-1 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Support <i class="fa-solid fa-headphones-simple fa-xl px-1"></i>
+            </a>
+          
+            <ul class="dropdown-menu">                          
+              <li><a class="dropdown-item emil" href="https://www.youtube.com/@aquascript-apis" target="_blank"><i class="fa-brands fa-youtube fa-xl me-2"></i> YouTube</a></li>
+              <li>
+                <a class="dropdown-item emil" href="mailto:support@aquascript.xyz">
+                  <i class="fas fa-envelope fa-xl me-2"></i> support@aquascript.xyz
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -169,7 +178,7 @@
     </div>
   </footer>
 
-
+  <script src="https://widget.cxgenie.ai/widget.js" data-aid="c75a2b2d-3906-48ac-940a-8a647eed9f8f" data-lang="en"></script>
   <script src="contact/Contact.js"></script>
   <script src="nav/nav.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
