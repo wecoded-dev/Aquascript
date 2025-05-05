@@ -69,8 +69,9 @@ Just grab the API URL, plug it into your project, and you're ready to roll.
 
 ## 🌐 Live Demo  
 
-**Coming Soon...**  
-AquaScript is currently under active development 🚧 — follow us to stay updated on the launch!
+🌊 AquaScript is Now Live! 🚀
+We’re officially up and running — building, testing, and shaping the future.
+Follow us for real-time updates, sneak peeks, and launch announcements!
 
 ---
 
