@@ -93,6 +93,10 @@ body {
     filter: brightness(1.5);
 }
 
+.emil {
+   font-size: 0.8rem;
+}
+
 @keyframes glow {
     from {
         filter: drop-shadow(0 0 5px #00f7ff);

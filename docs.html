@@ -1,231 +1,689 @@
-<!-- 
-    Author: Madhurima Rawat
-    Date: May 6, 2025
-    Description: Documentation page for AquaScript, providing free JSON APIs for developers. Includes navigation, header, API section, and footer.
--->
-
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AquaScript API Documentation</title>
+    <link rel="icon" href="assets/docs.png" type="image/png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="api/docs/docs.css" />
+  </head>
+  <body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation | AquaScript - Free JSON APIs for Developers</title>
+    <!-- Sidebar Navigation -->
+    <div class="docs-sidebar" id="docsSidebar">
+      <div class="docs-sidebar-header">
+        <h3>AquaScript</h3>
+        <p>Comprehensive Documentation</p>
+        <a href="javascript:history.back()" class="nav-link">
+          <i class="fas fa-arrow-left"></i> Back
+        </a>
+      </div>
 
-    <!-- Font Awesome Kit for icons -->
-    <script src="https://kit.fontawesome.com/69b7050fd6.js" crossorigin="anonymous"></script>
+      <div class="api-group">
+        <div class="api-group-title">Core APIs</div>
+        <a href="#books" class="nav-link active">
+          <i class="fas fa-book"></i> Books API
+        </a>
+        <a href="#books-plus" class="nav-link">
+          <i class="fas fa-book-open"></i> Books++ API
+        </a>
+        <a href="#movies" class="nav-link">
+          <i class="fas fa-film"></i> Movies API
+        </a>
+        <a href="#movies-plus" class="nav-link">
+          <i class="fas fa-video"></i> Movies++ API
+        </a>
+      </div>
 
-    <!-- Bootstrap CSS for responsive design -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+      <div class="api-group">
+        <div class="api-group-title">Content APIs</div>
+        <a href="#quotes" class="nav-link">
+          <i class="fas fa-quote-right"></i> Quotes API
+        </a>
+        <a href="#quotes-plus" class="nav-link">
+          <i class="fas fa-comment-dots"></i> Quotes++ API
+        </a>
+        <a href="#jokes" class="nav-link">
+          <i class="fas fa-laugh-squint"></i> Jokes API
+        </a>
+      </div>
 
-    <!-- Font Awesome CSS for icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+      <div class="api-group">
+        <div class="api-group-title">Data APIs</div>
+        <a href="#random-user" class="nav-link">
+          <i class="fas fa-users"></i> Random User API
+        </a>
+        <a href="#recipes" class="nav-link">
+          <i class="fas fa-utensils"></i> Recipes API
+        </a>
+        <a href="#songs" class="nav-link">
+          <i class="fas fa-music"></i> Songs API
+        </a>
+      </div>
 
-    <!-- Custom CSS for the About page -->
-    <link rel="stylesheet" href="about/about.css">
+      <div class="api-group">
+        <div class="api-group-title">Coming Soon</div>
+        <a href="#coming-soon" class="nav-link">
+          <i class="fas fa-rocket"></i> New APIs
+        </a>
+      </div>
+    </div>
 
-    <!-- Favicon for the page -->
-    <link rel="icon" href="assets/about_icon.png" type="image/x-icon">
-
-    <!-- Global styles for the page -->
-    <link rel="stylesheet" href="global.css">
-
-    <!-- Documentation specific styles -->
-    <link rel="stylesheet" href="docs.css">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RF2WV794XB"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-RF2WV794XB');
-    </script>
-</head>
-
-<body>
-    <!-- Navbar: Contains links to different pages and supports responsiveness -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-ultra shadow-lg">
-        <div class="container">
-            <!-- Logo linking back to the home page -->
-            <a class="navbar-brand" href="index.html">
-                <img src="assets/background-removed.png" alt="Logo">
-            </a>
-            <!-- Toggle button for collapsing navbar on smaller screens -->
-            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Navbar links that collapse on small screens -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <!-- Home link -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="index">Home</a>
-                    </li>
-                    <!-- About link (currently active) -->
-                    <li class="nav-item">
-                        <a class="nav-link active" href="about">About</a>
-                    </li>
-                    <!-- Documentation link -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="docs">Documentation</a>
-                    </li>
-                    <!-- Contact link -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact">Contact</a>
-                    </li>
-                </ul>
-                <!-- Dropdown menu for additional support links -->
-                <div class="dropdown ms-2">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Support
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item">Action</a></li>
-                        <li><a class="dropdown-item">Another action</a></li>
-                        <li><a class="dropdown-item">Something else here</a></li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Main Content -->
+    <div class="docs-main">
+      <!-- Books API -->
+      <section id="books" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Books API</h2>
+          <p class="api-description">
+            Access a comprehensive collection of book data including titles,
+            authors, genres, and publication details. Perfect for building
+            book-related applications or populating your UI with realistic book
+            data.
+          </p>
         </div>
-    </nav>
 
-    <!-- Header section with a large title and description -->
-    <header class="docs-section text-white">
-        <div class="container py-5 text-center">
-            <h1 class="display-3 fw-bold mb-4">Free JSON APIs for Developers</h1>
-            <p class="lead mb-5" style="max-width: 700px; margin: 0 auto;">
-                High-quality, reliable JSON data APIs for your projects.
-                Easy to integrate, free to use, and constantly updated.
-            </p>
-
-            <!-- API Cards: Each card represents an API with links to documentation and download options -->
-            <div class="row mt-5">
-                <!-- Book API Card -->
-                <div class="col-md-4">
-                    <div class="api-card">
-                        <div class="api-icon"><i class="fas fa-book"></i></div>
-                        <h3>Books API</h3>
-                        <p>Comprehensive book data including titles, authors, genres, and more.</p>
-                        <div class="d-flex justify-content-center gap-3 mt-3">
-                            <!-- External links for API Docs -->
-                            <a href="api/docs/books/Books-API-Docs.html" title="Explore Docs" target="_blank"><i
-                                    class="fas fa-arrow-up-right-from-square fa-lg btn btn-api"></i></a>
-                            <!-- GitHub link for API Docs -->
-                            <a href="https://github.com/wecoded-dev/Aquascript/blob/main/api/docs/books/Books-API-Docs.pdf"
-                                title="View PDF on GitHub" target="_blank"><i
-                                    class="fab fa-github fa-lg btn btn-api"></i></a>
-                            <!-- PDF download link -->
-                            <a href="https://github.com/wecoded-dev/Aquascript/raw/main/api/docs/books/Books-API-Docs.pdf"
-                                title="Download PDF" download><i class="fas fa-download fa-lg btn btn-api"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Other API cards for Movies, Users, Recipes, and Programming Jokes follow a similar structure -->
-                <!-- Movie API Card -->
-                <div class="col-md-4">
-                    <div class="api-card">
-                        <div class="api-icon"><i class="fas fa-film"></i></div>
-                        <h3>Movies API</h3>
-                        <p>Extensive database of movies, genres, ratings, and release dates.</p>
-                        <div class="d-flex justify-content-center gap-3 mt-3">
-                            <a href="api/docs/movies/Movies-API-Docs.html" title="Explore Docs" target="_blank"><i
-                                    class="fas fa-arrow-up-right-from-square fa-lg btn btn-api"></i></a>
-                            <a href="https://github.com/wecoded-dev/Aquascript/blob/main/api/docs/movies/Movies-API-Docs.pdf"
-                                title="View PDF on GitHub" target="_blank"><i
-                                    class="fab fa-github fa-lg btn btn-api"></i></a>
-                            <a href="https://github.com/wecoded-dev/Aquascript/raw/main/api/docs/movies/Movies-API-Docs.pdf"
-                                title="Download PDF" download><i class="fas fa-download fa-lg btn btn-api"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Continue with the remaining cards for Users, Recipes, and Programming Jokes APIs -->
-            </div>
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/books.json" target="_blank"
+            >https://aquascript.xyz/api/books.json</a
+          >
         </div>
-    </header>
 
-    <!-- Footer section -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <!-- Footer brand with logo -->
-                    <div class="footer-brand d-flex align-items-center mb-3">
-                        <img src="assets/background-removed.png" alt="AquaScript Logo" height="40">
-                    </div>
-                    <p class="footer-text text-start">Providing high-quality JSON APIs for developers worldwide. Fast,
-                        reliable, and free to use.</p>
-                    <!-- Social media links -->
-                    <div class="social-links">
-                        <a href="https://github.com/wecoded-dev" class="social-icon" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://twitter.com/yourhandle" class="social-icon" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://discord.gg/yourinvite" class="social-icon" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/yourprofile" class="social-icon" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-4 mb-4 mb-md-0 text-start">
-                    <h5 class="footer-heading">Resources</h5>
-                    <ul class="footer-links">
-                        <li><a href="docs.html">Documentation</a></li>
-                        <li><a href="https://dev.to/aquascript">Blog</a></li>
-                        <li><a href="https://github.com/wecoded-dev/Aquascript">Tutorials</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-4 col-md-4 text-start">
-                    <h5 class="footer-heading">Subscribe to our Newsletter</h5>
-                    <p class="footer-text">Get updates on new APIs and features</p>
-                    <form class="newsletter-form" onsubmit="handleSubscription(event)">
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Your email" required>
-                            <button class="btn btn-subscribe" type="submit">Subscribe</button>
-                        </div>
-                        <div id="toast-message" class="mt-1 text-success" style="display: none;">Thanks for subscribing!
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="row">
-                    <div class="fw-bold text-center">
-                        <p class="copyright">&copy; 2025-2026 AquaScript. All Rights Reserved. | Designed by Madhurima
-                            Rawat</p>
-                    </div>
-                </div>
-            </div>
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>[
+  {
+    "title": "Book Title",
+    "author": "Author Name",
+    "language": "Language",
+    "country": "Country of Origin",
+    "pages": 320,
+    "year": 2020,
+    "imageLink": "URL to cover image",
+    "link": "Wikipedia or other reference link"
+  },
+  ...
+]</code></pre>
         </div>
-    </footer>
 
-    <!-- Bootstrap JS and dependencies for interactive features -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <div class="api-example">
+          <h3 class="example-title">
+            <i class="fas fa-laptop-code"></i> Example Usage
+          </h3>
+          <pre><code>fetch('https://aquascript.xyz/api/books.json')
+  .then(response => response.json())
+  .then(data => {
+    // Process book data
+    data.forEach(book => {
+      console.log(`Title: ${book.title}, Author: ${book.author}`);
+    });
+  });</code></pre>
+        </div>
+      </section>
 
-    <!-- Additional JS for subscription functionality -->
-    <script>
-        function handleSubscription(event) {
-            event.preventDefault();
-            const toast = document.getElementById('toast-message');
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 3000);
+      <!-- Books++ API -->
+      <section id="books-plus" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Books++ API</h2>
+          <p class="api-description">
+            Enhanced book data with additional details like ISBN, publisher,
+            description, and ratings. Ideal for applications requiring more
+            comprehensive book information.
+          </p>
+        </div>
+
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/books++.json" target="_blank"
+            >https://aquascript.xyz/api/books++.json</a
+          >
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>[
+  {
+    "title": "Book Title",
+    "author": "Author Name",
+    "isbn": "ISBN Number",
+    "publisher": "Publisher Name",
+    "publishedDate": "YYYY-MM-DD",
+    "description": "Book summary...",
+    "pageCount": 320,
+    "categories": ["Genre1", "Genre2"],
+    "averageRating": 4.5,
+    "ratingsCount": 120,
+    "language": "en",
+    "imageLinks": {
+      "thumbnail": "URL to thumbnail",
+      "small": "URL to small image",
+      "medium": "URL to medium image",
+      "large": "URL to large image"
+    },
+    "previewLink": "URL to preview"
+  },
+  ...
+]</code></pre>
+        </div>
+      </section>
+
+      <!-- Movies API -->
+      <section id="movies" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Movies API</h2>
+          <p class="api-description">
+            Comprehensive movie database with titles, release years, genres, and
+            directors. Perfect for building movie-related applications or
+            displaying film data.
+          </p>
+        </div>
+
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/moviesData.json" target="_blank"
+            >https://aquascript.xyz/api/moviesData.json</a
+          >
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>{
+  "genres": ["Action", "Comedy", "Drama", ...],
+  "movies": [
+    {
+      "title": "Movie Title",
+      "year": 2020,
+      "genre": ["Genre1", "Genre2"],
+      "director": "Director Name",
+      "poster": "URL to poster image"
+    },
+    ...
+  ]
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- Movies++ API -->
+      <section id="movies-plus" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Movies++ API</h2>
+          <p class="api-description">
+            Extended movie data with cast information, ratings, plot summaries,
+            and more. Ideal for applications requiring detailed movie
+            information.
+          </p>
+        </div>
+
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/moviesData++.json" target="_blank"
+            >https://aquascript.xyz/api/moviesData++.json</a
+          >
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>[
+  {
+    "title": "Movie Title",
+    "year": 2020,
+    "rated": "PG-13",
+    "released": "YYYY-MM-DD",
+    "runtime": "120 min",
+    "genre": ["Genre1", "Genre2"],
+    "director": "Director Name",
+    "writers": ["Writer1", "Writer2"],
+    "actors": ["Actor1", "Actor2", "Actor3"],
+    "plot": "Movie plot summary...",
+    "language": "English",
+    "country": "Country",
+    "awards": "Awards info",
+    "poster": "URL to poster image",
+    "ratings": [
+      {
+        "source": "Internet Movie Database",
+        "value": "7.5/10"
+      },
+      {
+        "source": "Rotten Tomatoes",
+        "value": "85%"
+      }
+    ],
+    "metascore": "75",
+    "imdbRating": "7.5",
+    "imdbVotes": "120,000",
+    "imdbID": "tt1234567",
+    "type": "movie",
+    "dvd": "YYYY-MM-DD",
+    "boxOffice": "$100,000,000",
+    "production": "Production Company",
+    "website": "Official website URL"
+  },
+  ...
+]</code></pre>
+        </div>
+      </section>
+
+      <!-- Quotes API -->
+      <section id="quotes" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Quotes API</h2>
+          <p class="api-description">
+            Collection of inspirational, motivational, and thought-provoking
+            quotes from various authors. Perfect for daily inspiration or
+            content generation.
+          </p>
+        </div>
+
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/quotes.json" target="_blank"
+            >https://aquascript.xyz/api/quotes.json</a
+          >
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>[
+  {
+    "text": "The quote text...",
+    "author": "Author Name",
+    "category": "Category/Tag"
+  },
+  ...
+]</code></pre>
+        </div>
+      </section>
+
+      <!-- Quotes++ API -->
+      <section id="quotes-plus" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Quotes++ API</h2>
+          <p class="api-description">
+            Extended quotes collection with additional metadata including
+            source, date, and popularity. Ideal for applications requiring
+            richer quote data.
+          </p>
+        </div>
+
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/quotes++.json" target="_blank"
+            >https://aquascript.xyz/api/quotes++.json</a
+          >
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>[
+  {
+    "text": "The quote text...",
+    "author": "Author Name",
+    "source": "Book/Speech Title",
+    "year": 1999,
+    "categories": ["Category1", "Category2"],
+    "popularity": 85,
+    "language": "en",
+    "length": 120,
+    "tags": ["tag1", "tag2"]
+  },
+  ...
+]</code></pre>
+        </div>
+      </section>
+
+      <!-- Jokes API -->
+      <section id="jokes" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Jokes API</h2>
+          <p class="api-description">
+            Collection of clean, family-friendly jokes for entertainment and fun
+            applications. Great for chatbots, social features, or just to
+            brighten someone's day.
+          </p>
+        </div>
+
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/jokes.json" target="_blank"
+            >https://aquascript.xyz/api/jokes.json</a
+          >
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>[
+  {
+    "setup": "The joke setup...",
+    "punchline": "The punchline...",
+    "type": "Joke Type"
+  },
+  ...
+]</code></pre>
+        </div>
+      </section>
+
+      <!-- Random User API -->
+      <section id="random-user" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Random User API</h2>
+          <p class="api-description">
+            Generate realistic user profiles with names, emails, addresses, and
+            profile pictures. Perfect for prototyping user interfaces or testing
+            applications.
+          </p>
+        </div>
+
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/randomuser.json" target="_blank"
+            >https://aquascript.xyz/api/randomuser.json</a
+          >
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>{
+  "results": [
+    {
+      "gender": "male/female",
+      "name": {
+        "title": "Mr/Mrs/Ms",
+        "first": "First",
+        "last": "Last"
+      },
+      "location": {
+        "street": {
+          "number": 123,
+          "name": "Street Name"
+        },
+        "city": "City",
+        "state": "State",
+        "country": "Country",
+        "postcode": "Postcode",
+        "coordinates": {
+          "latitude": "00.0000",
+          "longitude": "00.0000"
+        },
+        "timezone": {
+          "offset": "+1:00",
+          "description": "Timezone"
         }
-    </script>
-</body>
+      },
+      "email": "email@example.com",
+      "login": {
+        "uuid": "UUID",
+        "username": "username",
+        "password": "password",
+        "salt": "salt",
+        "md5": "md5",
+        "sha1": "sha1",
+        "sha256": "sha256"
+      },
+      "dob": {
+        "date": "YYYY-MM-DD",
+        "age": 30
+      },
+      "registered": {
+        "date": "YYYY-MM-DD",
+        "age": 5
+      },
+      "phone": "Phone Number",
+      "cell": "Cell Number",
+      "id": {
+        "name": "ID Type",
+        "value": "ID Value"
+      },
+      "picture": {
+        "large": "URL to large image",
+        "medium": "URL to medium image",
+        "thumbnail": "URL to thumbnail"
+      },
+      "nat": "Nationality"
+    }
+  ],
+  "info": {
+    "seed": "Seed Value",
+    "results": 1,
+    "page": 1,
+    "version": "1.3"
+  }
+}</code></pre>
+        </div>
+      </section>
 
+      <!-- Recipes API -->
+      <section id="recipes" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Recipes API</h2>
+          <p class="api-description">
+            Comprehensive recipe database with ingredients, instructions,
+            cooking times, and nutritional information. Perfect for food-related
+            applications or meal planning tools.
+          </p>
+        </div>
+
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/recipes.json" target="_blank"
+            >https://aquascript.xyz/api/recipes.json</a
+          >
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>{
+  "recipes": {
+    "recipe1": {
+      "name": "Recipe Name",
+      "source": "Source",
+      "preptime": 15,
+      "cooktime": 30,
+      "waittime": 10,
+      "servings": 4,
+      "comments": "Additional notes",
+      "ingredients": [
+        "1 cup Ingredient1",
+        "2 tbsp Ingredient2",
+        ...
+      ],
+      "instructions": "Step by step instructions...",
+      "tags": ["tag1", "tag2"],
+      "calories": 350,
+      "fat": 12,
+      "satfat": 4,
+      "carbs": 45,
+      "fiber": 5,
+      "sugar": 10,
+      "protein": 15
+    },
+    ...
+  }
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- Songs API -->
+      <section id="songs" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Songs API</h2>
+          <p class="api-description">
+            Music database with song titles, artists, release dates, and
+            durations. Great for music-related applications or historical data
+            analysis.
+          </p>
+        </div>
+
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/songs.json" target="_blank"
+            >https://aquascript.xyz/api/songs.json</a
+          >
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>{
+  "table": {
+    "songs": {
+      "song": [
+        {
+          "date": "Month DD, YYYY",
+          "artist": "Artist Name",
+          "title": "Song Title",
+          "duration": "Duration in seconds"
+        },
+        ...
+      ]
+    }
+  }
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- Coming Soon -->
+      <section id="coming-soon" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Coming Soon</h2>
+          <p class="api-description">
+            We're constantly expanding our API offerings. Here's what we're
+            working on:
+          </p>
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-rocket"></i> Upcoming APIs
+          </h3>
+          <ul style="color: var(--light-slate); line-height: 1.8">
+            <li>
+              <strong>Weather API:</strong> Global weather data with forecasts
+            </li>
+            <li>
+              <strong>Sports API:</strong> Live scores and team statistics
+            </li>
+            <li>
+              <strong>News API:</strong> Current headlines from multiple sources
+            </li>
+            <li><strong>Products API:</strong> E-commerce product data</li>
+            <li>
+              <strong>Places API:</strong> Location and point of interest data
+            </li>
+            <li>
+              <strong>Finance API:</strong> Stock market and cryptocurrency data
+            </li>
+          </ul>
+        </div>
+
+        <div class="api-example" style="margin-top: 30px">
+          <h3 class="example-title">
+            <i class="fas fa-lightbulb"></i> Have a suggestion?
+          </h3>
+          <p style="color: var(--slate)">
+            We'd love to hear your ideas for new APIs! Contact us at
+            <a href="mailto:support@aquascript.xyz" style="color: var(--gold)"
+              >support@aquascript.xyz</a
+            >
+            with your API requests.
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="footer-brand d-flex align-items-center mb-3">
+                <img src="assets/background-removed.png" alt="AquaScript Logo" height="40">
+              </div>
+              <p class="footer-text text-start">Providing high-quality JSON APIs for developers worldwide. Fast, reliable, and free to use.</p>
+              <div class="social-links">
+                <a href="https://github.com/wecoded-dev/Aquascript" 
+                   class="social-icon" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://dev.to/aquascript" 
+                   class="social-icon" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                  <i class="fab fa-dev"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0 text-start">
+              <h5 class="footer-heading">Resources</h5>
+              <ul class="footer-links">
+                <li><a href="https://dev.to/aquascript">Blog</a></li>
+                <li><a href="">Tutorials</a></li>
+                <li><a href="privacy-policy">Privacy Policy</a></li>
+                <li><a href="term-and-condition">Terms & Condition</a></li>
+              </ul>
+            </div>
+            
+            
+            <div class="col-lg-4 col-md-4">
+              <h5 class="footer-heading">Subscribe to our Newsletter</h5>
+              <p class="footer-text">Get updates on new APIs and features</p>
+              <form class="newsletter-form" onsubmit="handleSubscription(event)">
+                <div class="input-group mb-3">
+                  <input type="email" class="form-control" placeholder="Your email" required>
+                  <button class="btn btn-subscribe" type="submit">Subscribe</button>
+                </div>
+                <div id="toast-message" class="mt-1 text-success alert alert-success" role="alert" style="display: none;">Thanks for subscribing!</div>
+              </form>
+            </div>
+          </div>
+          
+          <div class="footer-bottom">
+            <div class="row">
+              <div class="fw-bold text-center ">         
+                  <p class="copyright">&copy; 2025-2026 AquaScript. All rights reserved</p> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="contact/Contact.js"></script>
+    <script src="nav/nav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="api/docs/docs.js"></script>
+  </body>
 </html>
