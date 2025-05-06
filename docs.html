@@ -58,6 +58,9 @@
         <a href="#jokes" class="nav-link">
           <i class="fas fa-laugh-squint"></i> Jokes API
         </a>
+        <a href="#programming-jokes" class="nav-link">
+          <i class="fas fa-laptop-code"></i> Programming Jokes API
+        </a>
       </div>
 
       <div class="api-group">
@@ -390,6 +393,82 @@
         </div>
       </section>
 
+      <!-- Programming Jokes API -->
+      <section id="programming-jokes" class="api-section">
+        <div class="api-header">
+          <h2 class="api-title mt-5">Programming Jokes API</h2>
+          <p class="api-description">
+            A collection of tech-themed jokes specifically for developers and
+            programmers. Perfect for coding communities, developer tools, or
+            tech-related applications.
+          </p>
+        </div>
+
+        <div class="api-endpoint">
+          <strong>Endpoint:</strong>
+          <a href="api/programming-jokes.json" target="_blank"
+            >https://aquascript.xyz/api/programming-jokes.json</a
+          >
+        </div>
+
+        <div class="api-schema">
+          <h3 class="schema-title">
+            <i class="fas fa-code"></i> Schema Structure
+          </h3>
+          <pre><code>[
+  {
+    "id": 1,
+    "type": "programming",
+    "setup": "Why do programmers prefer dark mode?",
+    "punchline": "Because light attracts bugs!",
+    "language": "JavaScript",
+    "difficulty": "easy",
+    "tags": ["programming", "dark mode", "bugs"]
+  },
+  {
+    "id": 2,
+    "type": "programming",
+    "setup": "How many programmers does it take to change a light bulb?",
+    "punchline": "None, that's a hardware problem!",
+    "language": "General",
+    "difficulty": "medium",
+    "tags": ["hardware", "classic"]
+  },
+  ...
+]</code></pre>
+        </div>
+
+        <div class="api-example">
+          <h3 class="example-title">
+            <i class="fas fa-laptop-code"></i> Example Usage
+          </h3>
+          <pre><code>fetch('https://aquascript.xyz/api/programming-jokes.json')
+  .then(response => response.json())
+  .then(jokes => {
+    // Get a random programming joke
+    const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+    console.log(`${randomJoke.setup}\n${randomJoke.punchline}`);
+    
+    // Display in UI
+    document.getElementById('joke-setup').textContent = randomJoke.setup;
+    document.getElementById('joke-punchline').textContent = randomJoke.punchline;
+  });</code></pre>
+        </div>
+
+        <div class="response-title">
+          <i class="fas fa-server"></i> Example Response
+        </div>
+        <pre><code>{
+  "id": 42,
+  "type": "programming",
+  "setup": "Why did the React component feel lost?",
+  "punchline": "Because it didn't know what state it was in!",
+  "language": "React",
+  "difficulty": "medium",
+  "tags": ["react", "state", "frontend"]
+}</code></pre>
+      </section>
+
       <!-- Random User API -->
       <section id="random-user" class="api-section">
         <div class="api-header">
@@ -627,25 +706,36 @@
           <div class="row">
             <div class="col-lg-4 mb-4 mb-lg-0">
               <div class="footer-brand d-flex align-items-center mb-3">
-                <img src="assets/background-removed.png" alt="AquaScript Logo" height="40">
+                <img
+                  src="assets/background-removed.png"
+                  alt="AquaScript Logo"
+                  height="40"
+                />
               </div>
-              <p class="footer-text text-start">Providing high-quality JSON APIs for developers worldwide. Fast, reliable, and free to use.</p>
+              <p class="footer-text text-start">
+                Providing high-quality JSON APIs for developers worldwide. Fast,
+                reliable, and free to use.
+              </p>
               <div class="social-links">
-                <a href="https://github.com/wecoded-dev/Aquascript" 
-                   class="social-icon" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
+                <a
+                  href="https://github.com/wecoded-dev/Aquascript"
+                  class="social-icon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i class="fab fa-github"></i>
                 </a>
-                <a href="https://dev.to/aquascript" 
-                   class="social-icon" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
+                <a
+                  href="https://dev.to/aquascript"
+                  class="social-icon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i class="fab fa-dev"></i>
                 </a>
               </div>
             </div>
-            
+
             <div class="col-lg-2 col-md-4 mb-4 mb-md-0 text-start">
               <h5 class="footer-heading">Resources</h5>
               <ul class="footer-links">
@@ -655,25 +745,43 @@
                 <li><a href="term-and-condition">Terms & Condition</a></li>
               </ul>
             </div>
-            
-            
+
             <div class="col-lg-4 col-md-4">
               <h5 class="footer-heading">Subscribe to our Newsletter</h5>
               <p class="footer-text">Get updates on new APIs and features</p>
-              <form class="newsletter-form" onsubmit="handleSubscription(event)">
+              <form
+                class="newsletter-form"
+                onsubmit="handleSubscription(event)"
+              >
                 <div class="input-group mb-3">
-                  <input type="email" class="form-control" placeholder="Your email" required>
-                  <button class="btn btn-subscribe" type="submit">Subscribe</button>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Your email"
+                    required
+                  />
+                  <button class="btn btn-subscribe" type="submit">
+                    Subscribe
+                  </button>
                 </div>
-                <div id="toast-message" class="mt-1 text-success alert alert-success" role="alert" style="display: none;">Thanks for subscribing!</div>
+                <div
+                  id="toast-message"
+                  class="mt-1 text-success alert alert-success"
+                  role="alert"
+                  style="display: none"
+                >
+                  Thanks for subscribing!
+                </div>
               </form>
             </div>
           </div>
-          
+
           <div class="footer-bottom">
             <div class="row">
-              <div class="fw-bold text-center ">         
-                  <p class="copyright">&copy; 2025-2026 AquaScript. All rights reserved</p> 
+              <div class="fw-bold text-center">
+                <p class="copyright">
+                  &copy; 2025-2026 AquaScript. All rights reserved
+                </p>
               </div>
             </div>
           </div>
