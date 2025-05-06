@@ -64,9 +64,6 @@ function displayQuotes(quotesToDisplay, page = 1) {
               }" data-author="${quote.author}">
                 <i class="far fa-copy"></i> Copy
               </button>
-              <button class="quote-btn share-btn">
-                <i class="fas fa-share-alt"></i> Share
-              </button>
             </div>
           </div>
         `;
@@ -257,26 +254,4 @@ $(document).ready(function () {
     copyQuoteToClipboard(quote, author);
   });
 
-  // Share button click handler
-  $(document).on("click", ".share-btn", function () {
-    const quoteCard = $(this).closest(".quote-card");
-    const quoteText = quoteCard.find(".quote-text").text();
-    const quoteAuthor = quoteCard.find(".quote-author").text();
-
-    if (navigator.share) {
-      navigator
-        .share({
-          title: "Quote by " + quoteAuthor,
-          text: quoteText,
-          url: window.location.href,
-        })
-        .catch((err) => {
-          console.log("Error sharing:", err);
-        });
-    } else {
-      // Fallback for browsers that don't support Web Share API
-      const text = `"${quoteText}" — ${quoteAuthor}`;
-      prompt("Copy this quote to share:", text);
-    }
-  });
 });

@@ -103,7 +103,7 @@ function displayMovies(moviesToDisplay, page = 1) {
                     .join(",")}${
       movie.actors.split(",").length > 2 ? "..." : ""
     }</span>
-                  <a class="btn-details">Details</a>
+                  
                 </div>
               </div>
             </div>

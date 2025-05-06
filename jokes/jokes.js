@@ -48,7 +48,7 @@ function displayJokes(jokesToDisplay, page = 1) {
 
   if (paginatedJokes.length === 0) {
     container.innerHTML = `
-  <div class="no-jokes text-center py-5">
+  <div class="no-jokes text-center justify-content-center py-5">
     <h4>No jokes found matching your criteria 😢</h4>
   </div>
 `;
@@ -58,7 +58,6 @@ function displayJokes(jokesToDisplay, page = 1) {
   paginatedJokes.forEach((joke) => {
     const jokeCard = `
   <div class="joke-card">
-    ${joke.mature ? '<span class="mature-badge">MATURE</span>' : ""}
     <div class="joke-setup">${joke.part1}</div>
     <div class="joke-punchline">${joke.part2}</div>
     <div class="joke-meta">

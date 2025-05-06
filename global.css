@@ -7,11 +7,7 @@ body {
   overflow-x: hidden;
 }
 
-.navbar-ultra {
-  background: #5096ff;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
-  padding: 1rem 2rem;
+.navbar {
   animation: fadeInDown 1s ease-in-out;
 }
 
@@ -30,7 +26,7 @@ h1,h3,p {
     user-select: none;
 }
 
-.navbar-ultra .nav-link {
+.nav-link {
   color: white !important;
   position: relative;
   padding: 12px 20px;
@@ -39,7 +35,7 @@ h1,h3,p {
   font-size: 1.1rem;
 }
 
-.navbar-ultra .nav-link::after {
+.nav-link::after {
   content: "";
   position: absolute;
   width: 0;
@@ -51,11 +47,11 @@ h1,h3,p {
   transform: translateX(-50%);
 }
 
-.navbar-ultra .nav-link:hover::after {
+.nav-link:hover::after {
   width: 50%;
 }
 
-.navbar-ultra .nav-link:hover {
+.nav-link:hover {
   color: #ff6ec4 !important;
   transform: scale(1.05);
 }
@@ -69,6 +65,24 @@ h1,h3,p {
 .navbar-brand img {
   height: 45px;
   filter: brightness(1.5);
+}
+
+.emil {
+  font-size: 0.8rem;
+}
+
+
+/* Slider Section */
+@media screen and (max-width: 991px) {
+  .sidebar {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+  }
+
+  .sidebar .nav-link::after {
+    display: none;
+  }
+  
 }
 
 .hero-section {
@@ -155,9 +169,7 @@ h1,h3,p {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.5);
-}
+
 
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -360,6 +372,39 @@ h1,h3,p {
   height: 20px;
 }
 
+/*FAQ Section */
+.accordion-button:not(.collapsed) {
+  background-color: rgba(100, 65, 165, 0.2);
+  color: white;
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(100, 65, 165, 0.5);
+}
+
+.accordion-button::after {
+  filter: brightness(0.5);
+}
+
+.bg-darker {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item.active {
+  background: linear-gradient(135deg, #6441a5, #00f7ff);
+  border-color: transparent;
+}
+
+.sticky-top {
+  position: sticky;
+  z-index: 1;
+}
+
+
+/* Responsive adjustments for smaller screens */
+
 @media (max-width: 768px) {
   .testimonial-card {
     padding: 20px;
@@ -410,14 +455,15 @@ h1,h3,p {
 }
 
 @media (max-width: 768px) {
-  .navbar-ultra .nav-link {
+  .nav-link {
     text-align: start;
     padding: 10px;
   }
 
-  .navbar-ultra .nav-link::after {
+  .sidebar .nav-link::after {
     display: none;
   }
+
 
   .hero-section {
     padding: 60px 0;

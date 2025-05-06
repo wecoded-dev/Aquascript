@@ -3,13 +3,13 @@ Your Favorite Fake JSON API for Testing & Prototyping
 
 [![Status](https://img.shields.io/badge/status-under--construction-yellow)]([https://wecoded.dev](https://dev.to/hanzla-baig/aquascript-24af))
 [![License](https://img.shields.io/badge/license-Nill-blue)](./LICENSE)
-[![Tech Stack](https://img.shields.io/badge/techstack-HTML%2C%20CSS%2C%20JS%2C%20jQuery,%20JSON-informational)]([https://wecoded.dev](https://dev.to/hanzla-baig/aquascript-24af))
+[![Tech Stack](https://img.shields.io/badge/techstack-HTML%2C%20CSS%2C%20JS%2C%20jQuery,%2C%20NodeJs,%20JSON-informational)]([https://wecoded.dev](https://dev.to/hanzla-baig/aquascript-24af))
 [![Open Source](https://img.shields.io/badge/open--source-yes-brightgreen)](https://github.com/hanzla-dev/aquascript)
 [![Made with ❤️](https://img.shields.io/badge/made%20with-%E2%9D%A4-red)]([https://wecoded.dev](https://dev.to/hanzla-baig/aquascript-24af))
 
 Welcome to **AquaScript** — a fast, simple, and developer-friendly platform to fetch blazing-fast fake JSON data APIs for your web and app projects.
 
-> **Crafted with passion by Hanzla Baig, Precious Kelvin and Madhurima Rawat (HP&M) at ´WeCoded´**
+> **Crafted with passion by Hanzla Baig, Precious Kelvin and Madhurima Rawat (HP&M) with ´❤️´**
 
 ---
 
@@ -50,9 +50,11 @@ AquaScript is built using modern and efficient web technologies:
 - CSS3  
 - JavaScript  
 - Bootstrap  
-- jQuery  
+- jQuery
+- Node
+- Python 
 - JSON  
-- ☁️ More amazing tech coming soon...
+- ☁️ More amazing tech coming soon...!!
 
 ---
 
@@ -67,8 +69,9 @@ Just grab the API URL, plug it into your project, and you're ready to roll.
 
 ## 🌐 Live Demo  
 
-**Coming Soon...**  
-AquaScript is currently under active development 🚧 — follow us to stay updated on the launch!
+🌊 AquaScript is Now Live! 🚀
+We’re officially up and running — building, testing, and shaping the future.
+Follow us for real-time updates, sneak peeks, and launch announcements!
 
 ---
 
