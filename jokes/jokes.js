@@ -116,7 +116,7 @@ function updatePagination(totalJokes, currentPage) {
     currentPage === totalPages ? "page-item disabled" : "page-item";
 
   // Show pagination if needed
-  paginationContainer.style.display = totalPages > 1 ? "flex" : "none";
+  paginationContainer.style.display = totalPages > 1 ? "block" : "none";
 }
 
 // Function to copy joke to clipboard
@@ -156,7 +156,7 @@ async function init() {
     // Hide spinner and show content
     document.getElementById("loadingSpinner").style.display = "none";
     document.getElementById("jokesContainer").style.display = "grid";
-    document.getElementById("paginationContainer").style.display = "flex";
+    document.getElementById("paginationContainer").style.display = "block";
   } catch (error) {
     console.error("Initialization error:", error);
     showError("Failed to initialize jokes. Please try again later.");

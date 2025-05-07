@@ -264,9 +264,6 @@ function updatePagination(totalMovies, currentPage) {
         currentPage === 1 ? "page-item disabled" : "page-item";
     nextPageBtn.className =
         currentPage === totalPages ? "page-item disabled" : "page-item";
-
-   
-    paginationContainer.style.display = "none";
 }
 
 
@@ -312,7 +309,7 @@ async function init() {
            
             const totalPages = Math.ceil(filteredMovies.length / MOVIES_PER_PAGE);
             if (totalPages > 1) {
-                document.getElementById("paginationContainer").style.display = "flex";
+                document.getElementById("paginationContainer").style.display = "block";
             }
         }, 4000);
     } catch (error) {
