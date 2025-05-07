@@ -276,12 +276,6 @@
     "subcategory": "Issues"
   },
   {
-    "question": "How can I fetch (any) data using JavaScript?",
-    "answer": "Use fetch('path/to/anydata.json').then(response => response.json()).then(data => { /* handle data */ });",
-    "category": "Movies API",
-    "subcategory": "Usage"
-  },
-  {
     "question": "What are best practices for using the APIs?",
     "answer": "Validate links, lazy load images, use semantic HTML, and handle API errors gracefully.",
     "category": "API",

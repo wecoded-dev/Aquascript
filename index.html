@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
   <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
-<meta charset="UTF-8">
-	<meta name="google-adsense-account" content="ca-pub-6502010763322518">
-	<meta name="monetag" content="3a4bd537c0807eaf277041ab0a08b0aa">
+  <meta charset="UTF-8">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="AquaScript – Free JSON APIs for Developers" />
+  <meta property="og:description" content="Access high-quality, reliable JSON APIs for books, movies, quotes, jokes, and more. Easy to integrate, free to use, and constantly updated." />
+  <meta property="og:image" content="/assets/Purple%20and%20Pink%20Gradient%20Simple%20Neon%20Futuristic%20Technology%20Desktop%20Wallpaper.png" />
+  <meta property="og:url" content="https://aquascript.xyz" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AquaScript – Free JSON APIs for Developers" />
+  <meta name="twitter:description" content="Access high-quality, reliable JSON APIs for books, movies, quotes, jokes, and more. Easy to integrate, free to use, and constantly updated." />
+  <meta name="twitter:image" content="/assets/Purple%20and%20Pink%20Gradient%20Simple%20Neon%20Futuristic%20Technology%20Desktop%20Wallpaper.png" />
+  
+  <meta name="google-adsense-account" content="ca-pub-6502010763322518">
+  <meta name="monetag" content="3a4bd537c0807eaf277041ab0a08b0aa">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-adsense-account" content="ca-pub-3173459289213937">
   <meta name="google-site-verification" content="AbrQhtIwYhROYBuCqhr4_3oEzGv1n52iGqiwQNXyAWU" />
   <meta name="description" content="AquaScript - Your go-to fake JSON API for development. Generate realistic test data for users, products, articles & more. No authentication required, just plug & play. Perfect for frontend development, testing, and prototyping.">
-	<meta name="msvalidate.01" content="5FE17DA55696B26343A4F70F1EF0D314" />
+  <meta name="msvalidate.01" content="5FE17DA55696B26343A4F70F1EF0D314" />
   <link rel="icon" href="assets/Aqua_icon.png" type="image/x-icon">
   <title>AquaScript | Free JSON APIs for Developers</title>
   <script src="https://kit.fontawesome.com/69b7050fd6.js" crossorigin="anonymous"></script>
@@ -105,77 +118,8 @@ box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
 <span id="checkMark" style="display: none; margin-left: 10px; color: #00f7ff; font-size: 16px;">✓</span>
 </div>
 
-<script>
-// Cookie Consent Functions
-function showCookieBar() {
-const bar = document.getElementById('cookieConsent');
-bar.style.bottom = '0';
-bar.style.opacity = '1';
-}
-
-function acceptCookies() {
-const bar = document.getElementById('cookieConsent');
-const acceptBtn = document.getElementById('acceptBtn');
-const declineBtn = document.getElementById('declineBtn');
-const tick = document.getElementById('checkMark');
-
-localStorage.setItem('cookiesAccepted', 'true');
-
-acceptBtn.disabled = true;
-declineBtn.disabled = true;
-acceptBtn.innerText = 'Accepted';
-acceptBtn.style.background = 'linear-gradient(135deg, #00d4ff, #00a86b)';
-tick.style.display = 'inline';
-
-setTimeout(() => {
-    bar.style.opacity = '0';
-    bar.style.bottom = '-100px';
-}, 1500);
-}
-
-function declineCookies() {
-const bar = document.getElementById('cookieConsent');
-localStorage.setItem('cookiesAccepted', 'false');
-
-setTimeout(() => {
-    bar.style.opacity = '0';
-    bar.style.bottom = '-100px';
-}, 300);
-}
-
-// Initialize on page load
-window.onload = function() {
-if (!localStorage.getItem('cookiesAccepted')) {
-    setTimeout(showCookieBar, 1000);
-}
-};
-
-// Event listeners
-document.getElementById('acceptBtn').addEventListener('click', acceptCookies);
-document.getElementById('declineBtn').addEventListener('click', declineCookies);
-
-// Handle hover effects
-document.getElementById('acceptBtn').addEventListener('mouseenter', function() {
-this.style.transform = 'translateY(-2px)';
-this.style.boxShadow = '0 4px 12px rgba(0, 247, 255, 0.3)';
-});
-document.getElementById('acceptBtn').addEventListener('mouseleave', function() {
-this.style.transform = '';
-this.style.boxShadow = '';
-});
-
-document.getElementById('declineBtn').addEventListener('mouseenter', function() {
-this.style.transform = 'translateY(-2px)';
-this.style.background = 'rgba(255, 255, 255, 0.15)';
-});
-document.getElementById('declineBtn').addEventListener('mouseleave', function() {
-this.style.transform = '';
-this.style.background = 'rgba(255, 255, 255, 0.1)';
-});
-</script>
-
   <!-------------2nd navbar------------->
-  <nav class="navbar navbar-expand-lg bg-info bg-opacity-100 backdrop-blur fixed-top shadow-lg">
+  <nav class="navbar navbar-expand-lg bg-info bg-opacity-26 backdrop-blur fixed-top shadow-lg">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img src="assets/background-removed.png" alt="Logo">
@@ -206,7 +150,7 @@ this.style.background = 'rgba(255, 255, 255, 0.1)';
             </li>
           </ul>
           <div class="dropdown">
-            <a class="btn btn-primary ms-1 my-1 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="btn btn-primary ms-1 my-1 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Support <i class="fa-solid fa-headphones-simple fa-xl px-1"></i>
             </a>
           
@@ -694,23 +638,11 @@ this.style.background = 'rgba(255, 255, 255, 0.1)';
                rel="noopener noreferrer">
               <i class="fab fa-github"></i>
             </a>
-            <a href="https://twitter.com/yourusername" 
+            <a href="https://dev.to/aquascript" 
                class="social-icon" 
                target="_blank" 
                rel="noopener noreferrer">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="" 
-               class="social-icon" 
-               target="_blank" 
-               rel="noopener noreferrer">
-              <i class="fab fa-discord"></i>
-            </a>
-            <a href="https://linkedin.com/in/yourprofile" 
-               class="social-icon" 
-               target="_blank" 
-               rel="noopener noreferrer">
-              <i class="fab fa-linkedin"></i>
+              <i class="fab fa-dev"></i>
             </a>
           </div>
         </div>
@@ -720,7 +652,7 @@ this.style.background = 'rgba(255, 255, 255, 0.1)';
           <ul class="footer-links">
             <li><a href="docs.html">Documentation</a></li>
             <li><a href="https://dev.to/aquascript">Blog</a></li>
-            <li><a href="#">Tutorials</a></li>
+            <li><a href="https://www.youtube.com/@aquascript-apis">Tutorials</a></li>
             <li><a href="privacy-policy">Privacy Policy</a></li>
             <li><a href="term-and-condition">Terms & Condition</a></li>
           </ul>

@@ -24,3 +24,71 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
+
+
+// Cookie Consent Functions
+function showCookieBar() {
+const bar = document.getElementById('cookieConsent');
+bar.style.bottom = '0';
+bar.style.opacity = '1';
+}
+
+function acceptCookies() {
+const bar = document.getElementById('cookieConsent');
+const acceptBtn = document.getElementById('acceptBtn');
+const declineBtn = document.getElementById('declineBtn');
+const tick = document.getElementById('checkMark');
+
+localStorage.setItem('cookiesAccepted', 'true');
+
+acceptBtn.disabled = true;
+declineBtn.disabled = true;
+acceptBtn.innerText = 'Accepted';
+acceptBtn.style.background = 'linear-gradient(135deg, #00d4ff, #00a86b)';
+tick.style.display = 'inline';
+
+setTimeout(() => {
+    bar.style.opacity = '0';
+    bar.style.bottom = '-100px';
+}, 1500);
+}
+
+function declineCookies() {
+const bar = document.getElementById('cookieConsent');
+localStorage.setItem('cookiesAccepted', 'false');
+
+setTimeout(() => {
+    bar.style.opacity = '0';
+    bar.style.bottom = '-100px';
+}, 300);
+}
+
+// Initialize on page load
+window.onload = function() {
+if (!localStorage.getItem('cookiesAccepted')) {
+    setTimeout(showCookieBar, 1000);
+}
+};
+
+// Event listeners
+document.getElementById('acceptBtn').addEventListener('click', acceptCookies);
+document.getElementById('declineBtn').addEventListener('click', declineCookies);
+
+// Handle hover effects
+document.getElementById('acceptBtn').addEventListener('mouseenter', function() {
+this.style.transform = 'translateY(-2px)';
+this.style.boxShadow = '0 4px 12px rgba(0, 247, 255, 0.3)';
+});
+document.getElementById('acceptBtn').addEventListener('mouseleave', function() {
+this.style.transform = '';
+this.style.boxShadow = '';
+});
+
+document.getElementById('declineBtn').addEventListener('mouseenter', function() {
+this.style.transform = 'translateY(-2px)';
+this.style.background = 'rgba(255, 255, 255, 0.15)';
+});
+document.getElementById('declineBtn').addEventListener('mouseleave', function() {
+this.style.transform = '';
+this.style.background = 'rgba(255, 255, 255, 0.1)';
+});
