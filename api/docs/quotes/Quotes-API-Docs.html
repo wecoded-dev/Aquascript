@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--
+    Quotes API Documentation
+    Author: Madhurima Rawat
+    Description: This page provides developers with an overview and practical examples
+                 of how to use the Quotes JSON API to access inspirational quotes and their authors.
+    Date: 2025
+    Usage: Educational and reference use for frontend integration.
+    Notes:
+        - Converted to PDF using wkhtmltopdf.
+        - Since gradients aren't supported in PDF output, a solid background color is used.
+        - Background color: Lemon Chiffon (#FFFACD)
+-->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quotes API Documentation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFFACD;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            background-color: #aaf7ff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #5a5a3b;
+        }
+
+        h2 {
+            margin-top: 25px;
+        }
+
+        pre,
+        code {
+            padding: 10px;
+            border-radius: 6px;
+            overflow-wrap: break-word;
+            display: block;
+            background-color: whitesmoke;
+            color: #000;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        a {
+            color: #336699;
+        }
+
+        .section {
+            margin-top: 16px;
+        }
+
+        .docstring {
+            font-size: 0.95em;
+            color: #555;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .docstring span {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="docstring">API Documentation by <span>Madhurima Rawat</span></div>
+
+        <h1>Quotes API Documentation</h1>
+
+        <div class="section">
+            <h2>Overview</h2>
+            <p>The Quotes API provides a simple collection of inspirational quotes in JSON format, perfect for
+                displaying random quotes in web apps, widgets, or daily thought sections.</p>
+        </div>
+
+        <div class="section">
+            <h2>API Files</h2>
+            <ul>
+                <li><strong>Basic Quotes:</strong> <code>quotes.json</code> – Contains an array of objects with quote
+                    text and author name.</li>
+                <li><strong>Extended Quotes:</strong> <code>quotes++.json</code> – Structured similarly, but with
+                    potential for additional metadata in the future (e.g., tags, categories).</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>File Structure</h2>
+            <p><strong>quotes.json</strong> contains:</p>
+            <ul>
+                <li><code>author</code>: Name of the person who said the quote.</li>
+                <li><code>text</code>: The actual quote string.</li>
+            </ul>
+            <p><strong>quotes++.json</strong> currently mirrors <code>quotes.json</code> but may expand to include:</p>
+            <ul>
+                <li><code>tags</code>: Categories like motivation, leadership, etc. (optional)</li>
+                <li><code>source</code>: Book, speech, or article the quote came from (optional)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Using the API</h2>
+            <p>Use JavaScript's <code>fetch()</code> method to retrieve quotes:</p>
+            <pre><code>fetch('path/to/quotes.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // Logs array of quote objects
+  });</code></pre>
+        </div>
+
+        <div class="section">
+            <h2>Displaying Quotes (Example)</h2>
+            <p>HTML container:</p>
+            <pre><code>&lt;div id="quote-box"&gt;&lt;/div&gt;</code></pre>
+
+            <p>JavaScript to populate a random quote:</p>
+            <pre><code>document.addEventListener('DOMContentLoaded', () => {
+  const quoteBox = document.getElementById('quote-box');
+
+  fetch('path/to/quotes.json')
+    .then(res => res.json())
+    .then(data => {
+      const random = data[Math.floor(Math.random() * data.length)];
+      quoteBox.innerHTML = `
+        &lt;blockquote&gt;"${random.text}"&lt;/blockquote&gt;
+        &lt;footer&gt;— ${random.author}&lt;/footer&gt;
+      `;
+    });
+});</code></pre>
+        </div>
+
+        <div class="section">
+            <h2>Best Practices</h2>
+            <ul>
+                <li>Randomize quote display to keep content fresh.</li>
+                <li>Preload quotes for performance-sensitive applications.</li>
+                <li>Fallback gracefully if no quotes are available.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Conclusion</h2>
+            <p>The Quotes API is an elegant, minimal tool for integrating motivational content into digital experiences.
+                It’s ideal for educational, lifestyle, and productivity-focused interfaces.</p>
+        </div>
+    </div>
+</body>
+
+</html>

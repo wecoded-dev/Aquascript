@@ -1,130 +1,205 @@
+/* ===============================================================
+   Global Stylesheet - global.css
+   Author: Team Aquascript
+   Description:
+   This is the centralized CSS file for our website's global styling.
+   It includes base resets, responsive typography, layout styling,
+   navigation bar animations and design, and overall color theming.
+   It ensures consistent visual appearance and user interaction behavior
+   across the entire website.
+   =============================================================== */
+
+/**
+   * ============================================
+   * Global CSS Styles – Section: Hero, Social Links, API Cards
+   * --------------------------------------------
+   * This centralized stylesheet defines the visual styling for:
+   * 1. Hero Section – introductory banner with gradient and SVG overlay
+   * 2. Social Media Icons – interactive social link buttons
+   * 3. API Cards – visually enhanced content blocks with hover animations
+   * 4. Utility Buttons and Toggler – additional interactive elements
+   * ============================================
+   */
+
+/* Importing custom fonts from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Special+Gothic+Expanded+One&display=swap');
 
+/* ===== Base styles for all pages ===== */
 body {
   margin: 0;
+  /* Remove default browser margin */
   background-color: #bce0ff;
+  /* Soft pastel blue background for a calm look */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* Fallback-safe system fonts */
   overflow-x: hidden;
+  /* Prevent horizontal scrolling caused by elements exceeding width */
 }
 
-.navbar {
+/* ===== Custom navbar styling (.navbar-ultra) ===== */
+.navbar-ultra {
+  background: #5096ff;
+  /* Bright blue background color for navbar */
+  backdrop-filter: blur(20px);
+  /* Adds a glassmorphism blur effect */
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+  /* Deep shadow for elevation and depth */
+  padding: 1rem 2rem;
+  /* Balanced vertical and horizontal padding */
   animation: fadeInDown 1s ease-in-out;
+  /* Animate navbar appearance from top */
 }
 
+/* ===== Keyframe for navbar slide-down animation ===== */
 @keyframes fadeInDown {
   from {
     opacity: 0;
+    /* Start invisible */
     transform: translateY(-20px);
+    /* Start slightly above */
   }
+
   to {
     opacity: 1;
+    /* Fade in */
     transform: translateY(0);
+    /* Drop to original position */
   }
 }
 
-h1,h3,p {
-    user-select: none;
+/* ===== Prevent accidental selection of headers and paragraphs ===== */
+h1,
+h3,
+p {
+  user-select: none;
+  /* Disables text highlighting/selection */
 }
 
-.nav-link {
+/* ===== Navigation link styles ===== */
+.navbar-ultra .nav-link {
   color: white !important;
+  /* Ensures white color overrides default */
   position: relative;
+  /* Required for pseudo-element positioning */
   padding: 12px 20px;
+  /* Extra spacing for better click area */
   font-weight: bold;
+  /* Emphasizes navigation items */
   transition: 0.4s ease;
+  /* Smooth transition for hover effects */
   font-size: 1.1rem;
+  /* Slightly larger font for readability */
 }
 
-.nav-link::after {
+/* ===== Underline animation effect ===== */
+.navbar-ultra .nav-link::after {
   content: "";
+  /* Adds decorative underline */
   position: absolute;
   width: 0;
+  /* Starts hidden */
   height: 3px;
+  /* Thickness of underline */
   bottom: 0;
   left: 50%;
+  /* Center the underline */
   background: linear-gradient(to right, #ff6ec4, #7873f5);
+  /* Gradient underline */
   transition: 0.2s ease;
   transform: translateX(-50%);
+  /* Align center accurately */
 }
 
-.nav-link:hover::after {
+/* ===== Reveal underline on hover ===== */
+.navbar-ultra .nav-link:hover::after {
   width: 50%;
+  /* Expands underline on hover */
 }
 
-.nav-link:hover {
+/* ===== Link color and size transition on hover ===== */
+.navbar-ultra .nav-link:hover {
   color: #ff6ec4 !important;
+  /* Pink tint on hover */
   transform: scale(1.05);
+  /* Slight zoom on hover for interactivity */
 }
 
+/* ===== Brand/logo alignment ===== */
 .navbar-brand {
   display: flex;
+  /* Align brand logo and text horizontally */
   align-items: center;
+  /* Vertically center the logo and text */
   gap: 10px;
+  /* Space between logo and brand name */
 }
 
+/* ===== Logo image styling ===== */
 .navbar-brand img {
   height: 45px;
+  /* Fixed height for brand icon */
   filter: brightness(1.5);
+  /* Brighten image slightly for better visibility */
 }
 
-.emil {
-  font-size: 0.8rem;
-}
-
-
-/* Slider Section */
-@media screen and (max-width: 991px) {
-  .sidebar {
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-  }
-
-  .sidebar .nav-link::after {
-    display: none;
-  }
-  
-}
 
 .hero-section {
   padding: 100px 0;
-  /* Restored Original Background */
-  background: linear-gradient(135deg, #0061ff 0%, #60efff 100%);
+  /* Top and bottom padding to create vertical space */
+
+  /* Background gradient for the hero area */
+  background: linear-gradient(135deg, #0061ff 0%, #54d9ec 100%);
+
   position: relative;
+  /* Allows the ::before pseudo-element to be positioned absolutely */
   overflow: hidden;
+  /* Ensures SVG pattern does not overflow */
 }
 
 .hero-section::before {
   content: "";
+  /* Required to display pseudo-element */
   position: absolute;
+  /* Positioned relative to .hero-section */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==");
+
+  /* Pattern overlay using a base64-encoded SVG for subtle texture */
+  background: url("data:image/svg+xml;base64,...");
 }
 
 .social-links {
   display: flex;
+  /* Arrange icons in a row */
   gap: 15px;
+  /* Space between icons */
 }
 
 .social-icon {
   display: inline-flex;
+  /* Center icon content */
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
   background: rgba(255, 255, 255, 0.05);
+  /* Transparent white background */
   border-radius: 50%;
+  /* Circular shape */
   color: #8892b0;
+  /* Muted text color */
   font-size: 1.1rem;
   transition: all 0.3s ease;
   position: relative;
   z-index: 10;
   text-decoration: none;
+  /* Remove underline on links */
 }
 
 .social-icon:hover {
+  /* Brighter gradient and hover elevation effect */
   background: linear-gradient(135deg, #00f7ff, #7873f5);
   color: #0a192f;
   transform: translateY(-2px);
@@ -132,26 +207,35 @@ h1,h3,p {
 
 .api-card {
   background: rgba(255, 255, 255, 0.1);
+  /* Frosted-glass effect */
   backdrop-filter: blur(10px);
+  /* Blurred background */
   border-radius: 15px;
   padding: 30px;
   margin: 15px;
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Soft border for light-glass appearance */
 }
 
 .api-card:hover {
   transform: scale(1.05);
+  /* Slight zoom-in */
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  /* Depth effect */
   background: rgba(255, 255, 255, 0.2);
+  /* More vivid on hover */
 }
 
 .api-icon {
   font-size: 3rem;
+  /* Large icon */
   margin-bottom: 20px;
   background: linear-gradient(to right, #12c4ca, #ff0099);
+  /* Color gradient text */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  /* Show only gradient fill */
 }
 
 .btn-api {
@@ -160,35 +244,47 @@ h1,h3,p {
   font-weight: bold;
   padding: 10px 25px;
   border-radius: 50px;
+  /* Pill shape */
   margin-top: 20px;
   transition: all 0.2s ease-in-out;
 }
 
 .btn-api:hover {
   transform: scale(1.05);
+  /* Slight grow effect */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  /* Button depth */
 }
 
-
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+  /* Semi-transparent white border for toggler icon */
+}
 
 .navbar-toggler-icon {
+  /* Custom hamburger icon using inline SVG */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* Footer styling....*/
 .footer-section {
+  /* Gradient background for footer */
   background: linear-gradient(135deg, #0a192f 0%, #172a45 100%);
   color: #ccd6f6;
+  /* Light text color for contrast */
   padding: 60px 0 20px;
+  /* Vertical spacing */
   position: relative;
   overflow: hidden;
 }
 
 .form-control::placeholder {
+  /* Placeholder text color for inputs */
   color: #8892b0;
 }
 
 .footer-section::before {
+  /* Subtle patterned background overlay */
   content: '';
   position: absolute;
   top: 0;
@@ -197,9 +293,11 @@ h1,h3,p {
   height: 100%;
   background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
   opacity: 0.3;
+  /* Light visibility for texture */
 }
 
 .footer-heading {
+  /* Footer section headings */
   color: #e6f1ff;
   font-size: 1.1rem;
   font-weight: 600;
@@ -209,6 +307,7 @@ h1,h3,p {
 }
 
 .footer-heading::after {
+  /* Underline effect for headings */
   content: '';
   position: absolute;
   bottom: -8px;
@@ -220,15 +319,18 @@ h1,h3,p {
 }
 
 .footer-links {
+  /* Reset default list styling */
   list-style: none;
   padding: 0;
 }
 
 .footer-links li {
+  /* Spacing between each link */
   margin-bottom: 10px;
 }
 
 .footer-links a {
+  /* Styling for footer links */
   color: #8892b0;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -236,6 +338,7 @@ h1,h3,p {
 }
 
 .footer-links a::before {
+  /* Gradient underline animation on hover */
   content: '';
   position: absolute;
   width: 0;
@@ -247,41 +350,57 @@ h1,h3,p {
 }
 
 .footer-links a:hover {
+  /* Change link color on hover */
   color: #00f7ff;
 }
 
 .footer-links a:hover::before {
+  /* Animate underline to expand fully on hover */
   width: 100%;
 }
 
 .newsletter-form .form-control {
+  /* Input field styling inside newsletter form */
   background: rgba(255, 255, 255, 0.1);
+  /* semi-transparent white */
   border: none;
   color: #e6f1ff;
+  /* Light text color */
   border-radius: 50px 0 0 50px;
+  /* Rounded left side */
   padding: 12px 20px;
+  /* Internal spacing */
 }
 
 .newsletter-form .form-control:focus {
+  /* Style changes when input is focused */
   box-shadow: none;
+  /* Remove default outline */
   background: rgba(255, 255, 255, 0.15);
+  /* Slightly more opaque background */
 }
 
 .btn-subscribe {
+  /* Subscribe button styling */
   background: linear-gradient(135deg, #00f7ff, #7873f5);
+  /* Vibrant gradient */
   border: none;
   border-radius: 0 50px 50px 0;
+  /* Rounded right side */
   padding: 12px 20px;
   font-weight: 600;
 }
 
 .footer-bottom {
+  /* Bottom part of the footer */
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  /* Subtle separator line */
   padding-top: 20px;
   margin-top: 40px;
 }
 
 .copyright {
+  /* Copyright text styling */
   color: #8892b0;
   font-size: 0.9rem;
   margin: 0;
@@ -289,20 +408,25 @@ h1,h3,p {
 
 /* Testimonials Section */
 .testimonials-section {
+  /* Background gradient and spacing for testimonial section */
   background: linear-gradient(180deg, #60efff 0%, #0061ff 100%);
   padding: 80px 0;
 }
 
 .testimonial-card {
+  /* Card-style layout for testimonials */
   background: white;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  /* Soft shadow */
   padding: 30px;
   max-width: 800px;
   margin: 0 auto;
+  /* Center horizontally */
 }
 
 .testimonial-text {
+  /* Styling for testimonial message */
   font-size: 1.1rem;
   line-height: 1.6;
   color: #555;
@@ -312,6 +436,7 @@ h1,h3,p {
 }
 
 .quote {
+  /* Styling for the quote text in testimonials */
   font-family: "Special Gothic Expanded One", sans-serif;
   font-weight: 400;
   color: #ffffff;
@@ -320,21 +445,29 @@ h1,h3,p {
 }
 
 .testimonial-author {
+  /* Container for author's image and name/title */
   display: flex;
   align-items: center;
 }
 
 .author-img {
+  /* Circular author image with blue border */
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  /* Make it circular */
   object-fit: cover;
+  /* Maintain aspect ratio, cover container */
   user-select: none;
+  /* Prevent text/image selection */
   margin-right: 15px;
+  /* Space between image and name */
   border: 3px solid #0d6efd;
+  /* Blue border */
 }
 
 .author-name {
+  /* Author's name styling */
   font-weight: 600;
   user-select: none;
   margin-bottom: 5px;
@@ -342,85 +475,64 @@ h1,h3,p {
 }
 
 .author-title {
+  /* Author's title (e.g., CEO, Developer) */
   font-size: 0.9rem;
   color: #0d6efd;
+  /* Blue color */
   margin: 0;
 }
 
 .carousel-control-prev,
 .carousel-control-next {
+  /* Navigation buttons for the testimonial carousel */
   width: 40px;
   height: 40px;
   background-color: #0d6efd;
+  /* Blue circular buttons */
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
+  /* Vertically center */
   opacity: 1;
+  /* Fully visible */
 }
 
 .carousel-control-prev {
+  /* Position previous button slightly outside on the left */
   left: -20px;
 }
 
 .carousel-control-next {
+  /* Position next button slightly outside on the right */
   right: -20px;
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
+  /* Size of the arrow icons inside navigation buttons */
   width: 20px;
   height: 20px;
 }
 
-/*FAQ Section */
-.accordion-button:not(.collapsed) {
-  background-color: rgba(100, 65, 165, 0.2);
-  color: white;
-  box-shadow: none;
-}
-
-.accordion-button:focus {
-  box-shadow: none;
-  border-color: rgba(100, 65, 165, 0.5);
-}
-
-.accordion-button::after {
-  filter: brightness(0.5);
-}
-
-.bg-darker {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.list-group-item.active {
-  background: linear-gradient(135deg, #6441a5, #00f7ff);
-  border-color: transparent;
-}
-
-.sticky-top {
-  position: sticky;
-  z-index: 1;
-}
-
-
-/* Responsive adjustments for smaller screens */
-
 @media (max-width: 768px) {
   .testimonial-card {
+    /* Reduce padding for smaller screens */
     padding: 20px;
   }
-  
+
   .testimonial-text {
+    /* Smaller text size for testimonials on mobile */
     font-size: 1rem;
   }
-  
+
   .carousel-control-prev {
+    /* Adjust previous button position and size for mobile */
     left: 0;
     margin-top: 30px;
     width: 30px;
     height: 30px;
   }
-  
+
   .carousel-control-next {
     right: 0;
     margin-top: 30px;
@@ -437,35 +549,41 @@ h1,h3,p {
 
 @media (max-width: 768px) {
   .footer-section {
+    /* Center-align text in footer for smaller screens */
     text-align: center;
   }
-  
+
   .footer-heading::after {
+    /* Center the decorative underline below headings */
     left: 50%;
     transform: translateX(-50%);
   }
-  
+
   .social-links {
+    /* Center social media icons horizontally */
     justify-content: center;
   }
-  
+
   .footer-bottom .col-md-6 {
+    /* Center-align footer bottom text */
     text-align: center !important;
   }
 }
 
 @media (max-width: 768px) {
-  .nav-link {
+  .navbar-ultra .nav-link {
+    /* Align navbar links to start and add spacing on small screens */
     text-align: start;
     padding: 10px;
   }
 
-  .sidebar .nav-link::after {
+  .navbar-ultra .nav-link::after {
+    /* Hide underline/hover effect on nav links for mobile */
     display: none;
   }
 
-
   .hero-section {
+    /* Add padding to hero section for better mobile spacing */
     padding: 60px 0;
   }
 }
