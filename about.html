@@ -113,13 +113,24 @@
     </div>
   </section>
 
-<!-- team widget -->
 
- <div data-key="Team Showcase Simple" class="ft" id="ftzh7n64n">
- </div>
- <script src="https://wdg.fouita.com/widgets/0x2539f4.js"></script>
- <!-- end team Widget -->
-  
+    <script>
+      if (!document.querySelector('#ftzh7n64n')) {
+        var newDiv = document.createElement('div');
+        newDiv.setAttribute('key', 'Team Showcase Simple');
+        newDiv.setAttribute('class', 'ft');
+        newDiv.setAttribute('id', 'ftzh7n64n');
+
+        var newScript = document.createElement('script');
+        newScript.setAttribute('src', 'https://wdg.fouita.com/widgets/0x2539f4.js');
+
+        newDiv.appendChild(newScript);
+        document.body.appendChild(newDiv);
+      }
+    </script>
+
+ 
+
   <footer class="footer-section">
     <div class="container">
       <div class="row">

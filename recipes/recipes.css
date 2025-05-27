@@ -117,7 +117,7 @@ body {
 
 .page-subtitle {
   font-size: 1.2rem;
-  color: var(--slate);
+  color: rgb(228, 228, 228);
   max-width: 700px;
   margin: 0 auto 40px;
 }

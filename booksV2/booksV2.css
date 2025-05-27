@@ -5,6 +5,7 @@
   --light-slate: #ccd6f6;
   --aqua: #00f7ff;
   --pink: #ff6ec4;
+  --gold: #00f7ff;
   --orange: #ff6ec4;
   --radius: 12px;
   --transition: 0.3s;
@@ -105,7 +106,7 @@ body {
 
 .page-subtitle {
   font-size: 1.2rem;
-  color: var(--slate);
+  color: rgb(228, 228, 228);
   max-width: 700px;
   margin: 0 auto 40px;
 }
