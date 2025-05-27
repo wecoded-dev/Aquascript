@@ -108,10 +108,21 @@
             </li>
           </ul>
         </div>
-        <!-- translation widget -->
-        <div data-key="WebsiteTranslator" class="ft" id="ft9hpf2e3">
-        </div>
-        <script src="https://wdg.fouita.com/widgets/0x253a57.js"></script>
+        <!-- translation widget -->  
+
+        <script>
+          if (!document.querySelector('#ft9hpf2e3')) {
+            var newDiv = document.createElement('div');
+            newDiv.setAttribute('key', 'WebsiteTranslator');
+            newDiv.setAttribute('class', 'ft');
+            newDiv.setAttribute('id', 'ft9hpf2e3');
+            var newScript = document.createElement('script');
+            newScript.setAttribute('src', 'https://wdg.fouita.com/widgets/0x253a57.js');
+            newDiv.appendChild(newScript);
+
+            document.body.appendChild(newDiv);
+          }
+        </script>
         <!-- end translation widget code -->
       </div>
     </div>
