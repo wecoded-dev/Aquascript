@@ -15,8 +15,17 @@ async function initFAQ() {
     }
     const faqData = await response.json();
 
-    // Render all FAQs initially
-    renderFAQs(faqData);
+
+    const overviewButton = document.querySelector(
+      '[data-category="Overview"]'
+    );
+    if (overviewButton) {
+      overviewButton.classList.add("active"); // Ensure "Overview" button is active
+      const filteredFAQs = faqData.filter(
+        (faq) => faq.category === "Overview"
+      );
+      renderFAQs(filteredFAQs);
+    }
 
     // Add category filter event listeners
     categoryButtons.forEach((button) => {
@@ -27,14 +36,13 @@ async function initFAQ() {
 
         // Filter FAQs
         const category = button.dataset.category;
-        if (category === "all") {
-          renderFAQs(faqData);
-        } else {
-          const filteredFAQs = faqData.filter(
-            (faq) => faq.category === category
-          );
-          renderFAQs(filteredFAQs);
-        }
+        
+        // If the category is "Overview", show all FAQs
+        const filteredFAQs = faqData.filter(
+          (faq) => faq.category === category
+        );
+        renderFAQs(filteredFAQs);
+        // }
       });
     });
   } catch (error) {

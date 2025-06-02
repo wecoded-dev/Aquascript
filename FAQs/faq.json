@@ -288,12 +288,6 @@
     "subcategory": "Best Practices"
   },
   {
-    "question": "What is lazy loading and how does it improve performance?",
-    "answer": "Lazy loading involves loading images only when they are about to be visible on the screen, improving page load time.",
-    "category": "Movies API",
-    "subcategory": "Best Practices"
-  },
-  {
     "question": "How should I handle broken links e.g books, movie, jokes e.t.c.?",
     "answer": "Always check if the external URLs (like Wikipedia) are valid before linking them in your app.",
     "category": "API",

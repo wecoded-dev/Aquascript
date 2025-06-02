@@ -16,10 +16,7 @@
       { "source": "/progm_jokes", "destination": "/progm_jokes.html" },
       { "source": "/songs", "destination": "/songs.html" },
       { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
-      { "source": "/term-and-condition", "destination": "/term-and-condition.html" }
-
-
-
-
+      { "source": "/term-and-condition", "destination": "/term-and-condition.html" },
+      { "source": "advertisement", "destination": "/advertisement.html" }
     ]
 }

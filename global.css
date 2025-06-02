@@ -8,9 +8,23 @@
 
 body {
   margin: 0;
-  background-color: #bce0ff;
+  background: linear-gradient(135deg, #0061ff 0%, #60efff 100%);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
+}
+
+.fiverr-banner {
+  transition: all 0.3s ease;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin: 30px auto;
+  max-width: 350px;
+}
+    
+.fiverr-banner:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 198, 255, 0.4);
 }
 
 .navbar {
