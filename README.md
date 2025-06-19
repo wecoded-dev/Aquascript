@@ -86,7 +86,7 @@ Need mock articles, user profiles, books, jokes, movie listings, or inspirationa
 
 ## 🎯 Project Goal  
 
-[![Watch the video](https://img.youtube.com/vi/BAP4nRlONw4/maxresdefault.jpg)](https://youtu.be/BAP4nRlONw4)
+[![Watch the video](https://img.youtube.com/vi/BAP4nRlONw4/maxresdefault.jpg)](https://www.youtube.com/watch?v=BAP4nRlONw4)
 
 
 To empower developers with a **fast**, **reliable**, and **easy-to-integrate** platform for accessing high-quality fake JSON data — boosting productivity and reducing development friction.
@@ -131,7 +131,7 @@ Just grab the API URL, plug it into your project, and you're ready to roll.
 
 ## 🌐 Live Demo  
 
-🌊 AquaScript is Now Live! 🚀
+ AquaScript is Now Live! 🚀
 We’re officially up and running — building, testing, and shaping the future.
 Follow us for real-time updates, sneak peeks, and launch announcements!
 
@@ -143,4 +143,4 @@ We’ll be opening up contributions very soon. For now, feel free to star ⭐ th
 
 ---
 
-> “Fake data, real results — build faster with **AquaScript**.” 🌊✨
+> “Fake data, real results — build faster with **AquaScript**.” ✨
