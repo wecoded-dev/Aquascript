@@ -86,7 +86,7 @@ Need mock articles, user profiles, books, jokes, movie listings, or inspirationa
 
 ## 🎯 Project Goal  
 
-[![Watch the video](https://img.youtube.com/vi/BAP4nRlONw4/maxresdefault.jpg)](https://www.youtube.com/watch?v=BAP4nRlONw4)
+[![Watch the video](assets/ytb.png)](https://www.youtube.com/watch?v=BAP4nRlONw4)
 
 
 To empower developers with a **fast**, **reliable**, and **easy-to-integrate** platform for accessing high-quality fake JSON data — boosting productivity and reducing development friction.
