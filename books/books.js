@@ -14,6 +14,8 @@ fetch("./api/books.json")
   .catch((error) => console.error("Error fetching books:", error));
 
 
+// Function to display books
+// This function displays the books in a grid format with pagination
 function displayBooks(booksToDisplay, page = 1) {
   const container = document.getElementById("booksContainer");
   container.innerHTML = "";

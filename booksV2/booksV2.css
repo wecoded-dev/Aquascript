@@ -446,25 +446,63 @@ body {
 }
 
 
-/* Pagination */
+/* Pagination - Updated Responsive Styles */
 .pagination {
   justify-content: center;
   margin-top: 40px;
+  flex-wrap: wrap; /* Allow items to wrap */
+  padding: 0 15px; /* Add some padding */
+  gap: 5px; /* Space between items */
 }
 
 .page-item .page-link {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--light-slate);
-  margin: 0 5px;
   border-radius: var(--radius) !important;
+  min-width: 40px; /* Fixed width for numbers */
+  text-align: center;
+  padding: 0.5rem 0.75rem;
 }
 
 .page-item.active .page-link {
-  background: linear-gradient(135deg, var(--aqua), #7873f5);
+  background: linear-gradient(135deg, var(--gold), var(--orange));
   border-color: transparent;
   color: var(--navy);
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pagination {
+    gap: 3px;
+  }
+  
+  .page-item .page-link {
+    padding: 0.35rem 0.5rem;
+    min-width: 36px;
+    font-size: 0.9rem;
+  }
+  
+  /* Hide some page numbers on small devices */
+  .page-item:not(.active):not(:first-child):not(:last-child):not(:nth-child(2)):not(:nth-last-child(2)) {
+    display: none;
+  }
+  
+  /* Show ellipsis for hidden pages */
+  .page-item:nth-child(3),
+  .page-item:nth-last-child(2) {
+    pointer-events: none;
+  }
+  
+  .page-item:nth-child(3) .page-link::after,
+  .page-item:nth-last-child(2) .page-link::after {
+    content: "...";
+    display: inline-block;
+  }
+}
+
+
+
 .api-endpoint {
   background: rgba(0, 0, 0, 0.1);
   padding: 15px;
