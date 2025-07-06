@@ -139,7 +139,7 @@ Follow us for real-time updates, sneak peeks, and launch announcements!
 
 ## 🤝 Contributing  
 
-We’ll be opening up contributions very soon. For now, feel free to star ⭐ the project and share it with fellow developers.
+Open To Contribution. Pull Requests are welcome.
 
 ---
 
