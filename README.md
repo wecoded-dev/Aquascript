@@ -1,146 +1,137 @@
-# AquaScript 🌊✨  
-Your Favorite Fake JSON API for Testing & Prototyping  
-
 <p align="center">
-  
-  <!-- Repository Size -->
-  <a href="https://github.com/wecoded-dev/Aquascript">
-    <img src="https://img.shields.io/github/repo-size/wecoded-dev/Aquascript?color=%23FFB6C1&label=Repo%20Size&labelColor=%23F39FBB&style=for-the-badge&logo=github" alt="Repo Size">
-  </a>
-
-  <!-- Stars -->
-  <a href="https://github.com/wecoded-dev/Aquascript/stargazers">
-    <img src="https://img.shields.io/github/stars/wecoded-dev/Aquascript?color=%23FFD580&label=Stars&labelColor=%23F5C16E&style=for-the-badge&logo=star" alt="GitHub Stars">
-  </a>
-
-  <!-- Forks -->
-  <a href="https://github.com/wecoded-dev/Aquascript/network/members">
-    <img src="https://img.shields.io/github/forks/wecoded-dev/Aquascript?color=%2388D8C0&label=Forks&labelColor=%2375CDB1&style=for-the-badge&logo=git" alt="GitHub Forks">
-  </a>
-
-  <!-- Issues (Open + Closed) -->
-  <a href="https://github.com/wecoded-dev/Aquascript/issues">
-    <img src="https://img.shields.io/github/issues/wecoded-dev/Aquascript?color=%23FFD8A8&label=Open%20Issues&labelColor=%23FFC488&style=for-the-badge&logo=bug" alt="GitHub Issues">
-  </a>
-  <a href="https://github.com/wecoded-dev/Aquascript/issues?q=is%3Aissue+is%3Aclosed">
-    <img src="https://img.shields.io/github/issues-closed/wecoded-dev/Aquascript?color=%23F6B6B6&label=Closed%20Issues&labelColor=%23E99D9D&style=for-the-badge&logo=bug" alt="Closed Issues">
-  </a>
-
-  <!-- Pull Requests (Open + Closed) -->
-  <a href="https://github.com/wecoded-dev/Aquascript/pulls">
-    <img src="https://img.shields.io/github/issues-pr/wecoded-dev/Aquascript?color=%23A0C4FF&label=Open%20PRs&labelColor=%2387B4F3&style=for-the-badge&logo=git" alt="Open Pull Requests">
-  </a>
-  <a href="https://github.com/wecoded-dev/Aquascript/pulls?q=is%3Apr+is%3Aclosed">
-    <img src="https://img.shields.io/github/issues-pr-closed/wecoded-dev/Aquascript?color=%23D5A6E0&label=Closed%20PRs&labelColor=%23C291D3&style=for-the-badge&logo=git" alt="Closed Pull Requests">
-  </a>
-
-  <!-- Discussions -->
-  <a href="https://github.com/wecoded-dev/Aquascript/discussions">
-    <img src="https://img.shields.io/github/discussions/wecoded-dev/Aquascript?color=%23C9B6E4&label=Discussions&labelColor=%23B8A1D8&style=for-the-badge&logo=discourse" alt="GitHub Discussions">
-  </a>
-
-  <!-- Contributors -->
-  <a href="https://github.com/wecoded-dev/Aquascript/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/wecoded-dev/Aquascript?color=%23A0DE83&label=Contributors&labelColor=%238DCD73&style=for-the-badge&logo=github" alt="GitHub Contributors">
-  </a>
-
-  <!-- Language Breakdown -->
-  <a href="https://github.com/wecoded-dev/Aquascript">
-    <img src="https://img.shields.io/github/languages/top/wecoded-dev/Aquascript?color=%23EEC6E0&label=Top%20Language&labelColor=%23DBB1D3&style=for-the-badge&logo=python" alt="Top Language">
-  </a>
-
-  <!-- License -->
-  <a href="https://github.com/madhurimarawat/Cloud-Computing/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/wecoded-dev/Aquascript?color=%23FF869&label=License&labelColor=%23E76C88&style=for-the-badge&logo=open-source-initiative" alt="License">
-  </a>
-
-  <!-- Last Commit -->
-<a href="https://github.com/wecoded-dev/Aquascript/commits/main">
-  <img src="https://img.shields.io/github/last-commit/wecoded-dev/Aquascript?color=%23FDCB8E&label=Last%20Commit&labelColor=%23F4B876&style=for-the-badge&logo=github" alt="Last Commit">
-</a>
-
-  <!-- Watchers -->
-  <a href="https://github.com/wecoded-dev/Aquascript/watchers">
-    <img src="https://img.shields.io/github/watchers/wecoded-dev/Aquascript?color=%23FFD166&label=Watchers&labelColor=%23F4B74E&style=for-the-badge&logo=github" alt="GitHub Watchers">
-  </a>
-
- <!-- Visitors Count -->
-<img src="https://komarev.com/ghpvc/?username=wecoded-dev&label=Visitors&color=B5E48C&style=flat" alt="Visitors">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&duration=2100&pause=700&color=00C9FF&background=FFFFFF00&center=true&multiline=true&width=850&lines=%F0%9F%92%A7+AquaScript+-+The+Ultra+Animative+Fake+API+Generator+%F0%9F%8C%8A;Modern+%7C+Open+Source+%7C+Beautiful+%7C+Animated+%7C+Developer+Focused" alt="Typing SVG">
 </p>
 
-Welcome to **AquaScript** — a fast, simple, and developer-friendly platform to fetch blazing-fast fake JSON data APIs for your web and app projects.
+<h1 align="center">
+  <b>🌊 AquaScript</b>
+  <br>
+  <sub>
+    <i>
+      The Ultimate, Ultra-Beautiful, Animative, and Professional Fake JSON API Platform
+    </i>
+  </sub>
+</h1>
 
-> **Crafted with passion by Hanzla Baig, Precious Kelvin and Madhurima Rawat (HP&M) with ´❤️´**
-
----
-
-## 🚀 About AquaScript  
-![Preview](assets/previewimg.png)
-
-**AquaScript** is your go-to solution for generating fake, yet realistic, JSON data across a variety of categories. Whether you're building a frontend UI, testing backend endpoints, or prototyping an entire app — AquaScript lets you plug in mock data without the hassle of setting up a database or dealing with real information.
-
-Need mock articles, user profiles, books, jokes, movie listings, or inspirational quotes?  
-**We’ve got you covered.** ✅
-
----
-
-## 🎯 Project Goal  
-
-[![Watch the video](assets/ytb.png)](https://www.youtube.com/watch?v=BAP4nRlONw4)
-
-
-To empower developers with a **fast**, **reliable**, and **easy-to-integrate** platform for accessing high-quality fake JSON data — boosting productivity and reducing development friction.
-
----
-
-## ✨ Key Features  
-
-- ⚡ **Ultra-fast JSON Data Fetching**  
-- 🔗 **Effortless Integration** — clean and simple endpoints  
-- 📚 **Diverse Categories** — Articles, Users, Books, Jokes, Quotes, Movies, and more!  
-- 🧑‍💻 **Built by Developers, for Developers**  
-- 🧬 **Lightweight, Fast & Scalable**  
-- 🧰 **No Authentication Needed (Coming Soon: API Keys)**  
+<p align="center">
+  <a href="https://github.com/wecoded-dev/Aquascript"><img src="https://img.shields.io/github/stars/wecoded-dev/Aquascript?style=for-the-badge&color=00C9FF&label=Stars%20%F0%9F%92%AB"></a>
+  <a href="https://github.com/wecoded-dev/Aquascript/network/members"><img src="https://img.shields.io/github/forks/wecoded-dev/Aquascript?style=for-the-badge&color=43E97B&label=Forks%20%F0%9F%8C%88"></a>
+  <a href="https://github.com/wecoded-dev/Aquascript/issues"><img src="https://img.shields.io/github/issues/wecoded-dev/Aquascript?style=for-the-badge&color=30Cfd0&label=Issues%20%F0%9F%98%8E"></a>
+  <a href="https://github.com/wecoded-dev/Aquascript/pulls"><img src="https://img.shields.io/github/issues-pr/wecoded-dev/Aquascript?style=for-the-badge&color=5EFCE8&label=PRs%20%F0%9F%91%8D"></a>
+  <img src="https://img.shields.io/github/license/wecoded-dev/Aquascript?style=for-the-badge&color=06BEB6&label=License%20%F0%9F%93%9C">
+  <a href="https://github.com/wecoded-dev/Aquascript/actions"><img src="https://img.shields.io/github/actions/workflow/status/wecoded-dev/Aquascript/deploy.yml?style=for-the-badge&label=CI%2FCD%20%F0%9F%9A%80&color=12c2e9"></a>
+  <img src="https://img.shields.io/badge/Status-Production-00C9FF?style=for-the-badge&label=Status%20%F0%9F%92%97">
+  <img src="https://img.shields.io/badge/Open%20Source-YES-43E97B?style=for-the-badge&label=OpenSource%20%F0%9F%91%91">
+  <img src="https://img.shields.io/badge/Maintained-Actively-06BEB6?style=for-the-badge&label=Maintained%20%F0%9F%92%AA">
+  <img src="https://img.shields.io/github/last-commit/wecoded-dev/Aquascript?style=for-the-badge&color=00C9FF&label=Last%20Commit%20%F0%9F%92%AF">
+  <a href="https://github.com/wecoded-dev/Aquascript/graphs/contributors"><img src="https://img.shields.io/github/contributors/wecoded-dev/Aquascript?style=for-the-badge&color=30Cfd0&label=Contributors%20%F0%9F%8E%89"></a>
+  <a href="https://github.com/wecoded-dev/Aquascript/commits/main"><img src="https://img.shields.io/github/commit-activity/m/wecoded-dev/Aquascript?style=for-the-badge&color=43E97B&label=Commit%20Activity%20%F0%9F%92%A1"></a>
+  <img src="https://img.shields.io/badge/Code%20Quality-A%2B-00C9FF?style=for-the-badge&label=Quality%20%F0%9F%92%96">
+  <a href="https://github.com/wecoded-dev/Aquascript/releases"><img src="https://img.shields.io/github/v/release/wecoded-dev/Aquascript?style=for-the-badge&color=43E97B&label=Release%20%F0%9F%93%85"></a>
+  <img src="https://img.shields.io/badge/Platform-Universal-12c2e9?style=for-the-badge&label=Platform%20%F0%9F%8C%90">
+  <img src="https://img.shields.io/badge/PRs-Welcome-5EFCE8?style=for-the-badge&label=Pull%20Requests%20%F0%9F%92%AA">
+  <a href="https://aquascript.xyz/"><img src="https://img.shields.io/badge/Live%20Demo-AquaScript.xyz-30Cfd0?style=for-the-badge&logo=vercel&label=Live%20Demo%20%F0%9F%9A%80"></a>
+</p>
 
 ---
 
-## 🛠 Tech Stack  
+## Introduction
 
-AquaScript is built using modern and efficient web technologies:
-
-- HTML5  
-- CSS3  
-- JavaScript  
-- Bootstrap  
-- jQuery
-- Node
-- Python 
-- JSON  
-- ☁️ More amazing tech coming soon...!!
+AquaScript is the next-generation, visually stunning, and animative fake JSON API generator designed for developers and creatives. Experience a perfect blend of modern design, robust features, and lightning-fast performance, all in one open source platform.
 
 ---
 
-## 📦 Installation  
+## Features
 
-**No installation required.**  
-Just grab the API URL, plug it into your project, and you're ready to roll.
-
-> Full usage documentation will be available once the platform goes live.
-
----
-
-## 🌐 Live Demo  
-
- AquaScript is Now Live! 🚀
-We’re officially up and running — building, testing, and shaping the future.
-Follow us for real-time updates, sneak peeks, and launch announcements!
+| ✨ | Feature                                        | Description                                                  |
+|----|------------------------------------------------|--------------------------------------------------------------|
+| 🎨 | Ultra-Beautiful & Animative UI                 | Eye-catching gradients, smooth transitions, and modern look  |
+| ⚡ | Lightning Fast                                 | Optimized for speed and seamless user experience             |
+| 💎 | API Variety                                   | Multiple types of fake data with a single click              |
+| 🛠️ | Professional Components                       | Animated navigation, interactive cards, dynamic tables       |
+| 📱 | 100% Responsive                               | Stunning on all devices and screens                          |
+| 🌍 | Open Source                                   | Apache 2.0, community-driven, PRs welcome                    |
+| 🚀 | Live Demo                                     | [aquascript.xyz](https://aquascript.xyz/)                    |
 
 ---
 
-## 🤝 Contributing  
+## Available APIs
 
-Open To Contribution. Pull Requests are welcome.
+| 📚 Books | 🎬 Movies | 💡 Quotes | 🍳 Recipes | 😂 Jokes | 🎵 Songs |
+|:--------:|:--------:|:---------:|:----------:|:--------:|:--------:|
+|   ✅     |   ✅     |    ✅     |    ✅      |   ✅     |   ✅     |
 
 ---
 
-> “Fake data, real results — build faster with **AquaScript**.” ✨
+## UI Components
+
+| Component        | Animation       | Description                                       |
+|------------------|----------------|---------------------------------------------------|
+| 🧭 Navbar        | Slide/Fade      | Responsive, animated top navigation               |
+| 🎴 API Cards     | Hover/Glow      | Interactive, info-rich cards                      |
+| 🗃️ Data Grids    | Shimmer/Swipe   | Live-updating, animated data tables               |
+| 🎛️ Modals        | Slide/Pop       | Beautiful overlays                                |
+| 🌈 Theme Switch  | Fade/Pulse      | Animated light/dark toggle                        |
+| 🦄 Footer        | Gradient/Animate| Modern, professional footer                       |
+
+---
+
+## Technology Stack
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node-dot-js&logoColor=white">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/REST%20API-00C9FF?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white">
+</p>
+
+---
+
+## Community & Activity
+
+| 👥 Contributors | 💬 Discussions | 🗃️ Issues | 🏆 Stargazers | ⚙️ Commits |
+|:--------------:|:--------------:|:---------:|:------------:|:---------:|
+| [Contributors](https://github.com/wecoded-dev/Aquascript/graphs/contributors) | [Discussions](https://github.com/wecoded-dev/Aquascript/discussions) | [Issues](https://github.com/wecoded-dev/Aquascript/issues) | [Stargazers](https://github.com/wecoded-dev/Aquascript/stargazers) | [Commits](https://github.com/wecoded-dev/Aquascript/commits/main) |
+
+<p align="center">
+  <a href="https://github.com/wecoded-dev/Aquascript/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=wecoded-dev/Aquascript" alt="Contributors">
+  </a>
+</p>
+
+---
+
+## Documentation
+
+- Full docs: [aquascript.xyz/docs](https://aquascript.xyz/docs)
+- Offline: See `docs.html` in this repository
+
+---
+
+## How to Contribute
+
+- Fork this repo, star it, and get creative!
+- Submit your Pull Requests, open Issues, or join Discussions.
+- All contributions are welcome to make AquaScript even more beautiful and advanced.
+
+<p align="center">
+  <a href="https://github.com/wecoded-dev/Aquascript/pulls"><img src="https://img.shields.io/badge/PRs-Welcome-43E97B?style=for-the-badge&label=Pull%20Requests%20%F0%9F%92%AA"></a>
+  <a href="https://github.com/wecoded-dev/Aquascript/discussions"><img src="https://img.shields.io/badge/Community-Discussions-12c2e9?style=for-the-badge&label=Chat%20%F0%9F%92%AC"></a>
+  <a href="https://github.com/wecoded-dev/Aquascript/issues"><img src="https://img.shields.io/badge/Bug%20Reports-Welcome-06BEB6?style=for-the-badge&label=Issues%20%F0%9F%98%8E"></a>
+</p>
+
+---
+
+## License
+
+AquaScript is open source under the [Apache 2.0 License](LICENSE).
+
+---
+
+<p align="center">
+  <b>🌊 Dive into <span style="color:#00C9FF;">AquaScript</span> — Where APIs meet beauty, animation, and professionalism!</b>
+  <br>
+  <i>Ultra-fast. Ultra-beautiful. Ultra-animative. Ultra-advanced.</i>
+</p>
