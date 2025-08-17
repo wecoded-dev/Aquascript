@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Next-Level Pomodoro Timer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <!-- Chart.js for stats -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <style>
+    :root {
+      --accent: #6a5acd;
+      --accent-2: #ff69b4;
+      --warn: #ff9800;
+      --danger: #e53935;
+      --text: #fdfdfd;
+      --bg-dark: #0f0f1a;
+      --bg-light: #f5f7ff;
+      --text-dark: #222;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #1a1a2e, var(--bg-dark));
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      transition: all 0.4s;
+    }
+
+    body.light {
+      background: linear-gradient(135deg, var(--bg-light), #fff);
+      color: var(--text-dark);
+    }
+
+    .card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(16px);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: inherit;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      transition: all 0.4s;
+    }
+
+    body.light .card {
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .timer-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: auto;
+    }
+    .progress-ring {
+      transform: rotate(-90deg);
+    }
+    .progress-ring__background {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.08);
+    }
+    body.light .progress-ring__background {
+      stroke: rgba(0,0,0,0.1);
+    }
+    .progress-ring__progress {
+      fill: none;
+      stroke: url(#gradientStroke);
+      stroke-linecap: round;
+      stroke-dasharray: 754;
+      stroke-dashoffset: 754;
+      transition: stroke-dashoffset 0.6s ease;
+      filter: drop-shadow(0 0 10px var(--accent));
+    }
+    .timer-content {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .time {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+
+    .control-btn {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      display:flex;align-items:center;justify-content:center;
+      border:none;
+      font-size:1.8rem;
+      color:white;
+      cursor:pointer;
+      transition: all 0.3s;
+    }
+    .control-btn.play { background: linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow: 0 0 15px var(--accent); }
+    .control-btn.pause { background: var(--warn); box-shadow: 0 0 15px var(--warn); }
+    .control-btn.reset { background: var(--danger); box-shadow: 0 0 15px var(--danger); }
+    .control-btn:hover { transform: scale(1.1); opacity: 0.9; }
+
+    .history-card {
+      max-height: 250px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+    }
+
+    .dark-toggle {
+      position:absolute;
+      top:20px; right:20px;
+      cursor:pointer;
+    }
+
+    @media (max-width: 576px){
+      .timer-container{ width:220px;height:220px }
+      .time{ font-size:2.2rem }
+      .control-btn{ width:50px; height:50px; font-size:1.4rem }
+    }
+  </style>
+</head>
+<body>
+  <span id="themeToggle" class="material-symbols-outlined dark-toggle">dark_mode</span>
+
+  <div class="container">
+    <div class="row g-4 justify-content-center">
+      <!-- Timer -->
+      <div class="col-lg-5" data-aos="zoom-in">
+        <div class="card p-4 text-center">
+          <div class="d-flex justify-content-between mb-3">
+            <div>
+              <span class="badge bg-light text-dark px-3 py-2" id="modeText">Focus</span>
+            </div>
+            <div class="text-end small">
+              Cycle <span id="cycleNum">1</span> | Streak <span id="streakNum">0</span>
+            </div>
+          </div>
+
+          <div class="timer-container my-4">
+            <svg class="progress-ring" width="280" height="280">
+              <defs>
+                <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="var(--accent)"/>
+                  <stop offset="100%" stop-color="var(--accent-2)"/>
+                </linearGradient>
+              </defs>
+              <circle class="progress-ring__background" stroke-width="16" r="120" cx="140" cy="140"/>
+              <circle id="progressRing" class="progress-ring__progress" stroke-width="16" r="120" cx="140" cy="140"/>
+            </svg>
+            <div class="timer-content">
+              <div id="timeDisplay" class="time">25:00</div>
+              <div class="muted">Remaining</div>
+            </div>
+          </div>
+
+          <div class="controls d-flex flex-wrap gap-3 justify-content-center mt-4">
+            <button id="startBtn" class="control-btn play"><span class="material-symbols-outlined">play_arrow</span></button>
+            <button id="pauseBtn" class="control-btn pause" disabled><span class="material-symbols-outlined">pause</span></button>
+            <button id="resetBtn" class="control-btn reset"><span class="material-symbols-outlined">restart_alt</span></button>
+          </div>
+
+          <div class="mt-4 d-flex justify-content-around">
+            <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#settingsModal">⚙️ Settings</button>
+            <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#statsModal">📊 Stats</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- History -->
+      <div class="col-lg-5" data-aos="fade-up">
+        <div class="card p-4">
+          <h5 class="mb-3">History</h5>
+          <div id="historyList" class="history-card"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal fade" id="settingsModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <h5>Customize Timer</h5>
+        <label>Focus (min)</label><input type="number" id="focusInput" class="form-control mb-2" min="1" value="25">
+        <label>Short Break (min)</label><input type="number" id="shortInput" class="form-control mb-2" min="1" value="5">
+        <label>Long Break (min)</label><input type="number" id="longInput" class="form-control mb-2" min="1" value="15">
+        <label>Sound</label>
+        <select id="soundSelect" class="form-select mb-3">
+          <option value="alarm_clock">Classic Alarm</option>
+          <option value="bell">Bell</option>
+          <option value="digital_watch_alarm_long">Digital Watch</option>
+        </select>
+        <button id="saveSettings" class="btn btn-primary w-100">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Modal -->
+  <div class="modal fade" id="statsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content p-3">
+        <h5>Weekly Stats</h5>
+        <canvas id="statsChart" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+<script>
+AOS.init();
+
+let state = { mode:"focus", remaining:25*60, interval:null, cycle:1, streak:0 };
+let durations = { focus:25, short:5, long:15 };
+let soundKey="alarm_clock";
+let bell=new Audio(`https://actions.google.com/sounds/v1/alarms/${soundKey}.ogg`);
+const circumference=2*Math.PI*120;
+
+// Elements
+const $progressRing=$("#progressRing"), $timeDisplay=$("#timeDisplay");
+
+function formatTime(sec){ let m=Math.floor(sec/60).toString().padStart(2,"0"),s=(sec%60).toString().padStart(2,"0"); return `${m}:${s}`; }
+function getDuration(mode){ return durations[mode]; }
+function updateRing(){ const total=getDuration(state.mode)*60, pct=1-state.remaining/total; $progressRing.css("stroke-dashoffset",circumference-pct*circumference); $timeDisplay.text(formatTime(state.remaining)); }
+
+// History
+function loadHistory(){ let hist=JSON.parse(localStorage.getItem("pomoHistory")||"[]"); $("#historyList").html(hist.map(h=>`<div>✅ ${h}</div>`).join("")); }
+function saveHistory(entry){ let hist=JSON.parse(localStorage.getItem("pomoHistory")||"[]"); hist.unshift(entry); localStorage.setItem("pomoHistory",JSON.stringify(hist.slice(0,50))); loadHistory(); updateStats(); }
+
+// Stats
+function updateStats(){
+  let hist=JSON.parse(localStorage.getItem("pomoHistory")||"[]");
+  let week=[0,0,0,0,0,0,0];
+  hist.forEach(h=>{
+    let d=new Date(h.date||h.time);
+    week[d.getDay()]++;
+  });
+  if(window.statsChart){ statsChart.data.datasets[0].data=week; statsChart.update(); }
+}
+let statsChart=new Chart(document.getElementById("statsChart"),{
+  type:'bar',
+  data:{labels:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],datasets:[{label:"Sessions",data:[0,0,0,0,0,0,0]}]},
+  options:{scales:{y:{beginAtZero:true}}}
+});
+
+// Start
+$("#startBtn").click(()=>{
+  if(state.interval) return;
+  $("#pauseBtn").prop("disabled",false);
+  state.interval=setInterval(()=>{
+    state.remaining--; updateRing();
+    if(state.remaining<=0){ clearInterval(state.interval); state.interval=null;
+      bell.play(); 
+      saveHistory({mode:state.mode,time:new Date().toLocaleString()});
+      if(state.mode==="focus"){ state.streak++; $("#streakNum").text(state.streak); }
+      new Notification("Pomodoro",{ body:`${state.mode} finished!` });
+    }
+  },1000);
+});
+// Pause
+$("#pauseBtn").click(()=>{ clearInterval(state.interval); state.interval=null; });
+// Reset
+$("#resetBtn").click(()=>{ clearInterval(state.interval); state.interval=null; state.remaining=getDuration(state.mode)*60; updateRing(); });
+
+// Settings Save
+$("#saveSettings").click(()=>{
+  durations.focus=parseInt($("#focusInput").val());
+  durations.short=parseInt($("#shortInput").val());
+  durations.long=parseInt($("#longInput").val());
+  soundKey=$("#soundSelect").val();
+  bell=new Audio(`https://actions.google.com/sounds/v1/alarms/${soundKey}.ogg`);
+  state.remaining=getDuration(state.mode)*60;
+  updateRing();
+  $("#settingsModal").modal("hide");
+});
+
+// Theme Toggle
+$("#themeToggle").click(()=>{ $("body").toggleClass("light"); });
+
+// Notifications
+if(Notification.permission!=="granted"){ Notification.requestPermission(); }
+
+// Init
+updateRing(); loadHistory(); updateStats();
+</script>
+
+<!-- Bootstrap Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
