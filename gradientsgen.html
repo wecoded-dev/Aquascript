@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaScrpt Gradient Generator</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+    }
+    .glass-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 10px auto;
+      max-width: 90%;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 12px 25px;
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .title-text {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin: 0;
+      background: linear-gradient(90deg, #00f2fe, #4facfe, #00f2fe);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 4s linear infinite;
+    }
+    @keyframes shine {
+      to {
+        background-position: 200% center;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="glass-navbar">
+    <h1 class="title-text">AquaScrpt Gradient Generator</h1>
+  </div>
+
+
+  <!-- Bootstrap + JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+ 
+  </script>
+</body>
+</html>
+
+<br> &nbsp; <br> &nbsp; <br>
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Next-Level Gradient Studio</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1724; --panel: rgba(255,255,255,0.05); --glass: rgba(255,255,255,0.06);
+      --accent: linear-gradient(90deg,#7c3aed,#06b6d4);
+    }
+    html,body{height:100%;background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent), radial-gradient(900px 400px at 90% 90%, rgba(6,182,212,0.08), transparent), var(--bg); color:#e6eef8; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+
+    /* Layout */
+    .app{
+      min-height:100vh; display:flex; gap:2rem; padding:3rem; align-items:flex-start; backdrop-filter: blur(6px);
+    }
+
+    .left{width:460px}
+    .right{flex:1; min-height:560px}
+
+    .card-panel{
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border-radius:16px; padding:1rem; box-shadow: 0 8px 30px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
+    }
+
+    h1.title{font-family:Poppins, Inter; font-weight:700; font-size:1.35rem; margin:0}
+    p.muted{color: #bcd3ee}
+
+    /* Preview */
+    #previewWrap{position:relative; border-radius:20px; overflow:hidden; box-shadow: 0 20px 50px rgba(2,6,23,0.7); border:1px solid rgba(255,255,255,0.035)}
+    #preview{height:520px; transition:background 450ms cubic-bezier(.2,.9,.3,1), box-shadow .3s; display:flex; align-items:center; justify-content:center}
+    .preview-inner{padding:1.2rem; text-align:center}
+    .preview-label{font-weight:600; font-size:1.05rem; text-shadow: 0 6px 20px rgba(0,0,0,0.5)}
+
+    /* glass controls */
+    .control-row{display:flex; gap:0.5rem; align-items:center}
+    .glass-btn{background:var(--glass); border:1px solid rgba(255,255,255,0.04); padding:.5rem .75rem; border-radius:10px; cursor:pointer; transition: transform .14s, box-shadow .14s}
+    .glass-btn:hover{transform:translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.45)}
+
+    /* gradient stops bar */
+    .stops-bar{height:42px; border-radius:10px; background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(255,255,255,0.02)); padding:8px; display:flex; align-items:center; gap:8px}
+    .stops-track{position:relative; height:24px; background:rgba(255,255,255,0.03); border-radius:8px; flex:1}
+    .stop{position:absolute; top:50%; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%; box-shadow: 0 6px 18px rgba(2,6,23,.6); border:2px solid rgba(255,255,255,0.85); cursor:pointer}
+    .stop .handle{width:100%; height:100%; border-radius:50%}
+
+    .controls-scroll{max-height:380px; overflow:auto; padding-right:8px}
+
+    /* small touches */
+    .tiny{font-size:.85rem}
+    .sep{height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent); margin:8px 0}
+
+    /* particles canvas */
+    #particles{position:absolute; inset:0; pointer-events:none; mix-blend-mode:overlay; opacity:0.35}
+
+    /* buttons */
+    .btn-primary-soft{background:transparent; border:1px solid rgba(255,255,255,0.08); color:inherit}
+
+    /* responsive tweaks */
+    @media (max-width:1100px){.left{width:380px}} 
+    @media (max-width:900px){.app{flex-direction:column;padding:1.2rem} .left{width:100%}.right{width:100%}}
+
+  </style>
+</head>
+<body>
+
+<div class="container-fluid app">
+  <div class="left">
+    <div class="card-panel mb-3" data-aos="fade-right">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div>
+          <h1 class="title">Gradient Studio — Live</h1>
+          <p class="muted tiny">Design shimmering gradients, animate them, export code & assets.</p>
+        </div>
+        <div class="text-end">
+          <button class="glass-btn" id="randomPalette" title="AI-ish palette">🎲</button>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="controls-scroll">
+        <div class="mb-2">
+          <label class="tiny mb-1">Type</label>
+          <select id="gtype" class="form-select form-select-sm mb-2">
+            <option value="linear">Linear</option>
+            <option value="radial">Radial</option>
+            <option value="conic">Conic</option>
+            <option value="mesh">Mesh (layered)</option>
+          </select>
+
+          <label class="tiny mb-1">Blend Mode</label>
+          <select id="blendMode" class="form-select form-select-sm mb-2">
+            <option value="normal">normal</option>
+            <option value="screen">screen</option>
+            <option value="overlay">overlay</option>
+            <option value="multiply">multiply</option>
+            <option value="soft-light">soft-light</option>
+          </select>
+
+          <label class="tiny mb-1">Angle / Position</label>
+          <input id="angle" type="range" min="0" max="360" value="160" class="form-range mb-2">
+        </div>
+
+        <div class="mb-2">
+          <label class="tiny mb-1">Stops</label>
+          <div class="stops-bar mb-2">
+            <div class="stops-track" id="stopsTrack"></div>
+            <button class="btn btn-sm btn-outline-light" id="addStop">+ Stop</button>
+          </div>
+
+          <div id="stopsList"></div>
+        </div>
+
+        <div class="mb-2">
+          <label class="tiny mb-1">Animation</label>
+          <div class="d-flex gap-2 mb-2">
+            <input type="number" id="animDuration" class="form-control form-control-sm" value="6" min="0.5"> <span class="tiny align-self-center">s</span>
+          </div>
+          <div class="d-flex gap-2 mb-2">
+            <select id="animEasing" class="form-select form-select-sm">
+              <option value="linear">linear</option>
+              <option value="ease">ease</option>
+              <option value="ease-in">ease-in</option>
+              <option value="ease-out">ease-out</option>
+              <option value="cubic-bezier(.2,.9,.3,1)">custom</option>
+            </select>
+            <div class="form-check form-switch ms-2">
+              <input class="form-check-input" type="checkbox" id="animLoop" checked>
+              <label class="form-check-label tiny" for="animLoop">Loop</label>
+            </div>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-sm btn-primary-soft" id="playAnim">Play</button>
+            <button class="btn btn-sm btn-outline-light" id="pauseAnim">Pause</button>
+            <button class="btn btn-sm btn-outline-light" id="snapKey">Add Keyframe</button>
+          </div>
+          <div class="tiny mt-2 text-muted">Keyframes: <span id="kfCount">0</span></div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="mb-2">
+          <label class="tiny mb-1">Exports</label>
+          <div class="d-grid gap-2">
+            <button class="btn btn-sm btn-outline-light" id="copyCSS">Copy CSS</button>
+            <button class="btn btn-sm btn-outline-light" id="exportSVG">Export SVG</button>
+            <button class="btn btn-sm btn-outline-light" id="exportPNG">Export PNG</button>
+            <button class="btn btn-sm btn-outline-light" id="saveCollection">Save to Collection</button>
+            <button class="btn btn-sm btn-outline-light" id="shareLink">Share Link</button>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div>
+          <label class="tiny mb-1">Device Preview</label>
+          <div class="d-flex gap-2 mb-2">
+            <button class="btn btn-sm btn-outline-light device" data-w="360" data-h="760">Phone</button>
+            <button class="btn btn-sm btn-outline-light device" data-w="768" data-h="1024">Tablet</button>
+            <button class="btn btn-sm btn-outline-light device" data-w="1280" data-h="720">Desktop</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card-panel" data-aos="fade-right" data-aos-delay="120">
+      <h6 class="tiny mb-2">Collections</h6>
+      <div id="collections"></div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div id="previewWrap" class="card-panel" data-aos="fade-up">
+      <canvas id="particles"></canvas>
+      <div id="preview" style="background:var(--accent);">
+        <div class="preview-inner">
+          <div class="preview-label">Gradient Preview</div>
+          <p class="tiny mt-2">Live, responsive, animated — press Play to see it breathe.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex gap-2 mt-3">
+      <div class="card-panel" style="flex:1" data-aos="fade-up" data-aos-delay="80">
+        <h6 class="tiny mb-2">Generated CSS</h6>
+        <pre id="codeOut" style="white-space:pre-wrap; max-height:140px; overflow:auto; background:transparent; border:none; color:#cfe7ff"></pre>
+      </div>
+
+      <div class="card-panel" style="width:220px" data-aos="fade-up" data-aos-delay="110">
+        <h6 class="tiny mb-2">Quick Tips</h6>
+        <ul class="tiny" style="padding-left:1rem; color:#bcd3ee">
+          <li>Use subtle opacity changes for depth.</li>
+          <li>Mesh = many soft radial layers.</li>
+          <li>Try overlay/multiply to blend textures.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- jQuery + Bootstrap JS + AOS -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+// ========================
+// Gradient Studio — JS
+// ========================
+AOS.init({duration:700, once:true});
+
+const preview = document.getElementById('preview');
+const stopsTrack = document.getElementById('stopsTrack');
+const stopsList = document.getElementById('stopsList');
+const codeOut = document.getElementById('codeOut');
+const gtype = document.getElementById('gtype');
+const angleInput = document.getElementById('angle');
+const blendMode = document.getElementById('blendMode');
+const addStopBtn = document.getElementById('addStop');
+const randomPaletteBtn = document.getElementById('randomPalette');
+
+let stops = [
+  {id:1,pos:6,color:'#7c3aed',o:1},
+  {id:2,pos:46,color:'#06b6d4',o:1},
+  {id:3,pos:94,color:'#06b6d4',o:0.85}
+];
+let nextId = 4;
+let keyframes = []; // store snapshot of stops
+let anim = {playing:false, duration:6, easing:'linear', loop:true};
+
+// Particles background
+const pcanvas = document.getElementById('particles');
+const pctx = pcanvas.getContext('2d');
+let particles = [];
+function resizeCanvas(){ pcanvas.width = preview.offsetWidth; pcanvas.height = preview.offsetHeight; }
+window.addEventListener('resize', ()=>{ resizeCanvas(); drawParticles(); });
+resizeCanvas();
+function initParticles(){ particles = []; for(let i=0;i<40;i++){ particles.push({x:Math.random()*pcanvas.width, y:Math.random()*pcanvas.height, vx:(Math.random()-0.5)*0.4, vy:(Math.random()-0.5)*0.4, r: 10+Math.random()*30, a:0.05+Math.random()*0.15}); } }
+initParticles();
+function drawParticles(){ pctx.clearRect(0,0,pcanvas.width,pcanvas.height); for(const p of particles){ p.x+=p.vx; p.y+=p.vy; if(p.x<-50) p.x=pcanvas.width+50; if(p.x>pcanvas.width+50) p.x=-50; if(p.y<-50) p.y=pcanvas.height+50; if(p.y>pcanvas.height+50) p.y=-50; pctx.beginPath(); pctx.fillStyle = `rgba(255,255,255,${p.a})`; pctx.ellipse(p.x,p.y,p.r,p.r,0,0,Math.PI*2); pctx.fill(); }}
+setInterval(drawParticles, 60);
+
+// Utility
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function toPercent(n){return (Math.round(n*10)/10)+'%'}
+
+// Render stops UI
+function renderStops(){ stopsTrack.innerHTML=''; stopsList.innerHTML=''; 
+  const trackW = stopsTrack.clientWidth || 360;
+  for(const s of stops){
+    const el = document.createElement('div'); el.className='stop'; el.style.left = s.pos+'%'; el.dataset.id=s.id;
+    const h = document.createElement('div'); h.className='handle'; h.style.background = s.color; h.style.opacity = s.o; el.appendChild(h);
+    stopsTrack.appendChild(el);
+
+    // list entry
+    const row = document.createElement('div'); row.className='d-flex gap-2 align-items-center mb-2';
+    row.innerHTML = `<input type='color' value='${s.color}' data-id='${s.id}' class='form-control form-control-sm' style='width:52px; padding:2px'>
+      <input type='range' min='0' max='100' value='${s.pos}' data-id='${s.id}' class='form-range' style='flex:1'>
+      <input type='range' min='0' max='1' step='0.01' value='${s.o}' data-id='${s.id}' title='opacity' style='width:90px'>
+      <button class='btn btn-sm btn-outline-light' data-del='${s.id}'>x</button>`;
+    stopsList.appendChild(row);
+  }
+
+  attachStopHandlers();
+  updatePreview();
+}
+
+function attachStopHandlers(){
+  // drag
+  document.querySelectorAll('.stop').forEach(handle => {
+    let dragging=false; const id = +handle.dataset.id;
+    handle.addEventListener('pointerdown', e=>{ dragging=true; handle.setPointerCapture(e.pointerId); });
+    handle.addEventListener('pointerup', e=>{ dragging=false; handle.releasePointerCapture(e.pointerId); });
+    handle.addEventListener('pointermove', e=>{ if(!dragging) return; const rect = stopsTrack.getBoundingClientRect(); let x = e.clientX - rect.left; let p = clamp((x/rect.width)*100,0,100); const s = stops.find(ss=>ss.id===id); if(s){ s.pos = Math.round(p*10)/10; renderStops(); }});
+  });
+
+  // list inputs
+  stopsList.querySelectorAll('input[type=color]').forEach(i=>{ i.addEventListener('input', e=>{ const id=+e.target.dataset.id; stops.find(s=>s.id===id).color = e.target.value; updatePreview(); }); });
+  stopsList.querySelectorAll('input[type=range]').forEach(i=>{ i.addEventListener('input', e=>{ const id=+e.target.dataset.id; if(e.target.title==='opacity'){ stops.find(s=>s.id===id).o = +e.target.value; } else { stops.find(s=>s.id===id).pos = +e.target.value; } renderStops(); }); });
+  stopsList.querySelectorAll('button[data-del]').forEach(b=>{ b.addEventListener('click', e=>{ const id=+b.dataset.del; stops = stops.filter(s=>s.id!==id); renderStops(); }); });
+}
+
+// Compose CSS gradient string
+function buildGradientCSS(stopsLocal, type, angle){
+  stopsLocal = stopsLocal.slice().sort((a,b)=>a.pos-b.pos);
+  if(type==='mesh'){
+    // approximate mesh via multiple radial layers
+    const layers = stopsLocal.map((s,i)=>`radial-gradient(circle at ${s.pos}% ${20 + (i*12)%70}%, ${hexToRgba(s.color,s.o)} 0%, ${hexToRgba(s.color,0)} 35%)`);
+    return layers.join(', ');
+  }
+  if(type==='linear'){
+    const list = stopsLocal.map(s=>`${hexToRgba(s.color,s.o)} ${s.pos}%`).join(', ');
+    return `linear-gradient(${angle}deg, ${list})`;
+  }
+  if(type==='radial'){
+    const list = stopsLocal.map(s=>`${hexToRgba(s.color,s.o)} ${s.pos}%`).join(', ');
+    return `radial-gradient(circle at center, ${list})`;
+  }
+  if(type==='conic'){
+    const list = stopsLocal.map(s=>`${hexToRgba(s.color,s.o)} ${s.pos}%`).join(', ');
+    return `conic-gradient(from ${angle}deg, ${list})`;
+  }
+}
+
+function hexToRgba(hex, o=1){
+  if(!hex) return `rgba(255,255,255,${o})`;
+  const h = hex.replace('#',''); const bigint = parseInt(h,16);
+  const r = (bigint >> 16) & 255; const g = (bigint >> 8) & 255; const b = bigint & 255;
+  return `rgba(${r}, ${g}, ${b}, ${o})`;
+}
+
+// Update preview and CSS
+function updatePreview(){
+  const type = gtype.value; const ang = +angleInput.value; const css = buildGradientCSS(stops,type,ang);
+  preview.style.background = css; preview.style.mixBlendMode = blendMode.value;
+  // subtle hover shimmer using background-position trick (animated via CSS var?)
+  const code = `background: ${css};\nbackground-blend-mode: ${blendMode.value};`;
+  codeOut.textContent = code;
+}
+
+// Random palette (AI-ish)
+function randomPalette(){
+  // generate a harmonious HSL palette
+  const base = Math.floor(Math.random()*360);
+  stops = [];
+  const cnt = 3 + Math.floor(Math.random()*3);
+  for(let i=0;i<cnt;i++){
+    const hue = (base + (i*40) + (Math.random()*30-15)+360)%360;
+    const sat = 60 + Math.floor(Math.random()*20);
+    const light = 50 - i*6 + Math.random()*8;
+    const col = `hsl(${Math.round(hue)}, ${sat}%, ${Math.round(light)}%)`;
+    stops.push({id: nextId++, pos: Math.round((i/(cnt-1))*100), color: hslToHex(hue,sat,light), o: 0.9});
+  }
+  renderStops();
+}
+function hslToHex(h,s,l){ h/=360; s/=100; l/=100; let r,g,b; if(s===0){ r=g=b=l; } else { const hue2rgb=(p,q,t)=>{ if(t<0) t+=1; if(t>1) t-=1; if(t<1/6) return p+(q-p)*6*t; if(t<1/2) return q; if(t<2/3) return p+(q-p)*(2/3-t)*6; return p; };
+    const q = l<0.5 ? l*(1+s) : l+s-l*s; const p = 2*l - q; r = hue2rgb(p,q,h+1/3); g = hue2rgb(p,q,h); b = hue2rgb(p,q,h-1/3);
+  }
+  return '#'+[r,g,b].map(x=>{ const hex = Math.round(x*255).toString(16); return hex.length===1? '0'+hex:hex}).join('');
+}
+
+// Add stop
+addStopBtn.addEventListener('click', ()=>{ stops.push({id:nextId++, pos:50, color:'#ff6b6b', o:1}); renderStops(); });
+
+// random palette
+randomPaletteBtn.addEventListener('click', ()=>{ randomPalette(); });
+
+// controls
+gtype.addEventListener('change', updatePreview);
+angleInput.addEventListener('input', updatePreview);
+blendMode.addEventListener('change', updatePreview);
+
+// initial render
+renderStops();
+
+// Animation system (keyframes are snapshots of stop arrays)
+const playBtn = document.getElementById('playAnim');
+const pauseBtn = document.getElementById('pauseAnim');
+const snapBtn = document.getElementById('snapKey');
+const kfCount = document.getElementById('kfCount');
+const animDurationInput = document.getElementById('animDuration');
+const animEasingSelect = document.getElementById('animEasing');
+const animLoopSwitch = document.getElementById('animLoop');
+
+playBtn.addEventListener('click', ()=>{ if(keyframes.length<2) { alert('Take at least 2 keyframes (snap states) to animate.'); return; } startAnimation(); });
+pauseBtn.addEventListener('click', ()=>{ stopAnimation(); });
+snapBtn.addEventListener('click', ()=>{ keyframes.push(JSON.parse(JSON.stringify(stops))); kfCount.textContent = keyframes.length; renderKeyframesList(); });
+animDurationInput.addEventListener('input', ()=>{ anim.duration = +animDurationInput.value; });
+animEasingSelect.addEventListener('change', ()=>{ anim.easing = animEasingSelect.value; });
+animLoopSwitch.addEventListener('change', ()=>{ anim.loop = animLoopSwitch.checked; });
+
+let animInterval = null; function startAnimation(){ stopAnimation(); anim.playing=true; const duration = anim.duration*1000; const frames = 60*anim.duration; let t=0; let total = frames; animInterval = setInterval(()=>{ t = (t+1)% (anim.loop? total : total+1); if(!anim.loop && t>total) { stopAnimation(); return; }
+    const progress = t/total; // find segment between keyframes
+    const segment = progress * (keyframes.length-1); const i0 = Math.floor(segment); const frac = segment - i0;
+    const s0 = keyframes[i0]; const s1 = keyframes[Math.min(i0+1, keyframes.length-1)];
+    // morph stops by index; if different lengths, fallback: lerp first N
+    const newStops = [];
+    const n = Math.max(s0.length, s1.length);
+    for(let i=0;i<n;i++){
+      const a = s0[i % s0.length] || s0[0]; const b = s1[i % s1.length] || s1[0];
+      const ns = { id: a.id, pos: lerp(a.pos,b.pos,frac), color: interpColor(a.color,b.color,frac), o: lerp(a.o,b.o,frac) };
+      newStops.push(ns);
+    }
+    stops = newStops; renderStops();
+  }, 1000/60);
+}
+function stopAnimation(){ if(animInterval) clearInterval(animInterval); animInterval=null; anim.playing=false; }
+
+function lerp(a,b,t){ return Math.round((a + (b-a)*t)*10)/10; }
+function parseHex(h){ if(h[0]==='#') h=h.slice(1); const n=parseInt(h,16); return [(n>>16)&255, (n>>8)&255, n&255]; }
+function interpColor(a,b,t){ const ca = parseHex(a); const cb = parseHex(b); const r=Math.round(ca[0]+(cb[0]-ca[0])*t); const g=Math.round(ca[1]+(cb[1]-ca[1])*t); const bl=Math.round(ca[2]+(cb[2]-ca[2])*t); return '#'+[r,g,bl].map(x=>x.toString(16).padStart(2,'0')).join(''); }
+
+function renderKeyframesList(){ /* minimal UI: shows count and allows clearing */ }
+
+// Export & copy
+document.getElementById('copyCSS').addEventListener('click', ()=>{ navigator.clipboard.writeText(codeOut.textContent).then(()=>{ alert('CSS copied to clipboard'); }); });
+
+// SVG Export (basic)
+document.getElementById('exportSVG').addEventListener('click', ()=>{
+  const type = gtype.value; const ang = +angleInput.value; const css = buildGradientCSS(stops,type,ang);
+  // create SVG with rect and CSS background as fallback image via foreignObject is not reliable. We'll create simple SVG for linear/radial only.
+  let svg = '';
+  if(type==='linear'){
+    // convert stops to linearGradient
+    const id = 'g_'+Date.now(); const sorted = stops.slice().sort((a,b)=>a.pos-b.pos);
+    let defs = `<linearGradient id='${id}' gradientUnits='objectBoundingBox' x1='0%' y1='0%' x2='100%' y2='0%'>`;
+    for(const s of sorted){ defs += `<stop offset='${s.pos}%' stop-color='${s.color}' stop-opacity='${s.o}' />`; }
+    defs += `</linearGradient>`;
+    svg = `<?xml version='1.0' encoding='UTF-8'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'>\n<defs>${defs}</defs>\n<rect width='100%' height='100%' fill='url(\#${id})'/>\n</svg>`;
+  } else if(type==='radial'){
+    const id = 'g_'+Date.now(); const sorted = stops.slice().sort((a,b)=>a.pos-b.pos);
+    let defs = `<radialGradient id='${id}' cx='50%' cy='50%' r='50%'>`;
+    for(const s of sorted){ defs += `<stop offset='${s.pos}%' stop-color='${s.color}' stop-opacity='${s.o}' />`; }
+    defs += `</radialGradient>`;
+    svg = `<?xml version='1.0' encoding='UTF-8'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'>\n<defs>${defs}</defs>\n<rect width='100%' height='100%' fill='url(\#${id})'/>\n</svg>`;
+  } else {
+    // fallback: create screenshot-like SVG by embedding HTML preview via foreignObject (may not work everywhere)
+    svg = `<?xml version='1.0' encoding='UTF-8'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'>\n<foreignObject width='100%' height='100%'>\n<div xmlns='http://www.w3.org/1999/xhtml' style='width:1200px;height:800px;background:${css};'></div>\n</foreignObject>\n</svg>`;
+  }
+  const blob = new Blob([svg], {type:'image/svg+xml'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download='gradient.svg'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+});
+
+// PNG export — draw a canvas for linear & radial; for complex types, we render a foreignObject snapshot fallback
+document.getElementById('exportPNG').addEventListener('click', ()=>{
+  const w = 1600, h = 1000; const c = document.createElement('canvas'); c.width=w; c.height=h; const ctx = c.getContext('2d');
+  const type = gtype.value; if(type==='linear'){
+    const grad = ctx.createLinearGradient(0,0,w,0);
+    stops.slice().sort((a,b)=>a.pos-b.pos).forEach(s=>{ grad.addColorStop(s.pos/100, hexToRgba(s.color,s.o)); });
+    ctx.fillStyle = grad; ctx.fillRect(0,0,w,h);
+    // draw particles style overlay
+    ctx.globalCompositeOperation='overlay'; ctx.fillStyle='rgba(255,255,255,0.04)'; ctx.fillRect(0,0,w,h);
+    const url = c.toDataURL('image/png'); const a=document.createElement('a'); a.href=url; a.download='gradient.png'; a.click();
+  } else if(type==='radial'){
+    const grad = ctx.createRadialGradient(w/2,h/2,0,w/2,h/2,Math.max(w,h)/1.2);
+    stops.slice().sort((a,b)=>a.pos-b.pos).forEach(s=>{ grad.addColorStop(s.pos/100, hexToRgba(s.color,s.o)); });
+    ctx.fillStyle = grad; ctx.fillRect(0,0,w,h);
+    const url = c.toDataURL('image/png'); const a=document.createElement('a'); a.href=url; a.download='gradient.png'; a.click();
+  } else {
+    // fallback: export SVG then convert
+    document.getElementById('exportSVG').click(); alert('For conic/mesh PNG: SVG export provided; convert with external tool for best fidelity.');
+  }
+});
+
+// Save & collections
+function loadCollections(){ const raw=localStorage.getItem('gs_collections'); return raw? JSON.parse(raw):[]; }
+function saveCollections(arr){ localStorage.setItem('gs_collections', JSON.stringify(arr)); }
+function refreshCollections(){ const col = loadCollections(); const wrap = document.getElementById('collections'); wrap.innerHTML=''; col.forEach((c,i)=>{ const el = document.createElement('div'); el.className='d-flex justify-content-between align-items-center mb-2 tiny'; el.innerHTML = `<div>${c.name}</div><div><button class='btn btn-sm btn-outline-light me-1' data-load='${i}'>Load</button><button class='btn btn-sm btn-outline-light' data-del='${i}'>Del</button></div>`; wrap.appendChild(el); });
+  wrap.querySelectorAll('button[data-load]').forEach(b=>b.addEventListener('click', e=>{ const i=+b.dataset.load; const c=loadCollections()[i]; stops=c.stops; renderStops(); }));
+  wrap.querySelectorAll('button[data-del]').forEach(b=>b.addEventListener('click', e=>{ const i=+b.dataset.del; const arr=loadCollections(); arr.splice(i,1); saveCollections(arr); refreshCollections(); }));
+}
+
+document.getElementById('saveCollection').addEventListener('click', ()=>{ const arr=loadCollections(); const name = prompt('Save name','My Gradient '+(arr.length+1)); if(!name) return; arr.push({name, stops}); saveCollections(arr); refreshCollections(); alert('Saved to local collections'); });
+refreshCollections();
+
+// Share link
+document.getElementById('shareLink').addEventListener('click', ()=>{
+  const payload = {stops, type: gtype.value, angle: +angleInput.value, blend: blendMode.value}; const s = encodeURIComponent(btoa(JSON.stringify(payload))); const url = location.origin + location.pathname + '?g=' + s; navigator.clipboard.writeText(url).then(()=> alert('Shareable link copied to clipboard'));
+});
+
+// Load from URL
+(function loadFromURL(){ const params = new URLSearchParams(location.search); if(params.has('g')){ try{ const obj = JSON.parse(atob(decodeURIComponent(params.get('g')))); stops = obj.stops || stops; gtype.value = obj.type || gtype.value; angleInput.value = obj.angle || angleInput.value; blendMode.value = obj.blend || blendMode.value; renderStops(); }catch(e){ console.warn('Invalid share link'); } }})();
+
+// small UI: device preview buttons
+document.querySelectorAll('.device').forEach(b=>{ b.addEventListener('click', ()=>{ const w=+b.dataset.w; const h=+b.dataset.h; document.getElementById('previewWrap').style.maxWidth = w+'px'; document.getElementById('previewWrap').style.margin = '0 auto'; document.getElementById('preview').style.height = h+'px'; resizeCanvas(); }); });
+
+// initial particles draw loop already running
+
+// friendly tip: expose debug
+window.GradientStudio = { getState: ()=>({stops, keyframes}), setStops: (s)=>{stops=s; renderStops();} };
+
+</script>
+
+</body>
+</html>
