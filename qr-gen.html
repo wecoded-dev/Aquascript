@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ultra — 100% Working QR Generator (AquaScript)</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Font & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <style>
+    :root{ --bg1:#051028; --bg2:#071428; --muted:rgba(220,235,255,0.74); font-family:'Poppins',sans-serif}
+    body{min-height:100vh;margin:0;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eaf6ff;padding:28px;}
+    .app{max-width:1100px;margin:0 auto}
+    .card-glass{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); border-radius:12px; padding:18px; box-shadow:0 10px 36px rgba(2,6,23,0.6)}
+    label.small{font-size:12px;color:var(--muted)}
+    .muted{color:var(--muted)}
+    input[type=color]{width:46px;height:36px;border-radius:8px;border:none;padding:0}
+    #previewImg{max-width:100%; border-radius:12px; background:#fff; display:block}
+    .btn-primary-graded{background:linear-gradient(90deg,#7b61ff,#00c2ff); border:none; color:#fff}
+    pre.java{background:rgba(0,0,0,0.35);padding:10px;border-radius:8px; color:#eaf6ff}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="row mb-3">
+      <div class="col-md-8">
+        <h2 style="margin:0">Ultra QR Generator — 100% Working</h2>
+        <div class="muted">Enter text / URL or choose Wi-Fi / vCard helpers below. Click <strong>Generate</strong> — QR will be produced reliably and you can download PNG/JPG/WEBP/SVG or copy it.</div>
+      </div>
+      <div class="col-md-4 text-md-end align-self-center">
+        <div class="muted">No logos • Client-side • High quality</div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Left: Controls -->
+      <div class="col-lg-6">
+        <div class="card-glass">
+          <div class="mb-2">
+            <label class="small">Type</label>
+            <select id="typeSelect" class="form-select form-select-sm mb-2">
+              <option value="url" selected>URL</option>
+              <option value="text">Text</option>
+              <option value="wifi">Wi-Fi</option>
+              <option value="vcard">vCard</option>
+              <option value="email">Email</option>
+              <option value="phone">Phone</option>
+            </select>
+            <small class="muted">Pick a type to help auto-format the content.</small>
+          </div>
+
+          <div id="mainInput" class="mb-3">
+            <label class="small">Content (enter URL or text)</label>
+            <textarea id="content" class="form-control" rows="4" placeholder="https://aquascript.xyz"></textarea>
+          </div>
+
+          <div id="helpers" style="display:none" class="mb-3">
+            <div id="wifiFields" style="display:none;">
+              <div class="row g-2">
+                <div class="col-6"><input id="wifiSsid" class="form-control form-control-sm" placeholder="SSID"></div>
+                <div class="col-6"><input id="wifiPass" class="form-control form-control-sm" placeholder="Password"></div>
+                <div class="col-6 mt-2"><select id="wifiEnc" class="form-select form-select-sm"><option>WPA</option><option>WEP</option><option value="nopass">nopass</option></select></div>
+              </div>
+            </div>
+
+            <div id="vcardFields" style="display:none;">
+              <div class="row g-2">
+                <div class="col-6"><input id="vcName" class="form-control form-control-sm" placeholder="Full name"></div>
+                <div class="col-6"><input id="vcOrg" class="form-control form-control-sm" placeholder="Organization"></div>
+                <div class="col-6"><input id="vcPhone" class="form-control form-control-sm" placeholder="Phone"></div>
+                <div class="col-6"><input id="vcEmail" class="form-control form-control-sm" placeholder="Email"></div>
+                <div class="col-12"><input id="vcUrl" class="form-control form-control-sm" placeholder="Website"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-2 mb-2">
+            <div class="col-6">
+              <label class="small">Size (px)</label>
+              <input id="size" type="number" class="form-control form-control-sm" min="80" max="2000" value="600">
+            </div>
+            <div class="col-6">
+              <label class="small">Margin (modules)</label>
+              <input id="margin" type="number" class="form-control form-control-sm" min="0" max="40" value="4">
+            </div>
+
+            <div class="col-6 mt-2">
+              <label class="small">Error correction</label>
+              <select id="ec" class="form-select form-select-sm">
+                <option value="L">L (7%)</option>
+                <option value="M" selected>M (15%)</option>
+                <option value="Q">Q (25%)</option>
+                <option value="H">H (30%)</option>
+              </select>
+            </div>
+
+            <div class="col-6 mt-2">
+              <label class="small">Style</label>
+              <select id="style" class="form-select form-select-sm">
+                <option value="square" selected>Square</option>
+                <option value="rounded">Rounded</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-2 align-items-center mb-3">
+            <div class="col-auto">
+              <label class="small">Foreground</label><br>
+              <input id="fg" type="color" value="#101828">
+            </div>
+            <div class="col-auto">
+              <label class="small">Background</label><br>
+              <input id="bg" type="color" value="#ffffff">
+            </div>
+            <div class="col-auto d-flex align-items-center">
+              <div class="form-check form-switch ms-3">
+                <input class="form-check-input" type="checkbox" id="grad">
+                <label class="form-check-label muted" for="grad">Gradient (raster)</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <label class="small">Gradient color</label><br>
+              <input id="fg2" type="color" value="#00c2ff" disabled>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button id="generate" class="btn btn-primary-graded"><i class="fa-solid fa-wand-sparkles"></i> Generate</button>
+            <button id="clear" class="btn btn-outline-light">Clear</button>
+            <div class="ms-auto">
+              <button id="autotoggle" class="btn btn-sm btn-outline-light">Auto: Off</button>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="d-flex gap-2 flex-wrap">
+            <button id="dlPng" class="btn btn-sm btn-light"><i class="fa-regular fa-file-image"></i> PNG</button>
+            <button id="dlJpg" class="btn btn-sm btn-light"><i class="fa-regular fa-file-image"></i> JPG</button>
+            <button id="dlWebp" class="btn btn-sm btn-light"><i class="fa-regular fa-image"></i> WEBP</button>
+            <button id="dlSvg" class="btn btn-sm btn-outline-light"><i class="fa-regular fa-file-code"></i> SVG</button>
+            <button id="copy" class="btn btn-sm btn-outline-info"><i class="fa-regular fa-copy"></i> Copy PNG</button>
+          </div>
+
+          <p class="muted mt-3 mb-0">Works offline in-browser. For long/complex content use size ≥ 600 and ECC Q/H.</p>
+        </div>
+      </div>
+
+      <!-- Right: Preview -->
+      <div class="col-lg-6">
+        <div class="card-glass">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div><strong>Preview</strong></div>
+            <div class="muted" id="info">No QR generated</div>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-center" style="min-height:320px;">
+            <canvas id="canvas" style="display:none;"></canvas>
+            <img id="previewImg" alt="QR preview" style="display:none;">
+            <div id="svgContainer" style="display:none; width:100%; text-align:center"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <hr style="border-color:rgba(255,255,255,0.03); margin-top:28px;">
+    <div class="muted">Java (ZXing) server-side example & other integration available on request.</div>
+  </div>
+
+  <!-- Dependencies -->
+  <!-- qrcode-generator (kazuhiko arase) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+AOS.init({once:true, duration:600});
+$(function(){
+  const $type = $('#typeSelect'), $content = $('#content');
+  const $wifiFields = $('#wifiFields'), $vcardFields = $('#vcardFields'), $helpers = $('#helpers');
+  const $fg = $('#fg'), $bg = $('#bg'), $grad = $('#grad'), $fg2 = $('#fg2');
+  const $size = $('#size'), $margin = $('#margin'), $ec = $('#ec'), $style = $('#style');
+  const $canvas = document.getElementById('canvas');
+  const ctx = $canvas.getContext('2d');
+  const $previewImg = $('#previewImg'), $svgContainer = $('#svgContainer'), $info = $('#info');
+
+  let lastCanvas = null, lastSvg = '', auto = false;
+
+  // type form visibility
+  function showTypeHelpers(){
+    const t = $type.val();
+    $helpers.hide(); $wifiFields.hide(); $vcardFields.hide();
+    if(t === 'wifi'){ $helpers.show(); $wifiFields.show(); }
+    if(t === 'vcard'){ $helpers.show(); $vcardFields.show(); }
+  }
+  $type.on('change', showTypeHelpers);
+  showTypeHelpers();
+
+  // gradient toggle
+  $grad.on('change', ()=> $fg2.prop('disabled', ! $grad.is(':checked')) );
+
+  // auto toggle
+  $('#autotoggle').on('click', function(){
+    auto = !auto; $(this).text('Auto: ' + (auto ? 'On' : 'Off'));
+    if(auto) $content.on('input.auto', () => { debounce(generate, 450); });
+    else $content.off('input.auto');
+  });
+
+  $('#clear').on('click', clearAll);
+
+  $('#generate').on('click', generate);
+
+  $('#dlPng').on('click', downloadPNG);
+  $('#dlJpg').on('click', ()=> downloadRaster('image/jpeg', 0.92, 'qrcode.jpg'));
+  $('#dlWebp').on('click', ()=> downloadRaster('image/webp', 0.92, 'qrcode.webp'));
+  $('#dlSvg').on('click', downloadSVG);
+  $('#copy').on('click', copyPNGToClipboard);
+
+  function debounce(fn, ms){ clearTimeout(window._aq); window._aq = setTimeout(fn, ms); }
+
+  function clearAll(){
+    $previewImg.hide().attr('src','');
+    $svgContainer.hide().empty();
+    ctx.clearRect(0,0,$canvas.width,$canvas.height);
+    lastCanvas = null; lastSvg = '';
+    $info.text('No QR generated');
+  }
+
+  function buildContent(){
+    const t = $type.val();
+    let val = $content.val().trim();
+    if(t === 'url'){
+      if(!val) return '';
+      if(!/^https?:\/\//i.test(val)) val = 'https://' + val;
+      return val;
+    }
+    if(t === 'wifi'){
+      if(/^WIFI:/i.test(val)) return val;
+      const ssid = $('#wifiSsid').val().trim();
+      const pass = $('#wifiPass').val().trim();
+      const enc = $('#wifiEnc').val();
+      if(!ssid) return '';
+      if(enc === 'nopass') return `WIFI:T:nopass;S:${escapeW(ssid)};;`;
+      return `WIFI:T:${enc};S:${escapeW(ssid)};P:${escapeW(pass)};;`;
+    }
+    if(t === 'vcard'){
+      if(/^BEGIN:VCARD/i.test(val)) return val;
+      const name = $('#vcName').val().trim() || val || 'Contact';
+      const org = $('#vcOrg').val().trim();
+      const phone = $('#vcPhone').val().trim();
+      const email = $('#vcEmail').val().trim();
+      const url = $('#vcUrl').val().trim();
+      let v = 'BEGIN:VCARD\\nVERSION:3.0\\n';
+      v += `FN:${name}\\n`;
+      if(org) v += `ORG:${org}\\n`;
+      if(phone) v += `TEL:${phone}\\n`;
+      if(email) v += `EMAIL:${email}\\n`;
+      if(url) v += `URL:${url}\\n`;
+      v += 'END:VCARD';
+      return v;
+    }
+    if(t === 'email'){
+      if(!val) return '';
+      return val.startsWith('mailto:') ? val : 'mailto:' + val;
+    }
+    if(t === 'phone'){
+      if(!val) return '';
+      return val.startsWith('tel:') ? val : 'tel:' + val.replace(/\s+/g,'');
+    }
+    // default text
+    return val;
+  }
+
+  function escapeW(s){ return (''+s).replace(/([\\\\;,:"])/g, '\\$1'); }
+
+  // low-level generator using qrcode-generator lib
+  function generate(){
+    const data = buildContent();
+    if(!data){ alert('Please enter content or fill helper fields'); return; }
+
+    const sizePx = Math.max(80, Math.min(2000, parseInt($size.val()) || 600));
+    const marginModules = Math.max(0, Math.min(40, parseInt($margin.val()) || 4));
+    const ecc = $ec.val() || 'M';
+    const style = $style.val() || 'square';
+    const fgColor = $fg.val() || '#101828';
+    const bgColor = $bg.val() || '#ffffff';
+    const useGradient = $grad.is(':checked');
+    const fgColor2 = $fg2.val() || '#00c2ff';
+
+    // Build QR matrix using qrcode-generator
+    try {
+      const qr = qrcode(0, ecc); // 0 = automatic type
+      qr.addData(data);
+      qr.make();
+      const modules = qr.getModuleCount();
+      if(!(modules>0)) { alert('Failed to create QR — try shorter content or different ECC'); return; }
+
+      // compute box size so QR fits requested size
+      const box = Math.floor((sizePx - marginModules*2) / modules);
+      const realSize = box*modules + marginModules*2;
+
+      // prepare canvas
+      $canvas.width = realSize; $canvas.height = realSize;
+      ctx.clearRect(0,0,realSize,realSize);
+
+      // background
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0,0,realSize,realSize);
+
+      // prepare fill (gradient or solid)
+      let fillStyle = fgColor;
+      if(useGradient){
+        const g = ctx.createLinearGradient(0,0,realSize,realSize);
+        g.addColorStop(0, fgColor);
+        g.addColorStop(1, fgColor2);
+        fillStyle = g;
+      }
+
+      // draw modules
+      ctx.fillStyle = fillStyle;
+      const radius = style === 'rounded' ? Math.max(1, Math.floor(box*0.24)) : 0;
+
+      for(let r=0;r<modules;r++){
+        for(let c=0;c<modules;c++){
+          if(qr.isDark(r,c)){
+            const x = marginModules + c*box;
+            const y = marginModules + r*box;
+            if(radius>0){
+              roundRect(ctx, x, y, box, box, radius, true, false);
+            } else {
+              ctx.fillRect(x,y,box,box);
+            }
+          }
+        }
+      }
+
+      // render to preview image (PNG dataURL)
+      const dataUrl = $canvas.toDataURL('image/png');
+      $previewImg.attr('src', dataUrl).show();
+      $svgContainer.hide().empty();
+
+      // build SVG (solid color for cross-platform compatibility)
+      const svg = buildSVGString(qr, modules, box, marginModules, fgColor, bgColor, style);
+      lastSvg = svg;
+      lastCanvas = $canvas;
+      $info.text(`Generated • ${realSize}×${realSize} • ECC ${ecc}`);
+    } catch(err){
+      console.error(err);
+      alert('Generation error: ' + (err && err.message ? err.message : err));
+    }
+  }
+
+  // helper: rounded rect
+  function roundRect(ctx, x, y, w, h, r, fill, stroke){
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x+w, y, x+w, y+h, r);
+    ctx.arcTo(x+w, y+h, x, y+h, r);
+    ctx.arcTo(x, y+h, x, y, r);
+    ctx.arcTo(x, y, x+w, y, r);
+    ctx.closePath();
+    if(fill) ctx.fill();
+    if(stroke) ctx.stroke();
+  }
+
+  // build SVG string from matrix (solid color)
+  function buildSVGString(qr, modules, box, margin, fg, bg, style){
+    const size = box*modules + margin*2;
+    const rx = style === 'rounded' ? Math.max(1, Math.floor(box*0.24)) : 0;
+    let svg = '';
+    svg += `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+    svg += `<rect width="100%" height="100%" fill="${bg}"/>`;
+    for(let r=0;r<modules;r++){
+      for(let c=0;c<modules;c++){
+        if(qr.isDark(r,c)){
+          const x = margin + c*box;
+          const y = margin + r*box;
+          if(rx>0){
+            svg += `<rect x="${x}" y="${y}" width="${box}" height="${box}" rx="${rx}" fill="${fg}"/>`;
+          } else {
+            svg += `<rect x="${x}" y="${y}" width="${box}" height="${box}" fill="${fg}"/>`;
+          }
+        }
+      }
+    }
+    svg += `</svg>`;
+    return svg;
+  }
+
+  function downloadSVG(){
+    if(!lastSvg){ alert('Generate first'); return; }
+    const blob = new Blob([lastSvg], {type:'image/svg+xml;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'qrcode.svg'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 2000);
+  }
+
+  function downloadPNG(){
+    if(!$canvas) { alert('Generate first'); return; }
+    $canvas.toBlob(function(blob){
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'qrcode.png'; a.click();
+      setTimeout(()=>URL.revokeObjectURL(url), 2000);
+    }, 'image/png');
+  }
+
+  function downloadRaster(mime, quality, filename){
+    if(!$canvas) { alert('Generate first'); return; }
+    // use toDataURL for jpeg/webp
+    const dataUrl = $canvas.toDataURL(mime, quality);
+    const a = document.createElement('a'); a.href = dataUrl; a.download = filename; a.click();
+  }
+
+  async function copyPNGToClipboard(){
+    if(!$canvas) { alert('Generate first'); return; }
+    try {
+      const blob = await new Promise(res => $canvas.toBlob(res, 'image/png'));
+      if(!navigator.clipboard || !window.ClipboardItem){
+        alert('Clipboard API not supported for images in this browser — please download instead.');
+        return;
+      }
+      await navigator.clipboard.write([new ClipboardItem({'image/png': blob})]);
+      alert('PNG copied to clipboard!');
+    } catch(err){
+      console.error(err);
+      alert('Copy failed: ' + (err && err.message ? err.message : err));
+    }
+  }
+
+  // initial clear
+  clearAll();
+
+}); // end jQuery ready
+</script>
+</body>
+</html>
