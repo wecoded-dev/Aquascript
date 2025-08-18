@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,viewport-fit=cover">
+  <title>Ultra Favicon Converter — AquaScript</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <!-- Font Awesome (for variety of icons) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-a: #071327; --bg-b:#0b1530; --glass: rgba(255,255,255,0.04);
+      --card-grad: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      --accent1: #5eead4; --accent2:#60a5fa; --accent3:#a78bfa;
+      --glass-border: rgba(255,255,255,0.06);
+      --muted: rgba(230,238,248,0.62);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html,body{height:100%; background: radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.08), transparent), linear-gradient(180deg,var(--bg-a),var(--bg-b)); color:#e6eef8; -webkit-font-smoothing:antialiased}
+    .container{max-width:1180px}
+
+    /* Header / Hero */
+    .hero{padding:48px 16px 28px}
+    .brand-bubble{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px; background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#042f2a; font-weight:700; box-shadow:0 8px 30px rgba(6,12,30,0.6)}
+    .card-soft{background:var(--card-grad); border-radius:18px; border:1px solid var(--glass-border); box-shadow: 0 10px 40px rgba(2,6,23,0.7)}
+
+    /* uploader */
+    .uploader{min-height:230px; border-radius:14px; display:flex; align-items:center; justify-content:center; text-align:center; cursor:pointer; transition:all .25s ease; position:relative; border:2px dashed rgba(255,255,255,0.05); overflow:hidden}
+    .uploader .inner{z-index:2}
+    .uploader::before{content:''; position:absolute; inset:0; background:linear-gradient(45deg, rgba(96,165,250,0.03), rgba(167,139,250,0.02)); backdrop-filter: blur(6px)}
+    .uploader.drag{transform:translateY(-4px); box-shadow:0 18px 40px rgba(6,12,40,0.6); border-color:rgba(96,165,250,0.55)}
+
+    /* buttons */
+    .fancy-btn{border-radius:12px; padding:10px 16px; font-weight:700}
+    .btn-ghost{background:transparent; border:1px solid rgba(255,255,255,0.06)}
+    .small-muted{font-size:13px; color:var(--muted)}
+
+    /* previews */
+    .preview-grid img{max-width:100%; border-radius:12px; background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(255,255,255,0.02)); padding:8px; box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .preview-cell{width:96px; text-align:center}
+
+    /* responsive tweaks */
+    @media (max-width:900px){ .hero{padding:28px 12px} .brand-bubble{padding:8px 12px} }
+
+    /* subtle animated background blobs */
+    .blob{position:absolute; filter:blur(48px); opacity:0.14; z-index:0}
+    .blob.one{width:420px;height:420px; right:-120px; top:-60px; background:radial-gradient(circle at 30% 30%, var(--accent3), transparent)}
+    .blob.two{width:300px;height:300px; left:-80px; bottom:-80px; background:radial-gradient(circle at 60% 60%, var(--accent1), transparent)}
+
+    /* file list */
+    #filesList a{color:inherit; text-decoration:none}
+
+    pre.java-sample{background:rgba(0,0,0,0.35); padding:12px; border-radius:10px; overflow:auto; font-size:13px}
+
+    /* subtle micro interactions */
+    .micro{transition:transform .18s ease, box-shadow .18s ease}
+    .micro:active{transform:translateY(2px)}
+  </style>
+</head>
+<body>
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+
+  <div class="container py-5">
+    <div class="row align-items-center hero">
+      <div class="col-md-7" data-aos="fade-right">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div class="brand-bubble"><i class="fa-solid fa-water fa-lg"></i> AquaScript</div>
+          <div class="small-muted">Converter • Favicons • Multi-format • Ultra UI</div>
+        </div>
+        <h1 class="display-5 mb-3" style="line-height:1.02">Ultra Favicon Converter — <span style="background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent; font-weight:800">Beautiful • Fast • Pro</span></h1>
+        <p class="small-muted">Upload any PNG / JPG / WEBP / SVG and generate crisp multi-resolution favicons (.png, .ico, apple-touch-icon) with live previews, background masks, rounded/circular crops, retina-ready outputs, and downloadable ZIP or single .ico. Built with Bootstrap, jQuery, AOS and modern canvas packing.</p>
+        <div class="mt-3 d-flex gap-2 flex-wrap">
+          <button id="howBtn" class="btn btn-light fancy-btn micro" data-bs-toggle="modal" data-bs-target="#howModal"><i class="material-icons-outlined align-middle">info</i> How it works</button>
+          <a href="#convertSection" class="btn btn-ghost fancy-btn micro"><i class="fa-solid fa-rocket"></i> Start converting</a>
+          <button id="presetRounded" class="btn btn-outline-light fancy-btn micro">Quick: Rounded</button>
+          <button id="presetSquare" class="btn btn-outline-light fancy-btn micro">Quick: Square</button>
+        </div>
+      </div>
+
+      <div class="col-md-5 text-end" data-aos="fade-left">
+        <!-- Hero art: generated SVG with gradient & subtle glass -->
+        <div class="card-soft p-3 d-inline-block" style="border-radius:20px; transform:translateY(-6px)">
+          <svg width="260" height="160" viewBox="0 0 520 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius:14px; display:block">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#60a5fa"/></linearGradient>
+            </defs>
+            <rect x="0" y="0" width="520" height="320" rx="18" fill="url(#g1)" opacity="0.14" />
+            <g transform="translate(40,24)">
+              <rect x="0" y="0" width="440" height="240" rx="18" fill="#071327" opacity="0.38" />
+              <circle cx="72" cy="72" r="56" fill="#061022" stroke="#7dd3fc" stroke-opacity="0.08" stroke-width="6" />
+              <rect x="160" y="26" width="208" height="28" rx="8" fill="#061022" opacity="0.6" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Converter card -->
+    <section id="convertSection" class="card-soft p-4 mt-4" data-aos="fade-up">
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="p-3">
+            <label class="form-label small-muted">Upload image</label>
+            <div id="dropArea" class="uploader mb-3 micro" tabindex="0">
+              <div class="inner">
+                <p style="font-weight:700">Drag & drop your image here</p>
+                <p class="small-muted mb-2">PNG • JPG • WEBP • SVG — Max 12MB</p>
+                <div class="d-flex gap-2 justify-content-center">
+                  <label for="fileInput" class="btn btn-outline-light btn-sm micro">Choose file</label>
+                  <button id="exampleBtn" class="btn btn-outline-light btn-sm micro">Try demo</button>
+                </div>
+                <input id="fileInput" type="file" accept="image/*" style="display:none">
+              </div>
+            </div>
+
+            <div class="row g-2 align-items-center">
+              <div class="col-12 col-md-8">
+                <label class="form-label small-muted">Favicon sizes</label>
+                <div class="d-flex flex-wrap gap-2">
+                  <div class="form-check"><input class="form-check-input" type="checkbox" value="16" id="size16" checked><label class="form-check-label small-muted" for="size16">16</label></div>
+                  <div class="form-check"><input class="form-check-input" type="checkbox" value="32" id="size32" checked><label class="form-check-label small-muted" for="size32">32</label></div>
+                  <div class="form-check"><input class="form-check-input" type="checkbox" value="48" id="size48" checked><label class="form-check-label small-muted" for="size48">48</label></div>
+                  <div class="form-check"><input class="form-check-input" type="checkbox" value="64" id="size64"><label class="form-check-label small-muted" for="size64">64</label></div>
+                  <div class="form-check"><input class="form-check-input" type="checkbox" value="128" id="size128"><label class="form-check-label small-muted" for="size128">128</label></div>
+                  <div class="form-check"><input class="form-check-input" type="checkbox" value="180" id="size180"><label class="form-check-label small-muted" for="size180">180 (apple)</label></div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label class="form-label small-muted">Options</label>
+                <div class="d-flex gap-2">
+                  <select id="maskSelect" class="form-select form-select-sm">
+                    <option value="none">No mask</option>
+                    <option value="rounded">Rounded</option>
+                    <option value="circle">Circle</option>
+                    <option value="square">Square</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3 d-flex gap-2 flex-wrap">
+              <button id="generateBtn" class="btn btn-primary fancy-btn micro"><i class="fa-solid fa-wand-sparkles"></i> Generate</button>
+              <button id="downloadAllBtn" class="btn btn-outline-light fancy-btn micro" disabled><i class="fa-solid fa-file-zipper"></i> Download ZIP</button>
+              <button id="downloadIcoBtn" class="btn btn-success fancy-btn micro" disabled><i class="fa-solid fa-flag"></i> Download .ico</button>
+              <button id="copyLinkBtn" class="btn btn-ghost fancy-btn micro" disabled><i class="fa-solid fa-link"></i> Copy file URLs</button>
+            </div>
+
+            <div id="toolArea" class="mt-3 small-muted">No image loaded — try the demo or upload an image.</div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="p-3">
+            <h5 class="mb-1">Live Preview</h5>
+            <p class="small-muted">Context previews & generated files</p>
+
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="card-soft p-3 text-center">
+                  <div class="mb-2 small-muted">Browser Tab</div>
+                  <div id="tabPreview" style="display:inline-block; padding:8px; background:rgba(0,0,0,0.14); border-radius:8px"></div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card-soft p-3 text-center">
+                  <div class="mb-2 small-muted">Mobile Home</div>
+                  <div id="mobilePreview" style="display:inline-block; padding:12px; background:linear-gradient(180deg,#071327,#061022); border-radius:16px"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <h6 class="mb-2">Generated files</h6>
+              <div id="filesList" class="small-muted mb-2"></div>
+
+              <div class="preview-grid d-flex flex-wrap gap-2" id="previewGrid"></div>
+            </div>
+
+            <hr>
+            <div>
+              <h6>Developer: Java sample</h6>
+              <p class="small-muted">Minimal Spring Boot snippet if you want server-side generation as backup.</p>
+              <pre class="java-sample">// Spring Boot controller (example)
+@RestController
+@RequestMapping("/api/favicon")
+public class FaviconController {
+  @PostMapping("/upload")
+  public ResponseEntity<Map<String,String>> upload(@RequestParam MultipartFile file) throws IOException{
+    BufferedImage src = ImageIO.read(file.getInputStream());
+    // Use Thumbnailator to resize & save sizes, return public URLs
+    return ResponseEntity.ok(Map.of("16","/files/favicon-16.png","ico","/files/favicon.ico"));
+  }
+}
+</pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="d-flex justify-content-between align-items-center mt-4 small-muted">
+      <div>Made with ❤️ by AquaScript</div>
+      <div class="d-flex gap-3">
+        <a href="#">Privacy</a>
+        <a href="#">Docs</a>
+        <a href="#">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- How modal -->
+  <div class="modal fade" id="howModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content bg-dark text-light card-soft">
+        <div class="modal-header border-0"><h5 class="modal-title">How this works</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body small-muted">
+          <ol>
+            <li>Upload your image (SVG recommended). The tool uses HTML Canvas to rasterize or resize the image for each requested size.</li>
+            <li>Pick sizes and mask (rounded / circle / square). The tool centers and preserves aspect ratio.</li>
+            <li>Click Generate — PNG files are produced and a modern .ico is packed (contains PNG frames).</li>
+            <li>Download a ZIP with all sizes, or a single favicon.ico for web usage. Also includes apple-touch-icon if 180 selected.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script>
+    AOS.init({ duration:700, once:true, easing:'ease-in-out' });
+  </script>
+
+  <script>
+  // --- Utilities ---
+  function dataURLToUint8Array(dataURL){
+    const base64 = dataURL.split(',')[1];
+    const binary = atob(base64);
+    const len = binary.length;
+    const bytes = new Uint8Array(len);
+    for(let i=0;i<len;i++) bytes[i]=binary.charCodeAt(i);
+    return bytes;
+  }
+
+  // Build ICO supporting embedded PNGs
+  function buildIcoFromPngBlobs(pngBlobs, sizes){
+    const count = pngBlobs.length;
+    const header = new ArrayBuffer(6 + 16*count);
+    const headerView = new DataView(header);
+    headerView.setUint16(0,0,true); headerView.setUint16(2,1,true); headerView.setUint16(4,count,true);
+    let offset = 6 + 16*count;
+    const parts = [new Uint8Array(header)];
+    for(let i=0;i<count;i++){
+      const size = sizes[i]; const img = pngBlobs[i];
+      const entry = new ArrayBuffer(16); const dv = new DataView(entry);
+      dv.setUint8(0, size>=256?0:size); dv.setUint8(1, size>=256?0:size); dv.setUint8(2,0); dv.setUint8(3,0);
+      dv.setUint16(4,0,true); dv.setUint16(6,0,true);
+      dv.setUint32(8, img.length, true); dv.setUint32(12, offset, true);
+      parts.push(new Uint8Array(entry)); offset += img.length;
+    }
+    for(let i=0;i<count;i++) parts.push(pngBlobs[i]);
+    const totalLen = parts.reduce((s,p)=>s+p.length,0);
+    const out = new Uint8Array(totalLen); let pos=0; parts.forEach(p=>{ out.set(p,pos); pos+=p.length});
+    return new Blob([out], {type:'image/x-icon'});
+  }
+
+  // --- App logic ---
+  $(function(){
+    const drop = $('#dropArea'); const fileInput = $('#fileInput'); const exampleBtn = $('#exampleBtn');
+    let currentImage = null; // HTMLImageElement
+
+    // interactive UX
+    function setDropHover(on){ drop.toggleClass('drag', !!on); }
+    drop.on('dragover', e=>{ e.preventDefault(); setDropHover(true); }).on('dragleave', e=>{ setDropHover(false); }).on('drop', function(e){ e.preventDefault(); setDropHover(false); const f = e.originalEvent.dataTransfer.files[0]; handleFile(f); });
+    drop.on('click', ()=> fileInput.trigger('click'));
+    drop.on('keydown', function(e){ if(e.key==='Enter' || e.key===' ') fileInput.trigger('click'); });
+
+    fileInput.on('change', function(){ const f=this.files[0]; handleFile(f); });
+
+    exampleBtn.on('click', function(){ // small demo SVG
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512'><defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='%235eead4'/><stop offset='1' stop-color='%2360a5fa'/></linearGradient></defs><rect width='100%' height='100%' rx='64' fill='url(%23g)'/><text x='50%' y='55%' font-size='220' text-anchor='middle' fill='white' font-family='Poppins'>A</text></svg>`;
+      const blob = new Blob([svg], {type: 'image/svg+xml'});
+      const url = URL.createObjectURL(blob); const img = new Image(); img.onload = ()=>{ currentImage = img; renderPreview(img); showMessage('Demo image loaded'); $('#generateBtn').prop('disabled', false); URL.revokeObjectURL(url); }; img.src=url;
+    });
+
+    function showMessage(msg){ $('#toolArea').html('<div class="small-muted p-2">'+msg+'</div>'); }
+
+    function handleFile(file){ if(!file) return; if(file.size > 12*1024*1024){ showMessage('File too big (max 12MB)'); return; }
+      const isSvg = file.type === 'image/svg+xml' || file.name.toLowerCase().endsWith('.svg');
+      if(isSvg){ const r=new FileReader(); r.onload = function(e){ const svgText = e.target.result; const blob = new Blob([svgText], {type:'image/svg+xml'}); const url = URL.createObjectURL(blob); const img = new Image(); img.crossOrigin='anonymous'; img.onload = ()=>{ currentImage=img; renderPreview(img); showMessage(file.name+' (SVG) loaded'); $('#generateBtn').prop('disabled', false); URL.revokeObjectURL(url); }; img.onerror = ()=> showMessage('Could not render SVG'); img.src = url; }; r.readAsText(file); }
+      else { const r=new FileReader(); r.onload=function(e){ const url = e.target.result; const img=new Image(); img.crossOrigin='anonymous'; img.onload = ()=>{ currentImage=img; renderPreview(img); showMessage(file.name+' loaded'); $('#generateBtn').prop('disabled', false); }; img.onerror = ()=> showMessage('Could not load image'); img.src=url; }; r.readAsDataURL(file); }
+    }
+
+    function renderPreview(img){ $('#previewGrid').empty(); const el=$('<div class="preview-cell text-center"></div>'); el.append('<div class="small-muted mb-2">Source</div>'); el.append($('<img>').attr('src', img.src).css({width:'120px', height:'120px', objectFit:'contain', borderRadius:'14px'})); $('#previewGrid').append(el);
+      // reset downloads
+      $('#downloadAllBtn, #downloadIcoBtn, #copyLinkBtn').prop('disabled', true);
+    }
+
+    async function generateSizes(){ if(!currentImage){ showMessage('Upload an image first'); return; }
+      const sizes=[]; $('#convertSection input.form-check-input:checked').each(function(){ sizes.push(parseInt(this.value)); });
+      if(sizes.length===0){ showMessage('Choose at least one size'); return; }
+      const mask = $('#maskSelect').val();
+      const pngBlobs=[]; const generatedFiles=[]; $('#filesList').empty(); $('#previewGrid').empty();
+
+      for(const s of sizes){ const canvas=document.createElement('canvas'); canvas.width=s; canvas.height=s; const ctx=canvas.getContext('2d'); ctx.clearRect(0,0,s,s);
+        // background transparent
+        // compute contain and center
+        const iw=currentImage.width, ih=currentImage.height; const ratio=Math.min(s/iw, s/ih); const dw=Math.round(iw*ratio), dh=Math.round(ih*ratio); const dx=Math.round((s-dw)/2), dy=Math.round((s-dh)/2);
+        // optionally draw background circle or rounded mask
+        if(mask === 'circle' || mask === 'rounded'){
+          // create clipping mask
+          ctx.save(); ctx.beginPath(); if(mask==='circle') ctx.arc(s/2,s/2, s/2, 0, Math.PI*2); else { roundedRect(ctx,0,0,s,s, Math.max(8, Math.round(s*0.12))); } ctx.closePath(); ctx.clip();
+        }
+        ctx.drawImage(currentImage, 0,0, iw, ih, dx, dy, dw, dh);
+        if(mask === 'circle' || mask === 'rounded') ctx.restore();
+        const dataURL = canvas.toDataURL('image/png'); const arr = dataURLToUint8Array(dataURL);
+        pngBlobs.push(arr); generatedFiles.push({name:'favicon-'+s+'.png', size:s, blob:new Blob([arr], {type:'image/png'})});
+
+        // preview
+        const box = $('<div class="preview-cell p-2"></div>'); box.append('<div class="small-muted mb-1">'+s+'×'+s+'</div>'); const imgEl=document.createElement('img'); imgEl.src = dataURL; imgEl.width = 80; imgEl.height=80; imgEl.style.borderRadius = mask==='circle'? '50%':'10px'; box.append(imgEl); $('#previewGrid').append(box);
+
+        // file link
+        const a=document.createElement('a'); a.href = URL.createObjectURL(new Blob([arr], {type:'image/png'})); a.download = 'favicon-'+s+'.png'; a.textContent = 'Download '+s+'×'+s; a.className='d-block small-muted mt-1'; $('#filesList').append(a);
+      }
+
+      // pack ICO
+      const icoBlob = buildIcoFromPngBlobs(pngBlobs, sizes);
+      $('#downloadIcoBtn').prop('disabled', false).off('click').on('click', ()=>{ const url=URL.createObjectURL(icoBlob); const a=document.createElement('a'); a.href=url; a.download='favicon.ico'; a.click(); });
+
+      // zip
+      $('#downloadAllBtn').prop('disabled', false).off('click').on('click', async ()=>{ const zip=new JSZip(); for(const f of generatedFiles) zip.file(f.name, f.blob); zip.file('favicon.ico', icoBlob); const content = await zip.generateAsync({type:'blob'}); const url=URL.createObjectURL(content); const a=document.createElement('a'); a.href=url; a.download='favicons.zip'; a.click(); });
+
+      $('#copyLinkBtn').prop('disabled', false).off('click').on('click', ()=>{
+        const urls = generatedFiles.map(f=>URL.createObjectURL(f.blob)); const text = urls.join('\n'); navigator.clipboard.writeText(text).then(()=> alert('Copied '+urls.length+' blob URLs to clipboard'));
+      });
+
+      // update context previews (use best size available)
+      const best = sizes.includes(64)?64: sizes[0]; const tmp=document.createElement('canvas'); tmp.width=best; tmp.height=best; tmp.getContext('2d').drawImage(currentImage, 0,0, currentImage.width, currentImage.height, 0,0, best, best); const data16 = tmp.toDataURL('image/png'); $('#tabPreview').html('<img src="'+data16+'" width="32" height="32" style="border-radius:6px">'); $('#mobilePreview').html('<img src="'+data16+'" width="64" height="64" style="border-radius:12px">');
+
+      showMessage('Generated '+sizes.length+' PNG(s) and created ICO. Download ZIP or .ico.');
+    }
+
+    // helper rounded rect for canvas
+    function roundedRect(ctx,x,y,w,h,r){ ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); }
+
+    $('#generateBtn').on('click', generateSizes);
+    $('#presetRounded').on('click', ()=>{ $('#maskSelect').val('rounded'); $('#presetRounded').addClass('btn-primary').removeClass('btn-outline-light'); $('#presetSquare').removeClass('btn-primary').addClass('btn-outline-light'); });
+    $('#presetSquare').on('click', ()=>{ $('#maskSelect').val('square'); $('#presetSquare').addClass('btn-primary').removeClass('btn-outline-light'); $('#presetRounded').removeClass('btn-primary').addClass('btn-outline-light'); });
+
+    // disable generate until image load
+    $('#generateBtn').prop('disabled', true);
+
+  });
+  </script>
+</body>
+</html>
