@@ -120,6 +120,222 @@
   </nav>
   <!--------------Ending---------------->
 
+
+<!-- button -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Community Button</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Discord button styles - self-contained and isolated */
+        .discord-btn-container {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+            isolation: isolate;
+        }
+        
+        .discord-community-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #5865F2 0%, #7289DA 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            width: 60px;
+            height: 60px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .discord-community-btn:hover {
+            width: 220px;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.5);
+            background: linear-gradient(135deg, #5865F2 0%, #677bc4 100%);
+        }
+        
+        .discord-community-btn:hover .btn-text {
+            width: auto;
+            opacity: 1;
+            margin-left: 12px;
+        }
+        
+        .discord-community-btn:active {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 2px 8px rgba(88, 101, 242, 0.3);
+        }
+        
+        .discord-icon {
+            font-size: 28px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+        
+        .discord-community-btn:hover .discord-icon {
+            left: 20px;
+            transform: translate(0, -50%);
+        }
+        
+        .btn-text {
+            width: 0;
+            opacity: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: all 0.4s ease;
+        }
+        
+        /* Pulse animation */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(88, 101, 242, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(88, 101, 242, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(88, 101, 242, 0);
+            }
+        }
+        
+        .discord-community-btn.pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .discord-btn-container {
+                left: 10px;
+            }
+            
+            .discord-community-btn {
+                width: 50px;
+                height: 50px;
+                padding: 12px 16px;
+            }
+            
+            .discord-community-btn:hover {
+                width: 200px;
+            }
+            
+            .discord-icon {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .discord-btn-container {
+                bottom: 20px;
+                top: auto;
+                transform: none;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .discord-community-btn {
+                width: auto;
+                height: auto;
+                padding: 12px 20px;
+            }
+            
+            .discord-community-btn:hover {
+                width: auto;
+                transform: none;
+            }
+            
+            .discord-icon {
+                position: static;
+                transform: none;
+                margin-right: 8px;
+                font-size: 20px;
+            }
+            
+            .btn-text {
+                width: auto;
+                opacity: 1;
+            }
+            
+            .discord-community-btn:hover .discord-icon {
+                position: static;
+                transform: none;
+                margin-right: 8px;
+            }
+            
+            .discord-community-btn:hover .btn-text {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Discord Community Button -->
+    <div class="discord-btn-container">
+        <a href="https://discord.gg/v5ytT8zE" target="_blank" class="discord-community-btn pulse">
+            <i class="fab fa-discord discord-icon"></i>
+            <span class="btn-text">Join Our Community</span>
+        </a>
+    </div>
+
+    <script>
+        // Simple script to handle the button behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.querySelector('.discord-community-btn');
+            let clickCount = 0;
+            
+            // Remove pulse animation after 3 clicks
+            if (btn) {
+                btn.addEventListener('click', function() {
+                    clickCount++;
+                    if (clickCount >= 3) {
+                        this.classList.remove('pulse');
+                    }
+                });
+            }
+            
+            // Make button more compact on scroll
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const st = window.pageYOffset || document.documentElement.scrollTop;
+                if (st > lastScrollTop) {
+                    // Scrolling down
+                    btn.style.transform = 'scale(0.9)';
+                } else {
+                    // Scrolling up
+                    btn.style.transform = 'scale(1)';
+                }
+                lastScrollTop = st <= 0 ? 0 : st;
+            }, false);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+<!-- finish button -->
+
+
   <header class="hero-section text-white">
     <div class="container py-5 text-center">
       <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInDown animate__slow">
