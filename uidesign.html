@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaScript Glassmorphism/Neumorphism Generator</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --success: #00b894;
+            --danger: #d63031;
+            --warning: #fdcb6e;
+            --info: #0984e3;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--light);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            overflow: hidden;
+        }
+        
+        .app-header {
+            padding: 25px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .app-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .app-subtitle {
+            font-weight: 300;
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        
+        .controls-panel {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .preview-panel {
+            flex: 2;
+            min-width: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .preview-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .preview-element {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+        
+        .code-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            font-family: monospace;
+            overflow: auto;
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .control-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .control-title i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .form-range {
+            width: 100%;
+            height: 10px;
+        }
+        
+        .form-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .color-picker-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .color-picker {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .color-picker label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .color-picker input {
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .preset-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .preset-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .export-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .export-btn i {
+            margin-right: 8px;
+        }
+        
+        .copy-css {
+            background: var(--success);
+            color: white;
+        }
+        
+        .export-html {
+            background: var(--info);
+            color: white;
+        }
+        
+        .effect-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .toggle-option {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-option.active {
+            background: var(--primary);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        .neo-effect {
+            background: linear-gradient(145deg, #6a77fe, #5c69e5);
+            box-shadow: 10px 10px 20px rgba(55, 63, 163, 0.5),
+                       -10px -10px 20px rgba(113, 123, 255, 0.5);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        @media (max-width: 900px) {
+            .controls-panel {
+                margin-right: 0;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+        }
+        
+        /* Animation for elements */
+        [data-aos] {
+            transition: all 0.8s ease;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1 class="app-title" data-aos="fade-down">AquaScript</h1>
+            <p class="app-subtitle" data-aos="fade-up" data-aos-delay="200">Glassmorphism / Neumorphism Generator</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="controls-panel" data-aos="fade-right" data-aos-delay="400">
+                <div class="effect-toggle">
+                    <div class="toggle-option active" id="glass-option">Glassmorphism</div>
+                    <div class="toggle-option" id="neo-option">Neumorphism</div>
+                </div>
+                
+                <div class="control-group">
+                    <div class="control-title">
+                        <i class="material-icons">tune</i> Blur & Transparency
+                    </div>
+                    <div class="form-group">
+                        <label for="blur-range" class="form-label">
+                            <span>Blur Intensity</span>
+                            <span id="blur-value">10px</span>
+                        </label>
+                        <input type="range" class="form-range" id="blur-range" min="0" max="50" value="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="transparency-range" class="form-label">
+                            <span>Transparency</span>
+                            <span id="transparency-value">0.1</span>
+                        </label>
+                        <input type="range" class="form-range" id="transparency-range" min="0" max="100" value="10">
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <div class="control-title">
+                        <i class="material-icons">border_all</i> Border & Shadow
+                    </div>
+                    <div class="form-group">
+                        <label for="border-range" class="form-label">
+                            <span>Border Width</span>
+                            <span id="border-value">1px</span>
+                        </label>
+                        <input type="range" class="form-range" id="border-range" min="0" max="10" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="shadow-range" class="form-label">
+                            <span>Shadow Intensity</span>
+                            <span id="shadow-value">32px</span>
+                        </label>
+                        <input type="range" class="form-range" id="shadow-range" min="0" max="100" value="32">
+                    </div>
+                    <div class="form-group">
+                        <label for="radius-range" class="form-label">
+                            <span>Border Radius</span>
+                            <span id="radius-value">20px</span>
+                        </label>
+                        <input type="range" class="form-range" id="radius-range" min="0" max="50" value="20">
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <div class="control-title">
+                        <i class="material-icons">palette</i> Colors
+                    </div>
+                    <div class="color-picker-group">
+                        <div class="color-picker">
+                            <label for="bg-color">Background</label>
+                            <input type="color" id="bg-color" value="#667eea">
+                        </div>
+                        <div class="color-picker">
+                            <label for="element-color">Element</label>
+                            <input type="color" id="element-color" value="#6c5ce7">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <div class="control-title">
+                        <i class="material-icons">style</i> Presets
+                    </div>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" data-preset="frost">Frost Glass</button>
+                        <button class="preset-btn" data-preset="smoke">Smoke Glass</button>
+                        <button class="preset-btn" data-preset="soft">Soft Neo</button>
+                        <button class="preset-btn" data-preset="hard">Hard Neo</button>
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn copy-css">
+                        <i class="material-icons">content_copy</i> Copy CSS
+                    </button>
+                    <button class="export-btn export-html">
+                        <i class="material-icons">code</i> Export HTML
+                    </button>
+                </div>
+            </div>
+            
+            <div class="preview-panel">
+                <div class="preview-container" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="preview-element glass-effect" id="preview-element">
+                        Preview Element
+                    </div>
+                </div>
+                
+                <div class="code-container" data-aos="fade-up" data-aos-delay="800">
+                    <pre><code id="css-code">.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 20px;
+}</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <footer data-aos="fade-up" data-aos-delay="1000">
+            <p>© 2023 AquaScript Glassmorphism/Neumorphism Generator | Created with ❤️ for UI designers</p>
+        </footer>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // DOM Elements
+        const previewElement = document.getElementById('preview-element');
+        const cssCode = document.getElementById('css-code');
+        const glassOption = document.getElementById('glass-option');
+        const neoOption = document.getElementById('neo-option');
+        
+        // Range sliders
+        const blurRange = document.getElementById('blur-range');
+        const transparencyRange = document.getElementById('transparency-range');
+        const borderRange = document.getElementById('border-range');
+        const shadowRange = document.getElementById('shadow-range');
+        const radiusRange = document.getElementById('radius-range');
+        
+        // Value displays
+        const blurValue = document.getElementById('blur-value');
+        const transparencyValue = document.getElementById('transparency-value');
+        const borderValue = document.getElementById('border-value');
+        const shadowValue = document.getElementById('shadow-value');
+        const radiusValue = document.getElementById('radius-value');
+        
+        // Color pickers
+        const bgColor = document.getElementById('bg-color');
+        const elementColor = document.getElementById('element-color');
+        
+        // Current effect state
+        let isGlassEffect = true;
+        
+        // Update background color
+        bgColor.addEventListener('input', function() {
+            document.body.style.background = this.value;
+            updateCode();
+        });
+        
+        // Update element color
+        elementColor.addEventListener('input', function() {
+            previewElement.style.background = isGlassEffect ? 
+                `rgba(${hexToRgb(this.value).r}, ${hexToRgb(this.value).g}, ${hexToRgb(this.value).b}, ${transparencyRange.value/100})` : 
+                `linear-gradient(145deg, ${shadeColor(this.value, -20)}, ${this.value})`;
+            updateCode();
+        });
+        
+        // Toggle between effects
+        glassOption.addEventListener('click', function() {
+            isGlassEffect = true;
+            glassOption.classList.add('active');
+            neoOption.classList.remove('active');
+            updateEffect();
+            updateCode();
+        });
+        
+        neoOption.addEventListener('click', function() {
+            isGlassEffect = false;
+            neoOption.classList.add('active');
+            glassOption.classList.remove('active');
+            updateEffect();
+            updateCode();
+        });
+        
+        // Update blur
+        blurRange.addEventListener('input', function() {
+            blurValue.textContent = `${this.value}px`;
+            updateEffect();
+            updateCode();
+        });
+        
+        // Update transparency
+        transparencyRange.addEventListener('input', function() {
+            const value = (this.value / 100).toFixed(2);
+            transparencyValue.textContent = value;
+            
+            if (isGlassEffect) {
+                const color = hexToRgb(elementColor.value);
+                previewElement.style.background = `rgba(${color.r}, ${color.g}, ${color.b}, ${value})`;
+            }
+            
+            updateCode();
+        });
+        
+        // Update border
+        borderRange.addEventListener('input', function() {
+            borderValue.textContent = `${this.value}px`;
+            updateEffect();
+            updateCode();
+        });
+        
+        // Update shadow
+        shadowRange.addEventListener('input', function() {
+            shadowValue.textContent = `${this.value}px`;
+            updateEffect();
+            updateCode();
+        });
+        
+        // Update radius
+        radiusRange.addEventListener('input', function() {
+            radiusValue.textContent = `${this.value}px`;
+            previewElement.style.borderRadius = `${this.value}px`;
+            updateCode();
+        });
+        
+        // Preset buttons
+        document.querySelectorAll('.preset-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const preset = this.getAttribute('data-preset');
+                
+                switch(preset) {
+                    case 'frost':
+                        if (isGlassEffect) {
+                            blurRange.value = 15;
+                            transparencyRange.value = 15;
+                            borderRange.value = 1;
+                            shadowRange.value = 40;
+                            radiusRange.value = 20;
+                            elementColor.value = '#6c5ce7';
+                        } else {
+                            elementColor.value = '#6c5ce7';
+                        }
+                        break;
+                    case 'smoke':
+                        if (isGlassEffect) {
+                            blurRange.value = 25;
+                            transparencyRange.value = 25;
+                            borderRange.value = 1;
+                            shadowRange.value = 50;
+                            radiusRange.value = 15;
+                            elementColor.value = '#a29bfe';
+                        } else {
+                            elementColor.value = '#a29bfe';
+                        }
+                        break;
+                    case 'soft':
+                        if (!isGlassEffect) {
+                            elementColor.value = '#74b9ff';
+                            shadowRange.value = 20;
+                        }
+                        break;
+                    case 'hard':
+                        if (!isGlassEffect) {
+                            elementColor.value = '#636e72';
+                            shadowRange.value = 40;
+                        }
+                        break;
+                }
+                
+                // Update all values and effects
+                blurValue.textContent = `${blurRange.value}px`;
+                transparencyValue.textContent = (transparencyRange.value / 100).toFixed(2);
+                borderValue.textContent = `${borderRange.value}px`;
+                shadowValue.textContent = `${shadowRange.value}px`;
+                radiusValue.textContent = `${radiusRange.value}px`;
+                
+                document.body.style.background = bgColor.value;
+                updateEffect();
+                updateCode();
+            });
+        });
+        
+        // Copy CSS button
+        document.querySelector('.copy-css').addEventListener('click', function() {
+            const textarea = document.createElement('textarea');
+            textarea.value = cssCode.textContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            // Show feedback
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="material-icons">check</i> Copied!';
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+            }, 2000);
+        });
+        
+        // Export HTML button
+        document.querySelector('.export-html').addEventListener('click', function() {
+            const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .custom-effect {
+            ${cssCode.textContent}
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-effect">Your Content Here</div>
+</body>
+</html>`;
+            
+            const blob = new Blob([htmlContent], {type: 'text/html'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'aquascript-effect.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+        
+        // Helper function to update the effect
+        function updateEffect() {
+            if (isGlassEffect) {
+                previewElement.className = 'preview-element glass-effect';
+                const color = hexToRgb(elementColor.value);
+                previewElement.style.background = `rgba(${color.r}, ${color.g}, ${color.b}, ${transparencyRange.value/100})`;
+                previewElement.style.backdropFilter = `blur(${blurRange.value}px)`;
+                previewElement.style.webkitBackdropFilter = `blur(${blurRange.value}px)`;
+                previewElement.style.border = `${borderRange.value}px solid rgba(255, 255, 255, 0.18)`;
+                previewElement.style.boxShadow = `0 8px ${shadowRange.value}px 0 rgba(31, 38, 135, 0.37)`;
+            } else {
+                previewElement.className = 'preview-element neo-effect';
+                const darkerColor = shadeColor(elementColor.value, -20);
+                previewElement.style.background = `linear-gradient(145deg, ${darkerColor}, ${elementColor.value})`;
+                previewElement.style.boxShadow = `
+                    ${shadowRange.value/3}px ${shadowRange.value/3}px ${shadowRange.value}px rgba(0, 0, 0, 0.15),
+                    -${shadowRange.value/3}px -${shadowRange.value/3}px ${shadowRange.value}px rgba(255, 255, 255, 0.07)
+                `;
+                previewElement.style.border = 'none';
+            }
+        }
+        
+        // Helper function to update the code display
+        function updateCode() {
+            if (isGlassEffect) {
+                const color = hexToRgb(elementColor.value);
+                cssCode.textContent = `.glass-effect {
+  background: rgba(${color.r}, ${color.g}, ${color.b}, ${transparencyRange.value/100});
+  backdrop-filter: blur(${blurRange.value}px);
+  -webkit-backdrop-filter: blur(${blurRange.value}px);
+  border: ${borderRange.value}px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px ${shadowRange.value}px 0 rgba(31, 38, 135, 0.37);
+  border-radius: ${radiusRange.value}px;
+}`;
+            } else {
+                const darkerColor = shadeColor(elementColor.value, -20);
+                cssCode.textContent = `.neo-effect {
+  background: linear-gradient(145deg, ${darkerColor}, ${elementColor.value});
+  box-shadow: ${shadowRange.value/3}px ${shadowRange.value/3}px ${shadowRange.value}px rgba(0, 0, 0, 0.15),
+              -${shadowRange.value/3}px -${shadowRange.value/3}px ${shadowRange.value}px rgba(255, 255, 255, 0.07);
+  border-radius: ${radiusRange.value}px;
+}`;
+            }
+        }
+        
+        // Helper function to convert hex to rgb
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : {r: 0, g: 0, b: 0};
+        }
+        
+        // Helper function to shade a color
+        function shadeColor(color, percent) {
+            let R = parseInt(color.substring(1, 3), 16);
+            let G = parseInt(color.substring(3, 5), 16);
+            let B = parseInt(color.substring(5, 7), 16);
+            
+            R = parseInt(R * (100 + percent) / 100);
+            G = parseInt(G * (100 + percent) / 100);
+            B = parseInt(B * (100 + percent) / 100);
+            
+            R = (R < 255) ? R : 255;
+            G = (G < 255) ? G : 255;
+            B = (B < 255) ? B : 255;
+            
+            R = (R < 0) ? 0 : R;
+            G = (G < 0) ? 0 : G;
+            B = (B < 0) ? 0 : B;
+            
+            const RR = ((R.toString(16).length == 1) ? "0" + R.toString(16) : R.toString(16));
+            const GG = ((G.toString(16).length == 1) ? "0" + G.toString(16) : G.toString(16));
+            const BB = ((B.toString(16).length == 1) ? "0" + B.toString(16) : B.toString(16));
+            
+            return "#" + RR + GG + BB;
+        }
+        
+        // Initialize
+        updateEffect();
+        updateCode();
+    </script>
+</body>
+</html>
