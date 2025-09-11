@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ButterflyCSS - Advanced Attribute-Based Framework</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- ButterflyCSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AMR2010M/butterfly-css@latest/attributes.css">
+    <script src="https://cdn.jsdelivr.net/gh/AMR2010M/butterfly-css@latest/dark.js"></script>
+    
+    <!-- LenisCSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis.css@1.0.0/lenis.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- AnimeJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- ParticlesJS -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- ThreeJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-aqua: #00e6cc;
+            --primary-pink: #ff66b3;
+            --secondary-aqua: #00cccc;
+            --light-bg: #f0f8ff;
+            --dark-bg: #0a1929;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            transition: all 0.5s ease;
+        }
+        
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+        }
+        
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .butterfly-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-aqua) 0%, var(--primary-pink) 100%);
+        }
+        
+        .handdrawn-border {
+            border: 3px solid var(--primary-aqua);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 230, 204, 0.5);
+        }
+        
+        .code-example {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            color: white;
+            font-family: monospace;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-aqua);
+        }
+        
+        .btn-butterfly {
+            background: linear-gradient(to right, var(--primary-aqua), var(--primary-pink));
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-butterfly:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 20px 0;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        .dark-mode .navbar.scrolled {
+            background: rgba(10, 25, 41, 0.9);
+        }
+        
+        .particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .butterfly-shape {
+            clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js" class="particles-js"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" flex-row>
+                <span class="material-icons me-2" style="color: var(--primary-aqua);">flutter_dash</span>
+                <span handdrawn dtwhite tlblack style="font-weight: 700; font-size: 1.5rem;">ButterflyCSS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#animations">Animations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#docs">Documentation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#examples">Examples</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#get-started">Get Started</a></li>
+                </ul>
+                <button class="btn btn-outline-aqua ms-3" dark-btn btn='black'>Dark Mode</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold" dtwhite tlblack>Create Stunning Websites in <span style="color: var(--primary-aqua);">Lightspeed</span></h1>
+                    <p class="lead mb-4" dtwhite tlblack>ButterflyCSS is an attribute-based CSS framework with 4500+ attributes to build responsive, animated websites faster than ever before.</p>
+                    <div flex-row>
+                        <a href="#get-started" class="btn btn-butterfly me-3">Get Started</a>
+                        <a href="#docs" class="btn btn-outline-aqua">Documentation</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <div class="butterfly-animation" ball-move-1 ball-move-2 ball-move-3></div>
+                        <div class="text-center">
+                            <div class="butterfly-shape gradient-bg mx-auto" style="width: 300px; height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold" dtwhite tlblack>Powerful Features</h2>
+                <p class="lead" dtwhite tlblack>Discover what makes ButterflyCSS unique</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card handdrawn-border p-4" bg="dpurple lwhite" center>
+                        <span class="material-icons feature-icon">speed</span>
+                        <h4>Fast Typing</h4>
+                        <p>Attribute-based styling makes development faster with descriptive, short attributes.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card handdrawn-border p-4" bg="dblue lwhite" center>
+                        <span class="material-icons feature-icon">animation</span>
+                        <h4>Easy Animation</h4>
+                        <p>Create stunning animations with simple attributes like ball-move-1, handdrawn, pulse, etc.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card handdrawn-border p-4" bg="dgreen lwhite" center>
+                        <span class="material-icons feature-icon">dark_mode</span>
+                        <h4>Easy Dark Mode</h4>
+                        <p>Add dark mode to your website in minutes, even with other frameworks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Animations Section -->
+    <section id="animations" class="section gradient-bg">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Beautiful Animations</h2>
+                <p class="lead">Prebuilt animations with simple attributes</p>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-6 text-center mb-4">
+                    <div class="p-4 handdrawn-border" bg="white" style="height: 150px; width: 150px; margin: 0 auto;" center pulse>
+                        <p>Pulse</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 text-center mb-4">
+                    <div class="p-4 handdrawn-border" bg="white" style="height: 150px; width: 150px; margin: 0 auto;" center bounce>
+                        <p>Bounce</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 text-center mb-4">
+                    <div class="p-4 handdrawn-border" bg="white" style="height: 150px; width: 150px; margin: 0 auto;" center spin>
+                        <p>Spin</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 text-center mb-4">
+                    <div class="p-4 handdrawn-border" bg="white" style="height: 150px; width: 150px; margin: 0 auto;" center swing>
+                        <p>Swing</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-butterfly">View All Animations</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Documentation Section -->
+    <section id="docs" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold" dtwhite tlblack>Comprehensive Documentation</h2>
+                    <p class="lead" dtwhite tlblack>Learn how to use ButterflyCSS with our detailed documentation and examples.</p>
+                    <p dtwhite tlblack>Our documentation includes examples, usage guidelines, and code snippets for all 4500+ attributes.</p>
+                    <a href="https://butterfly-css.netlify.app/docs" target="_blank" class="btn btn-butterfly mt-3">Read Documentation</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="code-example handdrawn-border">
+                        <pre><code class="text-white">
+// Example usage of ButterflyCSS
+&lt;div flex-row center&gt;
+    &lt;button btn='purple'&gt;Purple Button&lt;/button&gt;
+    &lt;button btn='aqua' pulse&gt;Animated Button&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div flex-column handdrawn birthday-paper&gt;
+    &lt;h3 dtwhite tlblack&gt;Special Effects&lt;/h3&gt;
+    &lt;p dtwhite tlblack&gt;This has a handdrawn effect and birthday paper animation&lt;/p&gt;
+&lt;/div&gt;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Get Started Section -->
+    <section id="get-started" class="section gradient-bg">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="display-4 fw-bold">Get Started with ButterflyCSS</h2>
+                <p class="lead mb-5">Add ButterflyCSS to your project in seconds</p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="code-example handdrawn-border">
+                            <pre><code class="text-white">
+<!-- Add these to your head section -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AMR2010M/butterfly-css@latest/attributes.css">
+<script src="https://cdn.jsdelivr.net/gh/AMR2010M/butterfly-css@latest/dark.js"></script>
+                            </code></pre>
+                        </div>
+                        <a href="https://butterfly-css.netlify.app/docs" target="_blank" class="btn btn-butterfly mt-4">View Full Documentation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-5" bg="dblack lwhite">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold">ButterflyCSS</h5>
+                    <p>An attribute-based CSS framework for building responsive, animated websites quickly.</p>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h5 class="fw-bold">Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#animations">Animations</a></li>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#get-started">Get Started</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h5 class="fw-bold">Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://github.com/AMR2010M/butterfly-css" target="_blank">GitHub</a></li>
+                        <li><a href="https://codepen.io/collection/XQrgpy" target="_blank">CodePen</a></li>
+                        <li><a href="https://butterfly-css.netlify.app/examples" target="_blank">Examples</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold">Subscribe for Updates</h5>
+                    <div flex-row>
+                        <input type="email" class="form-control me-2" placeholder="Your email">
+                        <button class="btn btn-butterfly">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>Made with ❤️ by Amr Kilany and contributors</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LenisJS -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis.js@1.0.0/dist/lenis.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Initialize Lenis Smooth Scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true
+        });
+        
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        
+        requestAnimationFrame(raf);
+        
+        // Initialize ParticlesJS
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: ["#00e6cc", "#ff66b3", "#00cccc"] },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00e6cc",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            gsap.to(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Butterfly animation with AnimeJS
+        const butterfly = document.querySelector('.butterfly-shape');
+        anime({
+            targets: butterfly,
+            translateY: [-20, 20],
+            rotate: [-5, 5],
+            duration: 3000,
+            direction: 'alternate',
+            easing: 'easeInOutSine',
+            loop: true
+        });
+        
+        // Initialize dark mode from ButterflyCSS
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle is handled by ButterflyCSS
+            document.addEventListener('darkModeApplied', (mode) => {
+                if (mode.detail.dark) {
+                    document.body.classList.add('dark-mode');
+                    console.log("Dark mode is active");
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    console.log("Light mode is active");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
