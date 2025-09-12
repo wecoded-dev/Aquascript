@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaScript Shop | Premium Website Templates</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- LenisCSS (smooth scroll) -->
+    <style>
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+    </style>
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-aqua: #00e6cc;
+            --aqua-dark: #009688;
+            --aqua-light: #00fff0;
+            --dark-bg: #0a1929;
+            --darker-bg: #051321;
+            --card-bg: #0d2335;
+            --text-light: #e0f7fa;
+            --text-muted: #8fa6b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 70%);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(5, 19, 33, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(0, 230, 204, 0.1);
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+            filter: drop-shadow(0 0 5px var(--primary-aqua));
+        }
+        
+        .nav-link {
+            color: var(--text-light) !important;
+            margin: 0 10px;
+            position: relative;
+            font-weight: 500;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-aqua);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .navbar-toggler {
+            border: none;
+            color: var(--text-light);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary-aqua), var(--aqua-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 230, 204, 0.4);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+        
+        .btn-aqua {
+            background: linear-gradient(45deg, var(--primary-aqua), var(--aqua-dark));
+            border: none;
+            color: var(--darker-bg);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 230, 204, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-aqua:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 230, 204, 0.6);
+            color: var(--darker-bg);
+        }
+        
+        .btn-aqua::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .btn-aqua:hover::before {
+            left: 100%;
+        }
+        
+        /* Section Styles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-aqua), var(--aqua-light));
+            border-radius: 2px;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background: var(--dark-bg);
+            position: relative;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 230, 204, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 230, 204, 0.1);
+            border-color: rgba(0, 230, 204, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-aqua);
+            display: inline-block;
+        }
+        
+        /* Templates Section */
+        .templates-section {
+            padding: 100px 0;
+            background: var(--darker-bg);
+        }
+        
+        .template-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 230, 204, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .template-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 230, 204, 0.2);
+            border-color: rgba(0, 230, 204, 0.4);
+        }
+        
+        .template-img {
+            height: 200px;
+            background: linear-gradient(45deg, #0d2335, #143250);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .template-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 230, 204, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .template-card:hover .template-overlay {
+            opacity: 1;
+        }
+        
+        .template-content {
+            padding: 20px;
+        }
+        
+        .template-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .template-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-aqua);
+            margin-bottom: 15px;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            padding: 100px 0;
+            background: var(--dark-bg);
+        }
+        
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid rgba(0, 230, 204, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            font-size: 6rem;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            color: rgba(0, 230, 204, 0.1);
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid var(--primary-aqua);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 0;
+            background: var(--darker-bg);
+        }
+        
+        .accordion-item {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 230, 204, 0.1);
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .accordion-button {
+            background: var(--card-bg);
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 20px;
+            box-shadow: none;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background: rgba(0, 230, 204, 0.1);
+            color: var(--primary-aqua);
+        }
+        
+        .accordion-body {
+            padding: 20px;
+            color: var(--text-muted);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(0, 230, 204, 0.1);
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-logo span {
+            color: var(--primary-aqua);
+        }
+        
+        .footer-social {
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: var(--card-bg);
+            color: var(--text-light);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background: var(--primary-aqua);
+            color: var(--darker-bg);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links h5 {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-aqua);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-aqua);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 230, 204, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 230, 204, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 230, 204, 0); }
+        }
+        
+        .float-animation {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .navbar {
+                padding: 10px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .btn-aqua {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <!-- Replace with your logo image -->
+                <span style="font-weight: 700; font-size: 1.8rem;">Aqua<span style="color: var(--primary-aqua);">Script</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="material-icons">menu</span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#templates">Templates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="hero-title">Premium Website Templates</h1>
+                    <p class="hero-subtitle">Discover beautifully designed, responsive templates that will make your website stand out from the crowd.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#templates" class="btn btn-aqua pulse-animation">Explore Templates</a>
+                        <a href="#features" class="btn btn-outline-light">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <canvas id="rough-js-hero" width="500" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Why Choose Our Templates</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-icon material-icons">devices</div>
+                        <h4>Fully Responsive</h4>
+                        <p>Our templates look stunning on all devices, from mobile phones to desktop computers.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon material-icons">code</div>
+                        <h4>Clean Code</h4>
+                        <p>Well-structured and documented code makes customization easy even for beginners.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-icon material-icons">bolt</div>
+                        <h4>Fast Loading</h4>
+                        <p>Optimized for performance with fast loading times and smooth animations.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card">
+                        <div class="feature-icon material-icons">palette</div>
+                        <h4>Modern Design</h4>
+                        <p>Trendy and professional designs that will make your website stand out.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section id="templates" class="templates-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Featured Templates</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="template-card">
+                        <div class="template-img">
+                            <div class="template-overlay">
+                                <button class="btn btn-aqua">View Details</button>
+                            </div>
+                        </div>
+                        <div class="template-content">
+                            <h3 class="template-title">Aqua Business</h3>
+                            <p>Modern business template with elegant design and smooth animations.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="template-price">$49</span>
+                                <button class="btn btn-sm btn-outline-light">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="template-card">
+                        <div class="template-img">
+                            <div class="template-overlay">
+                                <button class="btn btn-aqua">View Details</button>
+                            </div>
+                        </div>
+                        <div class="template-content">
+                            <h3 class="template-title">Ocean Portfolio</h3>
+                            <p>Creative portfolio template perfect for designers and artists.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="template-price">$59</span>
+                                <button class="btn btn-sm btn-outline-light">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="template-card">
+                        <div class="template-img">
+                            <div class="template-overlay">
+                                <button class="btn btn-aqua">View Details</button>
+                            </div>
+                        </div>
+                        <div class="template-content">
+                            <h3 class="template-title">Deep Blue Shop</h3>
+                            <p>E-commerce template with modern product showcases and filters.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="template-price">$69</span>
+                                <button class="btn btn-sm btn-outline-light">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="template-card">
+                        <div class="template-img">
+                            <div class="template-overlay">
+                                <button class="btn btn-aqua">View Details</button>
+                            </div>
+                        </div>
+                        <div class="template-content">
+                            <h3 class="template-title">Coral Blog</h3>
+                            <p>Elegant blogging template with clean typography and reading features.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="template-price">$45</span>
+                                <button class="btn btn-sm btn-outline-light">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="template-card">
+                        <div class="template-img">
+                            <div class="template-overlay">
+                                <button class="btn btn-aqua">View Details</button>
+                            </div>
+                        </div>
+                        <div class="template-content">
+                            <h3 class="template-title">Marine Corporate</h3>
+                            <p>Professional corporate template with all essential business sections.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="template-price">$79</span>
+                                <button class="btn btn-sm btn-outline-light">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="template-card">
+                        <div class="template-img">
+                            <div class="template-overlay">
+                                <button class="btn btn-aqua">View Details</button>
+                            </div>
+                        </div>
+                        <div class="template-content">
+                            <h3 class="template-title">Aqua One Page</h3>
+                            <p>Single page template with smooth scrolling and animated sections.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="template-price">$39</span>
+                                <button class="btn btn-sm btn-outline-light">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>What Our Customers Say</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The Aqua Business template completely transformed my company website. The code is clean and well-documented, making customization a breeze."</p>
+                        <div class="testimonial-author">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=009688&color=fff" alt="Sarah Johnson" class="testimonial-avatar">
+                            <div>
+                                <h5>Sarah Johnson</h5>
+                                <p>CEO, TechSolutions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"I've purchased several templates from AquaScript, and they never disappoint. The designs are modern, and the support is excellent."</p>
+                        <div class="testimonial-author">
+                            <img src="https://ui-avatars.com/api/?name=Michael+Chen&background=009688&color=fff" alt="Michael Chen" class="testimonial-avatar">
+                            <div>
+                                <h5>Michael Chen</h5>
+                                <p>Creative Director</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The responsiveness of these templates is impressive. My website looks perfect on all devices, and the loading speed is fantastic."</p>
+                        <div class="testimonial-author">
+                            <img src="https://ui-avatars.com/api/?name=Emma+Rodriguez&background=009688&color=fff" alt="Emma Rodriguez" class="testimonial-avatar">
+                            <div>
+                                <h5>Emma Rodriguez</h5>
+                                <p>Freelance Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"As a developer, I appreciate the clean code structure. It saved me countless hours of work, and the animations are smooth and professional."</p>
+                        <div class="testimonial-author">
+                            <img src="https://ui-avatars.com/api/?name=David+Kim&background=009688&color=fff" alt="David Kim" class="testimonial-avatar">
+                            <div>
+                                <h5>David Kim</h5>
+                                <p>Web Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Are the templates customizable?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, all our templates are fully customizable. They come with well-documented code, making it easy to modify colors, fonts, layout, and more to match your brand identity.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    What kind of support do you offer?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We offer 6 months of included support with every template purchase. Our support team is available to help with template installation, customization guidance, and bug fixes.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Are the templates responsive?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Absolutely! All our templates are fully responsive and tested on various devices and screen sizes. They use modern CSS techniques like Flexbox and Grid to ensure perfect display on mobile, tablet, and desktop.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    What payment methods do you accept?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We accept all major credit cards, PayPal, and bank transfers. All transactions are secure and encrypted.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    Can I use these templates for multiple projects?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Each purchase grants you a license to use the template for one project. If you need to use it for multiple projects, you'll need to purchase additional licenses.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a href="#" class="footer-logo">Aqua<span>Script</span></a>
+                    <p>Creating beautiful, responsive website templates to help you build an outstanding online presence.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#templates">Templates</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <div class="footer-links">
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="footer-links">
+                        <h5>Contact Info</h5>
+                        <ul>
+                            <li><i class="material-icons me-2">mail</i> contact@aquascript.com</li>
+                            <li><i class="material-icons me-2">phone</i> +1 (555) 123-4567</li>
+                            <li><i class="material-icons me-2">location_on</i> 123 Ocean Avenue, Suite 456<br>Coastal City, CA 90210</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>&copy; 2025 AquaScript Shop. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/roughjs@4.5.2/bundled/rough.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.39/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Initialize Lenis Smooth Scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            touchMultiplier: 2,
+        });
+        
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        
+        requestAnimationFrame(raf);
+        
+        // Initialize Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00e6cc" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00e6cc",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 1 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Rough.js illustration
+        document.addEventListener('DOMContentLoaded', function() {
+            const roughHero = document.getElementById('rough-js-hero');
+            const rc = rough.canvas(roughHero);
+            
+            // Draw a website illustration with Rough.js
+            rc.rectangle(50, 50, 400, 300, { 
+                fill: 'rgba(13, 35, 53, 0.8)', 
+                fillStyle: 'solid', 
+                roughness: 0.8, 
+                bowing: 2 
+            });
+            
+            // Header
+            rc.rectangle(70, 70, 360, 50, { 
+                fill: 'rgba(0, 230, 204, 0.3)', 
+                fillStyle: 'solid', 
+                roughness: 0.5 
+            });
+            
+            // Content boxes
+            rc.rectangle(90, 140, 120, 80, { 
+                fill: 'rgba(0, 230, 204, 0.2)', 
+                fillStyle: 'solid', 
+                roughness: 0.5 
+            });
+            
+            rc.rectangle(230, 140, 120, 80, { 
+                fill: 'rgba(0, 230, 204, 0.2)', 
+                fillStyle: 'solid', 
+                roughness: 0.5 
+            });
+            
+            rc.rectangle(90, 240, 120, 80, { 
+                fill: 'rgba(0, 230, 204, 0.2)', 
+                fillStyle: 'solid', 
+                roughness: 0.5 
+            });
+            
+            rc.rectangle(230, 240, 120, 80, { 
+                fill: 'rgba(0, 230, 204, 0.2)', 
+                fillStyle: 'solid', 
+                roughness: 0.5 
+            });
+        });
+        
+        // Anime.js animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate the hero title
+            anime({
+                targets: '.hero-title',
+                translateY: [-50, 0],
+                opacity: [0, 1],
+                duration: 1500,
+                easing: 'easeOutExpo'
+            });
+            
+            // Animate the hero subtitle
+            anime({
+                targets: '.hero-subtitle',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                delay: 300,
+                duration: 1500,
+                easing: 'easeOutExpo'
+            });
+            
+            // Animate the buttons
+            anime({
+                targets: '.btn-aqua',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                delay: 600,
+                duration: 1500,
+                easing: 'easeOutExpo'
+            });
+            
+            // Animate feature cards on scroll
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach((card, index) => {
+                card.addEventListener('mouseenter', function() {
+                    anime({
+                        targets: this,
+                        scale: 1.05,
+                        duration: 300,
+                        easing: 'easeInOutQuad'
+                    });
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    anime({
+                        targets: this,
+                        scale: 1,
+                        duration: 300,
+                        easing: 'easeInOutQuad'
+                    });
+                });
+            });
+            
+            // Animate template cards
+            const templateCards = document.querySelectorAll('.template-card');
+            templateCards.forEach((card, index) => {
+                card.addEventListener('mouseenter', function() {
+                    anime({
+                        targets: this.querySelector('.template-overlay'),
+                        opacity: 1,
+                        duration: 300,
+                        easing: 'easeInOutQuad'
+                    });
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    anime({
+                        targets: this.querySelector('.template-overlay'),
+                        opacity: 0,
+                        duration: 300,
+                        easing: 'easeInOutQuad'
+                    });
+                });
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '10px 0';
+                navbar.style.background = 'rgba(5, 19, 33, 0.95)';
+            } else {
+                navbar.style.padding = '15px 0';
+                navbar.style.background = 'rgba(5, 19, 33, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
