@@ -1,1 +1,11 @@
-# Algolia-Crawler-Verif: CD6041B95AEBDDB7
+User-agent: *
+Allow: /
+
+# Disallow admin or private paths if they exist (none currently)
+# Disallow: /admin/
+# Disallow: /private/
+
+Sitemap: https://aquascript.xyz/sitemap.xml
+
+# Verification
+Algolia-Crawler-Verif: CD6041B95AEBDDB7
